@@ -1,0 +1,45 @@
+/* uva kleuren */
+.rood_100 {
+    color: #bc0031;
+}
+.rood_110 {
+    color: #840022;
+}
+.zwart {
+    color: #1B1918;
+}
+.wit {
+    color: #ffffff;
+}
+.grijs {
+    color: #A8A29F;
+}
+.donkergroen {
+    color: #257835;
+    /* kleur van faculteit der geneeskunde */
+}
+/* einde uva kleuren */
+
+body {
+    font-family: "Times New Roman", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#uva_logo {
+    height: 65px;
+    padding: 10px;
+}
+
+#profiel {
+    height: 50px;
+    fill: #1B1918;
+    padding-right: 20px;
+}
+
+header {
+    background-color: #bc0031;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
