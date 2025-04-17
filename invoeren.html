@@ -277,9 +277,13 @@
         const weeknummer = document.getElementById("weeknummer");
         if (weeknummer.value === "") {
             alert("Kies een weeknummer");
-        } else {
+        } else if (weeknummer.value === "week1") {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap0").style.display = 'block';
+        }
+        else {
+            document.getElementById("start_tekst").style.display = 'none';
+            document.getElementById("stap1").style.display = 'block';
         }
         // TODO: van het geselecteerde weeknummer checken of de data hiervoor al is ingevuld (via db)
     }
@@ -288,8 +292,15 @@
         const div_id = button.closest("div").id; // haalt de id van de div van de stap op (bijv. "stap1")
         const huidige = Number(div_id.match(/\d+/)[0]); // haalt mbv regex het getal uit de id (bijv. 1)
         document.getElementById(`stap${huidige}`).style.display = 'none';
+        const weeknummer = document.getElementById("weeknummer");
         if (huidige === 0) {
             document.getElementById("start_tekst").style.display = 'block';
+        } else if (huidige === 1) {
+            if (weeknummer.value !== "week1") { // als data van week 2 t/m 6 wordt ingevoerd, gaat het van stap 1 terug naar start
+                document.getElementById("start_tekst").style.display = 'block';
+            } else { // als data van week 1 wordt ingevoerd, gaat het van stap 1 terug naar stap 0 (algemene vragenlijst)
+                document.getElementById(`stap${huidige - 1}`).style.display = 'block';
+            }
         } else {
             document.getElementById(`stap${huidige - 1}`).style.display = 'block';
         }
