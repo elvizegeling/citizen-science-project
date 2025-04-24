@@ -37,21 +37,38 @@ select, input {
     font-size: 20px;
 }
 
-button {
+button.volgende {
     font-family: "Times New Roman", sans-serif;
     font-size: 22px;
     background-color: #1B1918;
+    border-color: #1B1918;
     color: #FFFFFF;
-    border: none;
     line-height: 36px;
     width: fit-content;
     padding-left: 12px;
     padding-right: 12px;
 }
 
-button:hover {
+button.vorige {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 22px;
+    background-color: #FFFFFF;
+    border-color: #1B1918;
+    color: #1B1918;
+    line-height: 36px;
+    width: fit-content;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+button.volgende:hover {
     cursor: pointer;
     background-color: #4A4645;
+}
+
+button.vorige:hover {
+    cursor: pointer;
+    background-color: #A8A29F;
 }
 
 input[type="range"] {

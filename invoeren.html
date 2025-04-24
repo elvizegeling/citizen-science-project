@@ -37,7 +37,7 @@
                 <option value="week5">Week 5</option>
                 <option value="week6">Week 6</option>
             </select><br><br>
-            <button type="button" id="start" onclick="startVragenlijst()">Starten</button>
+            <button type="button" class="volgende" id="start" onclick="startVragenlijst()">Starten</button>
         </div>
         <form id="questionnaire">
             <div class="stap" id="stap0" style="display: none">
@@ -63,8 +63,8 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="reistijd" required> minuten<br><br>
 
-                <button type="button" id="vorige1" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="volgende1" onclick="gaVerder(this)">Volgende</button>
+                <button type="button" class="vorige" id="vorige1" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="volgende1" onclick="gaVerder(this)">Volgende</button>
             </div>
             <div class="stap" id="stap1" style="display: none">
                 <h2>Beweging</h2>
@@ -99,8 +99,8 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="stappen"> stappen<br><br>
 
-                <button type="button" id="vorige2" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="volgende2" onclick="gaVerder(this)">Volgende</button>
+                <button type="button" class="vorige" id="vorige2" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="volgende2" onclick="gaVerder(this)">Volgende</button>
             </div>
             <div class="stap" id="stap2" style="display: none">
                 <h2>Middelengebruik</h2>
@@ -120,8 +120,8 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="harddrugs" required> keer<br><br>
 
-                <button type="button" id="vorige3" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="volgende3" onclick="gaVerder(this)">Volgende</button>
+                <button type="button" class="vorige" id="vorige3" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="volgende3" onclick="gaVerder(this)">Volgende</button>
             </div>
             <div class="stap" id="stap3" style="display: none">
                 <h2>Voeding</h2>
@@ -162,8 +162,8 @@
                 <input type="radio" id="geen" name="voorkeuren"><label for="geen">Nee</label>
                 <input type="radio" id="flex" name="voorkeuren"><label for="flex">Flex</label><br><br>
 
-                <button type="button" id="vorige4" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="volgende4" onclick="gaVerder(this)">Volgende</button>
+                <button type="button" class="vorige" id="vorige4" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="volgende4" onclick="gaVerder(this)">Volgende</button>
             </div>
             <div class="stap" id="stap4" style="display: none">
                 <h2>Tijdsbesteding</h2>
@@ -187,8 +187,8 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="werk" required> uur<br><br>
 
-                <button type="button" id="vorige5" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="volgende5" onclick="gaVerder(this)">Volgende</button>
+                <button type="button" class="vorige" id="vorige5" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="volgende5" onclick="gaVerder(this)">Volgende</button>
             </div>
             <div class="stap" id="stap5" style="display: none">
                 <h2>Subjectieve ervaringen</h2>
@@ -240,8 +240,8 @@
                 <label for="hobbys_tevreden">11. Hoe tevreden was je met de tijd die je kon besteden aan hobby's deze week?</label>
                 <input type="range" id="hobbys_tevreden" min="0" max="10" list="tickmarks"><br><br>
 
-                <button type="button" id="vorige6" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="volgende6" onclick="gaVerder(this)">Volgende</button>
+                <button type="button" class="vorige" id="vorige6" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="volgende6" onclick="gaVerder(this)">Volgende</button>
             </div>
             <div class="stap" id="stap6" style="display: none">
                 <h2>Biomarkers cardiovasculaire aandoeningen</h2>
@@ -264,8 +264,8 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="hartslag" required> slagen per minuut<br><br>
 
-                <button type="button" id="vorige7" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" id="versturen" onclick="verstuurData()">Versturen</button>
+                <button type="button" class="vorige" id="vorige7" onclick="gaTerug(this)">Vorige</button>
+                <button type="submit" class="volgende" id="versturen" onclick="verstuurData()">Versturen</button>
             </div>
         </form>
     </div>
