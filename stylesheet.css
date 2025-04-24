@@ -32,9 +32,26 @@ body {
     padding-right: 36px;
 }
 
-select, button, input {
+select, input {
     font-family: "Times New Roman", sans-serif;
     font-size: 20px;
+}
+
+button {
+    font-family: "Times New Roman", sans-serif;
+    font-size: 22px;
+    background-color: #1B1918;
+    color: #FFFFFF;
+    border: none;
+    line-height: 36px;
+    width: fit-content;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #4A4645;
 }
 
 input[type="range"] {
