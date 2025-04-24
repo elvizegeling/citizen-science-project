@@ -27,12 +27,12 @@ body {
 }
 
 .content {
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 36px;
     padding-right: 36px;
 }
 
-select, input {
+select, button, input {
     font-family: "Times New Roman", sans-serif;
     font-size: 20px;
 }
@@ -128,7 +128,7 @@ header {
 nav.tabbladen {
     display: flex;
     align-self: center;
-    margin-top: -10px;
+    margin-top: -5px;
 }
 
 .tabblad-actief {
