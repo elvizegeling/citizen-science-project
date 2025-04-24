@@ -26,6 +26,7 @@ body {
     padding-top: 160px;
     font-family: "Times New Roman", sans-serif;
     margin: 0;
+    padding-bottom: 80px;
 }
 
 .content {
@@ -43,6 +44,12 @@ body {
     padding: 50px;
 }
 
+.stap {
+    background-color: #ededed;
+    width: 700px;
+    padding: 50px;
+}
+
 select, button, input {
     font-family: "Times New Roman", sans-serif;
     font-size: 18px;
@@ -52,18 +59,26 @@ button:hover {
     cursor: pointer;
 }
 
-button.volgende {
+.vorige_volgende {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+button.volgende, button.start {
     font-family: "Times New Roman", sans-serif;
     font-size: 22px;
     background-color: #1B1918;
+    border-style: solid;
     border-color: #1B1918;
+    border-radius: 3px;
     color: #FFFFFF;
     line-height: 36px;
     width: fit-content;
     padding-left: 12px;
     padding-right: 12px;
 }
-button.volgende:hover {
+button.volgende:hover, button.start:hover {
     background-color: #4A4645;
 }
 
@@ -71,7 +86,9 @@ button.vorige {
     font-family: "Times New Roman", sans-serif;
     font-size: 22px;
     background-color: #FFFFFF;
+    border-style: solid;
     border-color: #1B1918;
+    border-radius: 3px;
     color: #1B1918;
     line-height: 36px;
     width: fit-content;
@@ -85,6 +102,35 @@ button.vorige:hover {
 input[type="range"] {
     width: 300px;
 }
+
+/* onderstaande in comments is voor de progress bar, maar is nog niet af
+#progress_bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.onderdeel {
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.onderdeel.active {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 3px solid #000
+}
+
+.onderdeel:before {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+}
+*/
 
 #toegangscode {
     text-align: center;
