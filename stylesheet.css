@@ -21,7 +21,7 @@
 /* einde uva kleuren */
 
 body {
-    padding-top: 90px;
+    padding-top: 130px;
     font-family: "Times New Roman", sans-serif;
     margin: 0;
 }
@@ -76,39 +76,62 @@ input[type="range"] {
 }
 
 /* Opmaak voor alles in de header */
-#uva_logo {
-    height: 55px;
-    padding: 10px;
-}
-
-#profiel {
-    height: 50px;
-    fill: #1B1918;
-    padding-right: 20px;
-}
-
 header {
     background-color: #bc0031;
     position: fixed;
     width: 100%;
-    height: 85px;
+    height: 110px;
     left: 0;
     z-index: 1000;
     top: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-nav.tabbladen {
-    padding-left: 100px;
-    display: flex;
-    align-self: flex-end;
+#uva_logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
 }
 
-.tabblad#actief {
+.logo_wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin-top: 110px;
+    height: 70px;
+}
+
+.logo_container {
+    background-color: #bc0031;
+    border-radius: 5rem;
+    width: 450px;
+    height: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo_container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    border-radius: 5rem 5rem 0 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+nav.tabbladen {
+    display: flex;
+    align-self: center;
+    margin-top: -10px;
+}
+
+.tabblad-actief {
     color: #ffffff;
     text-decoration: none;
     padding: 10px 20px;
@@ -117,7 +140,7 @@ nav.tabbladen {
     border-bottom: 3px solid white;
 }
 
-.tabblad#inactief {
+.tabblad-inactief {
     color: #A8A29F;
     text-decoration: none;
     padding: 10px 20px;
@@ -125,6 +148,10 @@ nav.tabbladen {
     font-size: 20px;
 }
 
-.tabblad:hover {
+.tabblad-actief:hover {
+    background-color: #a8002a;
+}
+
+.tabblad-inactief:hover {
     background-color: #a8002a;
 }
