@@ -56,8 +56,7 @@
             <div class="stap" id="stap0" style="display: none">
                 <h2>Algemeen</h2>
                 <label for="leeftijd">1. Wat is je leeftijd?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="leeftijd" required> jaar<br><br>
+                <input type="number" id="leeftijd" min="15" max="67" required> jaar<br><br>
 
                 <label>2. Wat is je geslacht?</label>
                 <input type="radio" id="man" name="geslacht" required><label for="man">Man</label>
@@ -65,16 +64,14 @@
                 <input type="radio" id="anders" name="geslacht"><label for="anders">Anders</label><br><br>
 
                 <label for="lichaamslengte">3. Wat is je lichaamslengte?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="lichaamslengte" required> centimeter<br><br>
+                <input type="number" id="lichaamslengte" min="140" max="220" required> centimeter<br><br>
 
                 <label>4. Woon je thuis bij ouders of verzorgers?</label>
                 <input type="radio" id="ja" name="thuiswonend" required><label for="ja">Ja</label>
                 <input type="radio" id="nee" name="thuiswonend"><label for="nee">Nee</label><br><br>
 
                 <label for="reistijd">5. Wat is je gemiddelde reistijd van thuis naar de universiteit?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="reistijd" required> minuten<br><br>
+                <input type="number" id="reistijd" min="0" max="180" required> minuten<br><br>
                 <div class="vorige_volgende" id="knoppen0">
                     <button type="button" class="vorige" id="vorige1" onclick="gaTerug(this)">Vorige</button>
                     <button type="submit" class="volgende" id="volgende1" onclick="gaVerder(this)">Volgende</button>
@@ -86,32 +83,27 @@
                 moeite kosten zoals wandelen, fietsen en huishoudelijke taken maar ook rustig tuinieren en
                 sportactiviteiten. Zolang praten maar mogelijk blijft.</i></p>
                 <label for="matig_intensief">1. Hoeveel minuten besteedde je de afgelopen week aan matig intensieve lichaamsbeweging?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="matig_intensief" required> minuten<br><br>
+                <input type="number" id="matig_intensief" min="0" max="2520" required> minuten<br><br>
 
                 <p><i>Deze vraag gaat over intensief bewegen. Hieronder vallen activiteiten die meer moeite kosten dan
                 matig intensief, praten is veelal niet meer mogelijk. Bijvoorbeeld teamsporten, balsporten, duursporten,
                 vechtsporten, workouts, stevig fietsen en wielrennen, zwemmen. Maar denk ook aan zwaar fysiek werk.</i></p>
                 <label for="intensief">2. Hoeveel minuten besteedde je de afgelopen week aan intensieve lichaamsbeweging?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="intensief" required> minuten<br><br>
+                <input type="number" id="intensief" min="0" max="1680" required> minuten<br><br>
 
                 <p><i>Deze vraag gaat over bot- en spierversterkende oefeningen. Dit zijn oefeningen gericht op verbeteren
                 van kracht en uithoudingsvermogen van de skeletspieren. Dit kan in verscheidenen vormen met apparatuur
                 en met eigen lichaamsgewicht.</i></p>
                 <label for="bot_spier">3. Hoeveel minuten besteedde je de afgelopen week aan bot- en spierversterkende oefeningen?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="bot_spier" required> minuten<br><br>
+                <input type="number" id="bot_spier" min="0" max="1680" required> minuten<br><br>
 
                 <label for="zitten">4. Hoeveel uur zat je afgelopen week gemiddeld op een dag?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="zitten" required> uur<br><br>
+                <input type="number" id="zitten" min="0" max="14" required> uur<br><br>
 
                 <p><i>Als je een smartwatch of telefoon hebt die stappen kan tellen wil je dan ook deze vraag beantwoorden.
                 Anders kan je de vraag overslaan.</i></p>
                 <label for="stappen">5. Hoeveel stappen liep je afgelopen week gemiddeld per dag?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="stappen"> stappen<br><br>
+                <input type="number" id="stappen" min="0" max="40000"> stappen<br><br>
 
                 <div class="vorige_volgende" id="knoppen1">
                     <button type="button" class="vorige" id="vorige2" onclick="gaTerug(this)">Vorige</button>
@@ -121,20 +113,16 @@
             <div class="stap" id="stap2" style="display: none">
                 <h2>Middelengebruik</h2>
                 <label for="alcohol">1. Hoeveel alcoholische consumpties nuttigde je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="alcohol" required> consumpties<br><br>
+                <input type="number" id="alcohol" min="0" max="100" required> consumpties<br><br>
 
                 <label for="roken">2. Hoeveel rookte je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="roken" required> stuks<br><br>
+                <input type="number" id="roken" min="0" max="200" required> stuks<br><br>
 
                 <label for="softdrugs">3. Hoe vaak gebruikte je afgelopen week softdrugs?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="softdrugs" required> keer<br><br>
+                <input type="number" id="softdrugs" min="0" max="42" required> keer<br><br>
 
                 <label for="harddrugs">4. Hoe vaak gebruikte je afgelopen week harddrugs?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="harddrugs" required> keer<br><br>
+                <input type="number" id="harddrugs" min="0" max="42" required> keer<br><br>
 
                 <div class="vorige_volgende" id="knoppen2">
                     <button type="button" class="vorige" id="vorige3" onclick="gaTerug(this)">Vorige</button>
@@ -144,36 +132,29 @@
             <div class="stap" id="stap3" style="display: none">
                 <h2>Voeding</h2>
                 <label for="groente">1. Hoeveel opscheplepels groente at je afgelopen week gemiddeld per dag?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="groente" required> opscheplepels<br><br>
+                <input type="number" id="groente" min="0" max="10" required> opscheplepels<br><br>
 
                 <label for="fruit">2. Hoeveel porties of stuks fruit at je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="fruit" required> eenheden<br><br>
+                <input type="number" id="fruit" min="0" max="49" required> eenheden<br><br>
 
                 <label for="frisdrank">3. Hoeveel glazen frisdrank of sap dronk je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="frisdrank" required> eenheden<br><br>
+                <input type="number" id="frisdrank" min="0" max="98" required> eenheden<br><br>
 
                 <p><i>Deze vraag gaat over 'ongezonde' snacks zoals koek, deegwaar, candybars, snoep, chips of zoutjes etc.
                 We bedoelen hier geen snacks als vers fruit of snoepgroente.</i></p>
                 <label for="snacks">4. Hoeveel 'ongezonde' snacks at je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="snacks" required> eenheden<br><br>
+                <input type="number" id="snacks" min="0" max="49" required> eenheden<br><br>
 
                 <p><i>Deze vraag gaat over het eten van kant en klaar maaltijden, bij (fastfood)restaurants, van
                 voorverpakte broodjes etc. voor ontbijt, lunch en/of avondeten.</i></p>
                 <label for="kant_en_klaar">5. Hoeveel kant en klaar maaltijden at je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="kant_en_klaar" required> maaltijden<br><br>
+                <input type="number" id="kant_en_klaar" min="0" max="28" required> maaltijden<br><br>
 
                 <label for="vlees_gevogelte">6. Hoeveel vlees of gevogelte at je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="vlees_gevogelte" required> eenheden<br><br>
+                <input type="number" id="vlees_gevogelte" min="0" max="28" required> eenheden<br><br>
 
                 <label for="vis">7. Hoeveel vis at je afgelopen week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="vis" required> eenheden<br><br>
+                <input type="number" id="vis" min="0" max="28" required> eenheden<br><br>
 
                 <label>8. Heb je specifieke voorkeuren qua voeding zoals vegetarisch, veganistisch, pescotarisch, plantaardig?</label>
                 <input type="radio" id="wel" name="voorkeuren" required><label for="wel">Ja</label>
@@ -188,24 +169,19 @@
             <div class="stap" id="stap4" style="display: none">
                 <h2>Tijdsbesteding</h2>
                 <label for="slaap">1. Hoeveel uren sliep je afgelopen week gemiddeld per nacht?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="slaap" required> uur<br><br>
+                <input type="number" id="slaap" min="1" max="16" required> uur<br><br>
 
                 <label for="sociaal">2. Hoeveel tijd besteedde je afgelopen week gemiddeld aan sociale contacten?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="sociaal" required> uur<br><br>
+                <input type="number" id="sociaal" min="0" max="42" required> uur<br><br>
 
                 <label for="hobbys">3. Hoeveel tijd besteedde je afgelopen week gemiddeld aan hobby's?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="hobbys" required> uur<br><br>
+                <input type="number" id="hobbys" min="0" max="42" required> uur<br><br>
 
                 <label for="studie">4. Hoeveel tijd besteedde je afgelopen week gemiddeld aan studie(s)?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="studie" required> uur<br><br>
+                <input type="number" id="studie" min="0" max="147" required> uur<br><br>
 
                 <label for="werk">5. Hoeveel tijd besteedde je afgelopen week gemiddeld aan werk?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="werk" required> uur<br><br>
+                <input type="number" id="werk" min="0" max="49" required> uur<br><br>
 
                 <div class="vorige_volgende" id="knoppen4">
                     <button type="button" class="vorige" id="vorige5" onclick="gaTerug(this)">Vorige</button>
@@ -271,22 +247,19 @@
                 <h2>Biomarkers cardiovasculaire aandoeningen</h2>
                 <p><i>Gebruik voor het beantwoorden van deze vraag steeds dezelfde weegschaal.</i></p>
                 <label for="gewicht">1. Wat is je lichaamsgewicht deze week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="gewicht" required> kilogrammen (met 1 cijfer achter de komma)<br><br>
+                <input type="number" id="gewicht" min="35" max="200" required> kilogrammen (met 1 cijfer achter de komma)<br><br>
 
                 <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust.</i></p>
                 <label>2. Wat was je bloeddruk in rust deze week?</label><br>
-                <!-- TODO: min/max restrictie toevoegen -->
                 <label for="bovendruk">Bovendruk: </label>
-                <input type="number" id="bovendruk" required> mmHg<br>
+                <input type="number" id="bovendruk" min="60" max="120" required> mmHg<br>
                 <label for="onderdruk">Onderdruk: </label>
-                <input type="number" id="onderdruk" required> mmHg<br><br>
+                <input type="number" id="onderdruk" min="90" max="180" required> mmHg<br><br>
 
                 <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. De vraag is samen met vraag 2
                 tegelijk te beantwoorden.</i></p>
                 <label for="hartslag">3. Wat was je hartfrequentie in rust deze week?</label>
-                <!-- TODO: min/max restrictie toevoegen -->
-                <input type="number" id="hartslag" required> slagen per minuut<br><br>
+                <input type="number" id="hartslag" min="30" max="200" required> slagen per minuut<br><br>
 
                 <div class="vorige_volgende" id="knoppen6">
                     <button type="button" class="vorige" id="vorige7" onclick="gaTerug(this)">Vorige</button>
