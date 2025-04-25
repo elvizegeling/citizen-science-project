@@ -10,23 +10,24 @@
 </head>
 <body>
     <header>
-        <img src="images/uva.png" alt="UvA logo" id="uva_logo">
-
         <nav class="tabbladen">
-            <a href="invoeren.html" class="tabblad" id="actief">Invoeren</a>
-            <a href="resultaten.html" class="tabblad" id="inactief">Resultaten</a>
+            <a href="invoeren.html" class="tabblad-actief">Invoeren</a>
+            <a href="resultaten.html" class="tabblad-inactief">Resultaten</a>
+            <a href="profiel.html" class="tabblad-inactief">Profiel</a>
         </nav>
-
-        <img src="images/profile.png" alt="profiel" id="profiel">
+        <div class="logo_wrapper">
+            <div class="logo_container"></div>
+            <img alt="UvA logo" src="images/uva.png" id="uva_logo">
+        </div>
     </header>
     <div class="content">
-        <h1>Invoeren</h1>
+        <div class="titel_container" id="invoeren">
+            <h1>Invoeren</h1>
+        </div><br>
         <div id="start_tekst">
-            <p>Op deze pagina kan je jouw klinimetrische data invoeren. Onder week 1 valt ook een algemene vragenlijst,
-            die maar 1 keer ingevuld hoeft te worden. Deze staat dus niet meer bij week 2 t/m 6. Voordat je de data
-            kan invullen, dien je te selecteren welke week dit betreft. Wanneer de week geselecteerd is, kan je het
-            formulier doorlopen. Je data wordt niet tussentijds opgeslagen, dus zorg ervoor dat je het hele formulier
-            doorloopt en aan het einde op 'versturen' klikt! Pas dan is je data opgeslagen.</p><br><br>
+            <p>Op deze pagina kan je jouw data invoeren op basis van de questionnaire. Voordat je de data kan invullen,
+            dien je te selecteren welke week dit betreft. Lees elke vraag goed en beantwoord deze zo accuraat mogelijk.
+            Zorg ervoor dat je de hele questionnaire doorloopt en aan het einde op 'versturen' klikt.</p><br>
             <label for="weeknummer">Ik vul data in van:</label>
             <select id="weeknummer" name="weeknummer" required>
                 <option value="" disabled selected>Weeknummer</option>
@@ -37,8 +38,20 @@
                 <option value="week5">Week 5</option>
                 <option value="week6">Week 6</option>
             </select><br><br>
-            <button type="button" class="volgende" id="start" onclick="startVragenlijst()">Starten</button>
+            <button type="button" class="start" id="start" onclick="startVragenlijst()">Starten</button>
         </div>
+        <!-- is allemaal voor de progress bar, maar werkt nog niet
+        (zorgen dat algemeen er niet tussenstaat als het niet om week 1 gaat)
+        <div id="progress_bar" style="display: none">
+            <span class="onderdeel" data-stap="0">Algemeen</span>
+            <span class="onderdeel" data-stap="1">Beweging</span>
+            <span class="onderdeel" data-stap="2">Middelengebruik</span>
+            <span class="onderdeel" data-stap="3">Voeding</span>
+            <span class="onderdeel" data-stap="4">Tijdsbesteding</span>
+            <span class="onderdeel" data-stap="5">Subjectieve ervaringen</span>
+            <span class="onderdeel" data-stap="6">Biomarkers</span>
+        </div>
+        -->
         <form id="questionnaire">
             <div class="stap" id="stap0" style="display: none">
                 <h2>Algemeen</h2>
@@ -62,29 +75,30 @@
                 <label for="reistijd">5. Wat is je gemiddelde reistijd van thuis naar de universiteit?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="reistijd" required> minuten<br><br>
-
-                <button type="button" class="vorige" id="vorige1" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="volgende1" onclick="gaVerder(this)">Volgende</button>
+                <div class="vorige_volgende" id="knoppen0">
+                    <button type="button" class="vorige" id="vorige1" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="volgende1" onclick="gaVerder(this)">Volgende</button>
+                </div>
             </div>
             <div class="stap" id="stap1" style="display: none">
                 <h2>Beweging</h2>
-                <p>Deze vraag gaat over matig intensief bewegen. Hieronder vallen alledaagse activiteiten die wat
+                <p><i>Deze vraag gaat over matig intensief bewegen. Hieronder vallen alledaagse activiteiten die wat
                 moeite kosten zoals wandelen, fietsen en huishoudelijke taken maar ook rustig tuinieren en
-                sportactiviteiten. Zolang praten maar mogelijk blijft.</p>
+                sportactiviteiten. Zolang praten maar mogelijk blijft.</i></p>
                 <label for="matig_intensief">1. Hoeveel minuten besteedde je de afgelopen week aan matig intensieve lichaamsbeweging?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="matig_intensief" required> minuten<br><br>
 
-                <p>Deze vraag gaat over intensief bewegen. Hieronder vallen activiteiten die meer moeite kosten dan
+                <p><i>Deze vraag gaat over intensief bewegen. Hieronder vallen activiteiten die meer moeite kosten dan
                 matig intensief, praten is veelal niet meer mogelijk. Bijvoorbeeld teamsporten, balsporten, duursporten,
-                vechtsporten, workouts, stevig fietsen en wielrennen, zwemmen. Maar denk ook aan zwaar fysiek werk.</p>
+                vechtsporten, workouts, stevig fietsen en wielrennen, zwemmen. Maar denk ook aan zwaar fysiek werk.</i></p>
                 <label for="intensief">2. Hoeveel minuten besteedde je de afgelopen week aan intensieve lichaamsbeweging?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="intensief" required> minuten<br><br>
 
-                <p>Deze vraag gaat over bot- en spierversterkende oefeningen. Dit zijn oefeningen gericht op verbeteren
+                <p><i>Deze vraag gaat over bot- en spierversterkende oefeningen. Dit zijn oefeningen gericht op verbeteren
                 van kracht en uithoudingsvermogen van de skeletspieren. Dit kan in verscheidenen vormen met apparatuur
-                en met eigen lichaamsgewicht.</p>
+                en met eigen lichaamsgewicht.</i></p>
                 <label for="bot_spier">3. Hoeveel minuten besteedde je de afgelopen week aan bot- en spierversterkende oefeningen?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="bot_spier" required> minuten<br><br>
@@ -93,14 +107,16 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="zitten" required> uur<br><br>
 
-                <p>Als je een smartwatch of telefoon hebt die stappen kan tellen wil je dan ook deze vraag beantwoorden.
-                Anders kan je de vraag overslaan.</p>
+                <p><i>Als je een smartwatch of telefoon hebt die stappen kan tellen wil je dan ook deze vraag beantwoorden.
+                Anders kan je de vraag overslaan.</i></p>
                 <label for="stappen">5. Hoeveel stappen liep je afgelopen week gemiddeld per dag?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="stappen"> stappen<br><br>
 
-                <button type="button" class="vorige" id="vorige2" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="volgende2" onclick="gaVerder(this)">Volgende</button>
+                <div class="vorige_volgende" id="knoppen1">
+                    <button type="button" class="vorige" id="vorige2" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="volgende2" onclick="gaVerder(this)">Volgende</button>
+                </div>
             </div>
             <div class="stap" id="stap2" style="display: none">
                 <h2>Middelengebruik</h2>
@@ -120,8 +136,10 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="harddrugs" required> keer<br><br>
 
-                <button type="button" class="vorige" id="vorige3" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="volgende3" onclick="gaVerder(this)">Volgende</button>
+                <div class="vorige_volgende" id="knoppen2">
+                    <button type="button" class="vorige" id="vorige3" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="volgende3" onclick="gaVerder(this)">Volgende</button>
+                </div>
             </div>
             <div class="stap" id="stap3" style="display: none">
                 <h2>Voeding</h2>
@@ -137,14 +155,14 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="frisdrank" required> eenheden<br><br>
 
-                <p>Deze vraag gaat over 'ongezonde' snacks zoals koek, deegwaar, candybars, snoep, chips of zoutjes etc.
-                We bedoelen hier geen snacks als vers fruit of snoepgroente.</p>
+                <p><i>Deze vraag gaat over 'ongezonde' snacks zoals koek, deegwaar, candybars, snoep, chips of zoutjes etc.
+                We bedoelen hier geen snacks als vers fruit of snoepgroente.</i></p>
                 <label for="snacks">4. Hoeveel 'ongezonde' snacks at je afgelopen week?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="snacks" required> eenheden<br><br>
 
-                <p>Deze vraag gaat over het eten van kant en klaar maaltijden, bij (fastfood)restaurants, van
-                voorverpakte broodjes etc. voor ontbijt, lunch en/of avondeten.</p>
+                <p><i>Deze vraag gaat over het eten van kant en klaar maaltijden, bij (fastfood)restaurants, van
+                voorverpakte broodjes etc. voor ontbijt, lunch en/of avondeten.</i></p>
                 <label for="kant_en_klaar">5. Hoeveel kant en klaar maaltijden at je afgelopen week?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="kant_en_klaar" required> maaltijden<br><br>
@@ -162,8 +180,10 @@
                 <input type="radio" id="geen" name="voorkeuren"><label for="geen">Nee</label>
                 <input type="radio" id="flex" name="voorkeuren"><label for="flex">Flex</label><br><br>
 
-                <button type="button" class="vorige" id="vorige4" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="volgende4" onclick="gaVerder(this)">Volgende</button>
+                <div class="vorige_volgende" id="knoppen3">
+                    <button type="button" class="vorige" id="vorige4" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="volgende4" onclick="gaVerder(this)">Volgende</button>
+                </div>
             </div>
             <div class="stap" id="stap4" style="display: none">
                 <h2>Tijdsbesteding</h2>
@@ -187,12 +207,14 @@
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="werk" required> uur<br><br>
 
-                <button type="button" class="vorige" id="vorige5" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="volgende5" onclick="gaVerder(this)">Volgende</button>
+                <div class="vorige_volgende" id="knoppen4">
+                    <button type="button" class="vorige" id="vorige5" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="volgende5" onclick="gaVerder(this)">Volgende</button>
+                </div>
             </div>
             <div class="stap" id="stap5" style="display: none">
                 <h2>Subjectieve ervaringen</h2>
-                <p>De volgende vragen dien je te beoordelen op een schaal tussen 0 (minimaal) en 10 (maximaal).</p>
+                <p><i>De volgende vragen dien je te beoordelen op een schaal tussen 0 (minimaal) en 10 (maximaal).</i></p>
                 <datalist id=tickmarks>
                     <option>0</option>
                     <option>1</option>
@@ -240,17 +262,19 @@
                 <label for="hobbys_tevreden">11. Hoe tevreden was je met de tijd die je kon besteden aan hobby's deze week?</label>
                 <input type="range" id="hobbys_tevreden" min="0" max="10" list="tickmarks"><br><br>
 
-                <button type="button" class="vorige" id="vorige6" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="volgende6" onclick="gaVerder(this)">Volgende</button>
+                <div class="vorige_volgende" id="knoppen5">
+                    <button type="button" class="vorige" id="vorige6" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="volgende6" onclick="gaVerder(this)">Volgende</button>
+                </div>
             </div>
             <div class="stap" id="stap6" style="display: none">
                 <h2>Biomarkers cardiovasculaire aandoeningen</h2>
-                <p>Gebruik voor het beantwoorden van deze vraag steeds dezelfde weegschaal.</p>
+                <p><i>Gebruik voor het beantwoorden van deze vraag steeds dezelfde weegschaal.</i></p>
                 <label for="gewicht">1. Wat is je lichaamsgewicht deze week?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="gewicht" required> kilogrammen (met 1 cijfer achter de komma)<br><br>
 
-                <p>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust.</p>
+                <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust.</i></p>
                 <label>2. Wat was je bloeddruk in rust deze week?</label><br>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <label for="bovendruk">Bovendruk: </label>
@@ -258,14 +282,16 @@
                 <label for="onderdruk">Onderdruk: </label>
                 <input type="number" id="onderdruk" required> mmHg<br><br>
 
-                <p>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. De vraag is samen met vraag 2
-                tegelijk te beantwoorden.</p>
+                <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. De vraag is samen met vraag 2
+                tegelijk te beantwoorden.</i></p>
                 <label for="hartslag">3. Wat was je hartfrequentie in rust deze week?</label>
                 <!-- TODO: min/max restrictie toevoegen -->
                 <input type="number" id="hartslag" required> slagen per minuut<br><br>
 
-                <button type="button" class="vorige" id="vorige7" onclick="gaTerug(this)">Vorige</button>
-                <button type="submit" class="volgende" id="versturen" onclick="verstuurData()">Versturen</button>
+                <div class="vorige_volgende" id="knoppen6">
+                    <button type="button" class="vorige" id="vorige7" onclick="gaTerug(this)">Vorige</button>
+                    <button type="submit" class="volgende" id="versturen" onclick="verstuurData()">Versturen</button>
+                </div>
             </div>
         </form>
     </div>
@@ -273,17 +299,44 @@
 </html>
 
 <script>
+    /*
+    let huidigeStap = 0
+    const onderdelen = document.querySelectorAll('.onderdeel');
+    const stappen = document.querySelectorAll('.stap');
+    onderdelen.forEach((onderdeel, index) => {
+        onderdeel.addEventListener('click', () => {
+            toonStap(index);
+        });
+    });
+    function toonStap(index) {
+        stappen.forEach((stap, i) => {
+            stap.style.display = i === index ? 'block' : 'none';
+            onderdelen[i].classList.toggle('active', i === index);
+        });
+        huidigeStap = index;
+    }
+    document.querySelector('.volgende').addEventListener('click', () => {
+        if (huidigeStap < stappen.length - 1) toonStap(huidigeStap+1);
+    });
+    document.querySelector('.vorige').addEventListener('click', () => {
+        if (huidigeStap > 0) toonStap(huidigeStap-1);
+    });*/
+
     function startVragenlijst() { // start de vragenlijst wanneer er op 'starten' is gedrukt en een week is geselecteerd
         const weeknummer = document.getElementById("weeknummer");
         if (weeknummer.value === "") {
             alert("Kies een weeknummer");
-        } else if (weeknummer.value === "week1") {
-            document.getElementById("start_tekst").style.display = 'none';
-            document.getElementById("stap0").style.display = 'block';
-        }
-        else {
-            document.getElementById("start_tekst").style.display = 'none';
-            document.getElementById("stap1").style.display = 'block';
+        } else {
+            document.getElementById('invoeren').style.display = 'none';
+            //document.getElementById('progress_bar').style.display = 'block';
+            if (weeknummer.value === "week1") {
+                document.getElementById("start_tekst").style.display = 'none';
+                document.getElementById("stap0").style.display = 'block';
+            }
+            else {
+                document.getElementById("start_tekst").style.display = 'none';
+                document.getElementById("stap1").style.display = 'block';
+            }
         }
         // TODO: van het geselecteerde weeknummer checken of de data hiervoor al is ingevuld (via db)
     }
@@ -295,9 +348,13 @@
         const weeknummer = document.getElementById("weeknummer");
         if (huidige === 0) {
             document.getElementById("start_tekst").style.display = 'block';
+            document.getElementById('invoeren').style.display = 'block';
+            //document.getElementById('progress_bar').style.display = 'none';
         } else if (huidige === 1) {
             if (weeknummer.value !== "week1") { // als data van week 2 t/m 6 wordt ingevoerd, gaat het van stap 1 terug naar start
                 document.getElementById("start_tekst").style.display = 'block';
+                document.getElementById('invoeren').style.display = 'block';
+                //document.getElementById('progress_bar').style.display = 'none';
             } else { // als data van week 1 wordt ingevoerd, gaat het van stap 1 terug naar stap 0 (algemene vragenlijst)
                 document.getElementById(`stap${huidige - 1}`).style.display = 'block';
             }
