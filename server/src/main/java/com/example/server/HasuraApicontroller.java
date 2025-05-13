@@ -21,6 +21,10 @@ public class HasuraApicontroller extends Apicontroller {
     public static final String ALGEMEEN_MAPPING = "algemeen";
     public static final String STUDENT_MAPPING = "student";
     public static final String BEWEGING_MAPPING = "beweging";
+    public static final String MIDDELENGEBRUIK_MAPPING = "middelengebruik";
+    public static final String SE_MAPPING = "Subjectieve_ervaringen";
+    public static final String TIJDBESTEDING_MAPPING = "tijdbesteding";
+    public static final String VOEDING_MAPPING = "voeding";
     public static final Integer GEEN_ID = 0;
     public static final Integer GEEN_WEEK = 0;
 
@@ -77,12 +81,12 @@ public class HasuraApicontroller extends Apicontroller {
                 os.write(input, 0, input.length);
             }
             return getApiCallResponse(con);
-        } catch(URISyntaxException |IOException |RuntimeException e) {
+        } catch (URISyntaxException | IOException | RuntimeException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
         }
-}
+    }
 
     //----------------
     // tabel student
@@ -90,8 +94,8 @@ public class HasuraApicontroller extends Apicontroller {
 
     // geeft alle rijen uit de student tabel
     @GetMapping("/student/getAll")
-    public ResponseEntity<String> getAllStudent(){
-       return GetDelDataBase(STUDENT_MAPPING, "GET",GEEN_ID,GEEN_WEEK);
+    public ResponseEntity<String> getAllStudent() {
+        return GetDelDataBase(STUDENT_MAPPING, "GET", GEEN_ID, GEEN_WEEK);
     }
 
     // geeft een enkele rij uit de student tabel
@@ -102,14 +106,14 @@ public class HasuraApicontroller extends Apicontroller {
 
     // verwijdert een rij uit de student tabel
     @GetMapping("student/delete")
-    public ResponseEntity<String> deleteStudent(@RequestParam(value = "id") Integer id){
-       return GetDelDataBase(STUDENT_MAPPING,"DELETE", id, GEEN_WEEK);
+    public ResponseEntity<String> deleteStudent(@RequestParam(value = "id") Integer id) {
+        return GetDelDataBase(STUDENT_MAPPING, "DELETE", id, GEEN_WEEK);
     }
 
     // voegt een nieuwe rij toe aan de student tabel
     @GetMapping("/student/new")
     public ResponseEntity<String> addStudent(@RequestParam(value = "id") Integer id, @RequestParam(value = "jaar") Integer jaar) {
-        try{
+        try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
 
@@ -118,8 +122,8 @@ public class HasuraApicontroller extends Apicontroller {
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
-            return UpdatePOSTDataBase(STUDENT_MAPPING,jsonInputString, 0, 0);
-        } catch (JSONException e){
+            return UpdatePOSTDataBase(STUDENT_MAPPING, jsonInputString, 0, 0);
+        } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
@@ -153,7 +157,7 @@ public class HasuraApicontroller extends Apicontroller {
     // geeft alle waardes uit de algemeen tabel terug
     @GetMapping("/algemeen/getAll")
     public ResponseEntity<String> getAllAlgemeen() {
-        return GetDelDataBase(ALGEMEEN_MAPPING, "GET", GEEN_ID,GEEN_WEEK);
+        return GetDelDataBase(ALGEMEEN_MAPPING, "GET", GEEN_ID, GEEN_WEEK);
     }
 
     // geeft de waarde van 1 enkele rij van de algemeen tabel
@@ -162,7 +166,7 @@ public class HasuraApicontroller extends Apicontroller {
         return GetDelDataBase(ALGEMEEN_MAPPING, "GET", alg_id, week);
     }
 
-// verwijdert een rij in de algemeen tabel
+    // verwijdert een rij in de algemeen tabel
     @GetMapping("/algemeen/delete")
     public ResponseEntity<String> deleteAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week) {
         return GetDelDataBase(ALGEMEEN_MAPPING, "DELETE", alg_id, week);
@@ -170,23 +174,23 @@ public class HasuraApicontroller extends Apicontroller {
 
     // voegt een nieuwe rij toe aan de algemeen tabel
     @GetMapping("algemeen/new")
-    public ResponseEntity<String> addAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min){
+    public ResponseEntity<String> addAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min) {
         try {
             JSONObject object = new JSONObject();
             JSONObject superObject = new JSONObject();
 
             object.put("alg_id", alg_id);
             object.put("week", week);
-            object.put("leeftijd",leeftijd);
+            object.put("leeftijd", leeftijd);
             object.put("geslacht", geslacht);
             object.put("lengte_cm", lengte_cm);
             object.put("thuis", thuis);
-            object.put("reistijd_min",reistijd_min);
+            object.put("reistijd_min", reistijd_min);
 
             superObject.put("object", object);
             String jsonInputString = superObject.toString();
             return UpdatePOSTDataBase(ALGEMEEN_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
-        }catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
@@ -195,7 +199,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // aanpassen van rij in algemeen tabel
     @GetMapping("/algemeen/update")
-    public ResponseEntity<String> UpdateAlgemeen (@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min){
+    public ResponseEntity<String> UpdateAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min) {
         try {
             JSONObject object = new JSONObject();
             if (leeftijd != null) object.put("leeftijd", leeftijd);
@@ -211,7 +215,7 @@ public class HasuraApicontroller extends Apicontroller {
             String jsonInputString = superobject.toString();
 
             return UpdatePOSTDataBase(ALGEMEEN_MAPPING, jsonInputString, alg_id, week);
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
@@ -224,25 +228,25 @@ public class HasuraApicontroller extends Apicontroller {
 
     // geeft alle rijen uit de beweging tabel
     @GetMapping("/beweging/getAll")
-    public ResponseEntity<String> getAllBeweging(){
-        return GetDelDataBase(BEWEGING_MAPPING,"GET", GEEN_ID, GEEN_WEEK);
+    public ResponseEntity<String> getAllBeweging() {
+        return GetDelDataBase(BEWEGING_MAPPING, "GET", GEEN_ID, GEEN_WEEK);
     }
 
     // geeft enkele rij uit beweging tabel
     @GetMapping("/beweging/get")
-    public ResponseEntity<String> getBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week){
+    public ResponseEntity<String> getBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week) {
         return GetDelDataBase(BEWEGING_MAPPING, "GET", bew_id, week);
     }
 
     // verwijdert gevraagde rij uit beweging tabel
     @GetMapping("/beweging/delete")
-    public ResponseEntity<String> deleteBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week){
+    public ResponseEntity<String> deleteBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week) {
         return GetDelDataBase(BEWEGING_MAPPING, "DELETE", bew_id, week);
     }
 
     // voegt een nieuwe rij toe aan de beweging tabel
     @GetMapping("/beweging/new")
-    public ResponseEntity<String> addBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "matig_min") Integer matig_min, @RequestParam(value = "intens_min") Integer intens_min, @RequestParam(value = "strek_min") Integer strek_min, @RequestParam(value = "zit_uur") Integer zit_uur, @RequestParam(value = "stappen_gem") Integer stappen_gem){
+    public ResponseEntity<String> addBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "matig_min") Integer matig_min, @RequestParam(value = "intens_min") Integer intens_min, @RequestParam(value = "strek_min") Integer strek_min, @RequestParam(value = "zit_uur") Integer zit_uur, @RequestParam(value = "stappen_gem") Integer stappen_gem) {
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
@@ -258,7 +262,7 @@ public class HasuraApicontroller extends Apicontroller {
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
             return UpdatePOSTDataBase(BEWEGING_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
@@ -267,7 +271,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // wijzigt een rij in de beweging tabel
     @GetMapping("/beweging/update")
-    public ResponseEntity updateBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "matig_min") Integer matig_min, @RequestParam(value = "intens_min") Integer intens_min, @RequestParam(value = "strek_min") Integer strek_min, @RequestParam(value = "zit_uur") Integer zit_uur, @RequestParam(value = "stappen_gem") Integer stappen_gem){
+    public ResponseEntity updateBeweging(@RequestParam(value = "bew_id") Integer bew_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "matig_min") Integer matig_min, @RequestParam(value = "intens_min") Integer intens_min, @RequestParam(value = "strek_min") Integer strek_min, @RequestParam(value = "zit_uur") Integer zit_uur, @RequestParam(value = "stappen_gem") Integer stappen_gem) {
         try {
             JSONObject object = new JSONObject();
             if (matig_min != null) object.put("matig_min", matig_min);
@@ -281,7 +285,207 @@ public class HasuraApicontroller extends Apicontroller {
             superobject.put("week", week);
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
-            return UpdatePOSTDataBase(BEWEGING_MAPPING,jsonInputString,bew_id,week);
+            return UpdatePOSTDataBase(BEWEGING_MAPPING, jsonInputString, bew_id, week);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    //-----------------------
+    // middelengebruik tabel
+    //-----------------------
+
+    // vraagt de tabel van middelengebruik op
+    @GetMapping("/middelengebruik/getAll")
+    public ResponseEntity<String> getAllMiddelengebruik() {
+        return GetDelDataBase(MIDDELENGEBRUIK_MAPPING, "GET", GEEN_ID, GEEN_WEEK);
+    }
+
+    // vraagt een enkele rij uit de middelengebruik tabel op
+    @GetMapping("/middelengebruik/get")
+    public ResponseEntity<String> getMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week) {
+        return GetDelDataBase(MIDDELENGEBRUIK_MAPPING, "GET", geb_id, week);
+    }
+
+    // verwijdert de gevraagde rij uit de middelengebruik tabel
+    @GetMapping("/middelengebruik/delete")
+    public ResponseEntity<String> deleteMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(MIDDELENGEBRUIK_MAPPING, "DELETE", geb_id, week);
+    }
+
+    // voegt een nieuwe rij toe aan de middelengebruik tabel
+    @GetMapping("/middelengebruik/new")
+    public ResponseEntity<String> addMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "consum_gem") Integer consum_gem, @RequestParam(value = "roken_gem") Integer roken_gem, @RequestParam(value = "softdrugs_gem") Integer softdrugs_gem, @RequestParam(value = "harddrugs_gem") Integer harddrugs_gem){
+        try {
+            JSONObject object = new JSONObject();
+            JSONObject superobject = new JSONObject();
+
+            object.put("geb_id", geb_id);
+            object.put("week", week);
+            object.put("consum_gem", consum_gem);
+            object.put("roken_gem", roken_gem);
+            object.put("softdrugs_gem", softdrugs_gem);
+            object.put("harddrugs_gem", harddrugs_gem);
+
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(MIDDELENGEBRUIK_MAPPING,jsonInputString,GEEN_ID,GEEN_WEEK);
+        }catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    // Update een rij in de middelengebruik tabel
+    @GetMapping("/middelengebruik/update")
+    public ResponseEntity<String> updateMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "consum_gem") Integer consum_gem, @RequestParam(value = "roken_gem") Integer roken_gem, @RequestParam(value = "softdrugs_gem") Integer softdrugs_gem, @RequestParam(value = "harddrugs_gem") Integer harddrugs_gem){
+        try {
+            JSONObject object = new JSONObject();
+            if (consum_gem != null) object.put("consum_gem", consum_gem);
+            if (roken_gem != null) object.put("roken_gem", roken_gem);
+            if (softdrugs_gem != null) object.put("softdrugs_gem", softdrugs_gem);
+            if (harddrugs_gem != null) object.put("harddrugs_gem", harddrugs_gem);
+
+            JSONObject superobject = new JSONObject();
+            superobject.put("geb_id", geb_id);
+            superobject.put("week", week);
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(MIDDELENGEBRUIK_MAPPING, jsonInputString, geb_id, week);
+
+        } catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    //-----------------------------
+    // subjectieve ervaringen tabel
+    //------------------------------
+
+    // vraagt de subjectieve ervaringen tabel op
+    @GetMapping("/subjectieve_ervaringen/getAll")
+        public ResponseEntity<String> getAllSE(){
+        return GetDelDataBase(SE_MAPPING,"GET", GEEN_ID, GEEN_WEEK);
+    }
+
+    // vraagt een enkele rij uit de subjectieve ervaringen tabel op
+    @GetMapping("/subjectieve_ervaringen/get")
+    public ResponseEntity<String>getSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(SE_MAPPING,"GET", se_id, week);
+    }
+
+    // verwijdert een rij uit de subjectieve ervaringen tabel
+    @GetMapping("/subjectieve_ervaringen/delete")
+    public ResponseEntity<String> deleteSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(SE_MAPPING, "DELETE", se_id, week);
+    }
+
+    // voegt een nieuwe rij toe aan de subjectieve ervaringen tabel
+    @GetMapping("/subjectieve_ervaringen/new")
+    public ResponseEntity<String> addSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch){
+        try {
+            JSONObject object = new JSONObject();
+            JSONObject superobject = new JSONObject();
+
+            object.put("se_id", se_id);
+            object.put("week", week);
+            object.put("stress_sch", stress_sch);
+            object.put("vermoeid_sch", vermoeid_sch);
+            object.put("vitaal_sch", vitaal_sch);
+            object.put("tevr_stud_sch", tevr_stud_sch);
+            object.put("druk_stud_sch", druk_stud_sch);
+            object.put("tevr_leef_sch", tevr_leef_sch);
+            object.put("tevr_soci_sch", tevr_soci_sch);
+            object.put("druk_werk_sch", druk_werk_sch);
+            object.put("tevr_rust_sch", tevr_rust_sch);
+            object.put("tevr_hobb_sch", tevr_hobb_sch);
+
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(SE_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
+        } catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    // wijzigt een rij uit de subjectieve ervaringen tabel
+    @GetMapping("/subjectiev_ervaringen/update")
+    public ResponseEntity<String> updateSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch) {
+        try {
+            JSONObject object = new JSONObject();
+            if (stress_sch != null) object.put("stress_sch", stress_sch);
+            if (vermoeid_sch != null) object.put("vermoeid_sch", vermoeid_sch);
+            if (vitaal_sch != null) object.put("vitaal_sch", vitaal_sch);
+            if (tevr_stud_sch != null) object.put("tevr_stud_sch", tevr_stud_sch);
+            if (druk_stud_sch != null) object.put("druk_stud_sch", druk_stud_sch);
+            if (tevr_leef_sch != null) object.put("tevr_leef_sch", tevr_leef_sch);
+            if (tevr_soci_sch != null) object.put("tevr_soci_sch", tevr_soci_sch);
+            if (druk_werk_sch != null) object.put("druk_werk_sch", druk_werk_sch);
+            if (tevr_rust_sch != null) object.put("tevr_rust_sch", tevr_rust_sch);
+            if (tevr_hobb_sch != null) object.put("tevr_hobb_sch", tevr_hobb_sch);
+
+            JSONObject superobject = new JSONObject();
+            superobject.put("se_id", se_id);
+            superobject.put("week", week);
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(SE_MAPPING, jsonInputString, se_id, week);
+
+        } catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    //--------------------
+    // tijdbesteding tabel
+    //---------------------
+
+    // vraagt de gehele tijdbesteding tabel op
+    @GetMapping("/tijdbesteding/getAll")
+    public ResponseEntity<String> getAllTijdbesteding(){
+        return GetDelDataBase(TIJDBESTEDING_MAPPING,"GET", GEEN_ID, GEEN_WEEK);
+    }
+
+    // vraagt enkele rij uit tijdbesteding tabel op
+    @GetMapping("/tijdbesteding/get")
+    public ResponseEntity<String> getTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(TIJDBESTEDING_MAPPING, "GET", tbd_id, week);
+    }
+
+    // verwijdert rij uit tijdbesteding tabel
+    @GetMapping("/tijdbesteding/delete")
+    public ResponseEntity<String> deleteTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(TIJDBESTEDING_MAPPING, "DELETE", tbd_id, week);
+    }
+
+    // maakt een nieuwe rij in tijdbesteding tabel aan
+    @GetMapping("/tijdbesteding/new")
+    public ResponseEntity<String> addTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "slaap_gem_uur") Integer slaap_gem_uur, @RequestParam(value = "sociaal_gem-uur") Integer sociaal_gem_uur, @RequestParam(value = "hobby_gem_uur") Integer hobby_gem_uur, @RequestParam(value = "studie_gem_uur") Integer studie_gem_uur, @RequestParam(value = "werk_gem_uur") Integer werk_gem_uur){
+        try {
+            JSONObject object = new JSONObject();
+            JSONObject superobject = new JSONObject();
+
+            object.put("tbd_id", tbd_id);
+            object.put("week", week);
+            object.put("slaap_gem_uur", slaap_gem_uur);
+            object.put("sociaal_gem_uur", sociaal_gem_uur);
+            object.put("hobby_gem_uur", hobby_gem_uur);
+            object.put("studie_gem_uur", studie_gem_uur);
+            object.put("werk_gem_uur", werk_gem_uur);
+
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(TIJDBESTEDING_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -290,10 +494,102 @@ public class HasuraApicontroller extends Apicontroller {
         }
     }
 
-    //----------------
-    // middelengebruik
-    //-----------------
+    // wijzigt een rij in de tijdbesteding tabel
+    @GetMapping("/tijdbesteding/update")
+    public ResponseEntity<String> updateTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "slaap_gem_uur") Integer slaap_gem_uur, @RequestParam(value = "sociaal_gem-uur") Integer sociaal_gem_uur, @RequestParam(value = "hobby_gem_uur") Integer hobby_gem_uur, @RequestParam(value = "studie_gem_uur") Integer studie_gem_uur, @RequestParam(value = "werk_gem_uur") Integer werk_gem_uur){
+        try {
+            JSONObject object = new JSONObject();
+            if (slaap_gem_uur != null) object.put("slaap_gem_uur", slaap_gem_uur);
+            if (sociaal_gem_uur != null) object.put("sociaal_gem_uur", sociaal_gem_uur);
+            if (hobby_gem_uur != null) object.put("hobby_gem_uur", hobby_gem_uur);
+            if (studie_gem_uur != null) object.put("studie_gem_uur", studie_gem_uur);
+            if (werk_gem_uur != null) object.put("werk_gem_uur", werk_gem_uur);
 
-    
+            JSONObject superobject = new JSONObject();
+            superobject.put("tbd_id", tbd_id);
+            superobject.put("week", week);
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(TIJDBESTEDING_MAPPING, jsonInputString,tbd_id, week);
+        } catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    //------------------
+    // voeding tabel
+    //------------------
+
+    @GetMapping("/voeding/getAll")
+    public ResponseEntity<String> getAllVoeding(){
+        return GetDelDataBase(VOEDING_MAPPING, "GET", GEEN_ID, GEEN_WEEK);
+    }
+
+    @GetMapping("/voeding/get")
+    public ResponseEntity<String> getVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(VOEDING_MAPPING, "GET", voed_id, week);
+    }
+
+    @GetMapping("/voeding/delete")
+    public  ResponseEntity<String> deleteVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(VOEDING_MAPPING,"DELETE", voed_id, week);
+    }
+
+    @GetMapping("/voeding/new")
+    public ResponseEntity<String> addVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "groente_gem") Integer groente_gem, @RequestParam(value = "fruit_por") Integer fruit_por, @RequestParam(value = "fris_sap_gls") Integer fris_sap_gls, @RequestParam(value = "ong_snack") Integer ong_snack, @RequestParam(value = "kant_klaar") Integer kant_klaar, @RequestParam(value = "vlees_vogel") Integer vlees_vogel, @RequestParam(value = "vis") Integer vis, @RequestParam(value = "spec_voeding") Integer spec_voeding){
+        try {
+            JSONObject object = new JSONObject();
+            JSONObject superobject = new JSONObject();
+
+            object.put("voed_id", voed_id);
+            object.put("week", week);
+            object.put("groente_gem", groente_gem);
+            object.put("fruit_por", fruit_por);
+            object.put("fris_sap_gls", fris_sap_gls);
+            object.put("ong_snack", ong_snack);
+            object.put("kan_klaar", kant_klaar);
+            object.put("vlees_vogel", vlees_vogel);
+            object.put("vis", vis);
+            object.put("spec_voeding", spec_voeding);
+
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(VOEDING_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    @GetMapping("/voeding/update")
+    public ResponseEntity<String> updateVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "groente_gem") Integer groente_gem, @RequestParam(value = "fruit_por") Integer fruit_por, @RequestParam(value = "fris_sap_gls") Integer fris_sap_gls, @RequestParam(value = "ong_snack") Integer ong_snack, @RequestParam(value = "kant_klaar") Integer kant_klaar, @RequestParam(value = "vlees_vogel") Integer vlees_vogel, @RequestParam(value = "vis") Integer vis, @RequestParam(value = "spec_voeding") Integer spec_voeding){
+        try {
+            JSONObject object = new JSONObject();
+            if (groente_gem != null) object.put("groente_gem", groente_gem);
+            if (fruit_por != null) object.put("fruit_por", fruit_por);
+            if (fris_sap_gls != null) object.put("fris_sap_gls", fris_sap_gls);
+            if (ong_snack != null) object.put("ong_snack", ong_snack);
+            if (kant_klaar != null) object.put("kant_klaar", kant_klaar);
+            if (vlees_vogel != null) object.put("vlees_vogel", vlees_vogel);
+            if (vis != null) object.put("vis", vis);
+            if (spec_voeding != null) object.put("spec_voeding", spec_voeding);
+
+            JSONObject superobject = new JSONObject();
+            superobject.put("voed_id", voed_id);
+            superobject.put("week", week);
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(VOEDING_MAPPING, jsonInputString, voed_id, week);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
 
 }
