@@ -17,7 +17,6 @@ import java.nio.charset.StandardCharsets;
 
 @RestController
 public class HasuraApicontroller extends Apicontroller {
-
     public static final String ALGEMEEN_MAPPING = "algemeen";
     public static final String STUDENT_MAPPING = "student";
     public static final String BEWEGING_MAPPING = "beweging";
@@ -25,6 +24,7 @@ public class HasuraApicontroller extends Apicontroller {
     public static final String SE_MAPPING = "Subjectieve_ervaringen";
     public static final String TIJDBESTEDING_MAPPING = "tijdbesteding";
     public static final String VOEDING_MAPPING = "voeding";
+    public static final String CARDIOVASCULAIR_MAPPING = "cardiovasculair";
     public static final Integer GEEN_ID = 0;
     public static final Integer GEEN_WEEK = 0;
 
@@ -49,7 +49,7 @@ public class HasuraApicontroller extends Apicontroller {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(type);
             con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("x-hasura-secret", SECRET);
+            con.setRequestProperty("x-hasura-admin-secret", SECRET);
             con.setDoOutput(true);
             return getApiCallResponse(con);
         } catch (URISyntaxException | IOException e) {
@@ -100,29 +100,29 @@ public class HasuraApicontroller extends Apicontroller {
 
     // geeft een enkele rij uit de student tabel
     @GetMapping("/student/get")
-    public ResponseEntity<String> getStudent(@RequestParam(value = "id") Integer id) {
-        return GetDelDataBase(STUDENT_MAPPING, "GET", id, GEEN_WEEK);
+    public ResponseEntity<String> getStudent(@RequestParam(value = "student_id") Integer student_id) {
+        return GetDelDataBase(STUDENT_MAPPING, "GET", student_id, GEEN_WEEK);
     }
 
     // verwijdert een rij uit de student tabel
     @GetMapping("student/delete")
-    public ResponseEntity<String> deleteStudent(@RequestParam(value = "id") Integer id) {
-        return GetDelDataBase(STUDENT_MAPPING, "DELETE", id, GEEN_WEEK);
+    public ResponseEntity<String> deleteStudent(@RequestParam(value = "student_id") Integer student_id) {
+        return GetDelDataBase(STUDENT_MAPPING, "DELETE", student_id, GEEN_WEEK);
     }
 
     // voegt een nieuwe rij toe aan de student tabel
     @GetMapping("/student/new")
-    public ResponseEntity<String> addStudent(@RequestParam(value = "id") Integer id, @RequestParam(value = "jaar") Integer jaar) {
+    public ResponseEntity<String> addStudent(@RequestParam(value = "student_id") Integer student_id, @RequestParam(value = "jaar") Integer jaar) {
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
 
-            object.put("id", id);
+            object.put("student_id", student_id);
             object.put("jaar", jaar);
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
-            return UpdatePOSTDataBase(STUDENT_MAPPING, jsonInputString, 0, 0);
+            return UpdatePOSTDataBase(STUDENT_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -132,17 +132,17 @@ public class HasuraApicontroller extends Apicontroller {
 
     // wijzigt een rij in de student tabel
     @GetMapping("/student/update")
-    public ResponseEntity<String> updateStudent(@RequestParam(value = "id") Integer id, @RequestParam(value = "jaar") Integer jaar) {
+    public ResponseEntity<String> updateStudent(@RequestParam(value = "student_id") Integer student_id, @RequestParam(value = "jaar") Integer jaar) {
         try {
             JSONObject object = new JSONObject();
             if (jaar != null) object.put("jaar", jaar);
 
             JSONObject superobject = new JSONObject();
-            superobject.put("id", id);
+            superobject.put("student_id", student_id);
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
 
-            return UpdatePOSTDataBase(STUDENT_MAPPING, jsonInputString, id, 0);
+            return UpdatePOSTDataBase(STUDENT_MAPPING, jsonInputString, student_id, GEEN_WEEK);
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -162,14 +162,14 @@ public class HasuraApicontroller extends Apicontroller {
 
     // geeft de waarde van 1 enkele rij van de algemeen tabel
     @GetMapping("/algemeen/get")
-    public ResponseEntity<String> getAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week) {
-        return GetDelDataBase(ALGEMEEN_MAPPING, "GET", alg_id, week);
+    public ResponseEntity<String> getAlgemeen(@RequestParam(value = "alg_id") Integer alg_id) {
+        return GetDelDataBase(ALGEMEEN_MAPPING, "GET", alg_id, GEEN_WEEK);
     }
 
     // verwijdert een rij in de algemeen tabel
     @GetMapping("/algemeen/delete")
-    public ResponseEntity<String> deleteAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week) {
-        return GetDelDataBase(ALGEMEEN_MAPPING, "DELETE", alg_id, week);
+    public ResponseEntity<String> deleteAlgemeen(@RequestParam(value = "alg_id") Integer alg_id) {
+        return GetDelDataBase(ALGEMEEN_MAPPING, "DELETE", alg_id, GEEN_WEEK);
     }
 
     // voegt een nieuwe rij toe aan de algemeen tabel
@@ -202,6 +202,7 @@ public class HasuraApicontroller extends Apicontroller {
     public ResponseEntity<String> UpdateAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min) {
         try {
             JSONObject object = new JSONObject();
+            if (week != null) object.put("week", week);
             if (leeftijd != null) object.put("leeftijd", leeftijd);
             if (geslacht != null) object.put("geslacht", geslacht);
             if (lengte_cm != null) object.put("lengte_cm", lengte_cm);
@@ -210,11 +211,10 @@ public class HasuraApicontroller extends Apicontroller {
 
             JSONObject superobject = new JSONObject();
             superobject.put("alg_id", alg_id);
-            superobject.put("week", week);
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
 
-            return UpdatePOSTDataBase(ALGEMEEN_MAPPING, jsonInputString, alg_id, week);
+            return UpdatePOSTDataBase(ALGEMEEN_MAPPING, jsonInputString, alg_id, GEEN_WEEK);
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -586,6 +586,76 @@ public class HasuraApicontroller extends Apicontroller {
             return UpdatePOSTDataBase(VOEDING_MAPPING, jsonInputString, voed_id, week);
 
         }catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    //----------------------
+    // Cardiovascular tabel
+    //-----------------------
+
+    // vraagt de gehele cardiovasculair tabel op
+    @GetMapping("/cardiovasculair/getAll")
+    public ResponseEntity<String> getAllCardiovasculair(){
+        return GetDelDataBase(CARDIOVASCULAIR_MAPPING, "GET", GEEN_ID, GEEN_WEEK);
+    }
+
+    // vraagt een enkele rij op in de cardiovasculair tabel
+    @GetMapping("/cardiovasculair/get")
+    public ResponseEntity<String> getCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(CARDIOVASCULAIR_MAPPING, "Get", car_id, week);
+    }
+
+    // verwijdert een rij in de cardiovasculair tabel
+    @GetMapping("/cardiovasculair/delete")
+    public ResponseEntity<String> deleteCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week){
+        return GetDelDataBase(CARDIOVASCULAIR_MAPPING, "DELETE", car_id, week);
+    }
+
+    // voegt een nieuwe rij toe in de cardiovasculair tabel
+    @GetMapping("/cardiovasculair/new")
+    public ResponseEntity<String> addCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "gewicht") Integer gewicht, @RequestParam(value = "bovengrens") Integer bovengrens, @RequestParam(value = "ondergrens") Integer ondergrens, @RequestParam(value = "hartfrequentie") Integer hartfrequentie){
+        try {
+            JSONObject object = new JSONObject();
+            JSONObject superobject = new JSONObject();
+
+            object.put("car_id", car_id);
+            object.put("week", week);
+            object.put("gewicht", gewicht);
+            object.put("bovengrens", bovengrens);
+            object.put("ondergrens", ondergrens);
+            object.put("hartfrequentie", hartfrequentie);
+
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(CARDIOVASCULAIR_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
+        }catch (JSONException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
+        }
+    }
+
+    // wijzigt een rij in de cardiovasculair tabel
+    @GetMapping("/cardiovasculair/update")
+    public ResponseEntity<String> updateCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "gewicht") Integer gewicht, @RequestParam(value = "bovengrens") Integer bovengrens, @RequestParam(value = "ondergrens") Integer ondergrens, @RequestParam(value = "hartfrequentie") Integer hartfrequentie){
+        try {
+            JSONObject object = new JSONObject();
+            if (gewicht != null) object.put("gewicht", gewicht);
+            if (bovengrens != null) object.put("bovengrens", bovengrens);
+            if (ondergrens != null) object.put("ondergrens", ondergrens);
+            if (hartfrequentie != null) object.put("hartfrequentie", hartfrequentie);
+
+            JSONObject superobject = new JSONObject();
+            superobject.put("car_id", car_id);
+            superobject.put("week", week);
+            superobject.put("object", object);
+            String jsonInputString = superobject.toString();
+            return UpdatePOSTDataBase(CARDIOVASCULAIR_MAPPING,jsonInputString, car_id, week);
+
+        } catch (JSONException e){
             e.printStackTrace();
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));

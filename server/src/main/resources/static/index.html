@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <title>Citizen Science | Login</title>
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
     <header>
@@ -22,7 +24,7 @@
         </div>
         <label for="toegangscode"></label><input type="text" id="toegangscode" name="toegangscode" placeholder="Toegangscode" required>
         <br><br>
-        <button id="login_button" class="button" onclick="window.location.href='profiel.html'">Log in</button>
+        <button id="login_button" class="button" onclick="checklogin()">Log in</button>
     </div>
 </body>
 </html>
