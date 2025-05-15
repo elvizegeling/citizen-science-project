@@ -40,7 +40,7 @@
                 <option value="5">Week 5</option>
                 <option value="6">Week 6</option>
             </select><br><br>
-            <button type="button" class="start" id="start" onclick="checkAlgemeen(); getweek(); startVragenlijst()" >Starten</button>
+            <button type="button" class="start" id="start" onclick="getweek(); checkCardiovasculair(); checkVoeding(); checkTijdbesteding(); checkSE(); checkMiddelengebruik(); checkBeweging(); startVragenlijst()" >Starten</button>
         </div>
         <!-- is allemaal voor de progress bar, maar werkt nog niet
         (zorgen dat algemeen er niet tussenstaat als het niet om week 1 gaat)
@@ -62,10 +62,11 @@
 
                 <label>2. Wat is je geslacht?</label>
                 <select id="geslacht" name="geslacht">
-                    <option value="man">Man</option>
-                    <option value="vrouw">Vrouw</option>
-                    <option value="anders">Anders</option>
+                    <option value="1">Man</option>
+                    <option value="2">Vrouw</option>
+                    <option value="0">Anders</option>
                 </select>
+                <br><br>
                 <!--<input type="radio" id="man" name="geslacht" required><label for="man">Man</label>
                 <input type="radio" id="vrouw" name="geslacht"><label for="vrouw">Vrouw</label>
                 <input type="radio" id="anders" name="geslacht"><label for="anders">Anders</label><br><br>-->
@@ -78,6 +79,7 @@
                     <option value="true">ja</option>
                     <option value="false">nee</option>
                 </select>
+                <br><br>
                 <!--<input type="radio" id="ja" name="thuiswonend" required><label for="ja">Ja</label>
                 <input type="radio" id="nee" name="thuiswonend"><label for="nee">Nee</label><br><br>-->
 
@@ -118,7 +120,7 @@
 
                 <div class="vorige_volgende" id="knoppen1">
                     <button type="button" class="vorige" id="vorige2" onclick="gaTerug(this)">Vorige</button>
-                    <button type="submit" class="volgende" id="volgende2" onclick="gaVerder(this)">Volgende</button>
+                    <button type="submit" class="volgende" id="volgende2" onclick="addBeweging(); gaVerder(this)">Volgende</button>
                 </div>
             </div>
             <div class="stap" id="stap2" style="display: none">
@@ -137,7 +139,7 @@
 
                 <div class="vorige_volgende" id="knoppen2">
                     <button type="button" class="vorige" id="vorige3" onclick="gaTerug(this)">Vorige</button>
-                    <button type="submit" class="volgende" id="volgende3" onclick="gaVerder(this)">Volgende</button>
+                    <button type="submit" class="volgende" id="volgende3" onclick="addMiddelengebruik(); gaVerder(this)">Volgende</button>
                 </div>
             </div>
             <div class="stap" id="stap3" style="display: none">
@@ -168,13 +170,15 @@
                 <input type="number" id="vis" min="0" max="28" required> eenheden<br><br>
 
                 <label>8. Heb je specifieke voorkeuren qua voeding zoals vegetarisch, veganistisch, pescotarisch, plantaardig?</label>
-                <input type="radio" id="wel" name="voorkeuren" required><label for="wel">Ja</label>
-                <input type="radio" id="geen" name="voorkeuren"><label for="geen">Nee</label>
-                <input type="radio" id="flex" name="voorkeuren"><label for="flex">Flex</label><br><br>
+                <select id="specifieke_voeding" name="specifieke_voeding">
+                    <option value="1">wel</option>
+                    <option value="0">geen</option>
+                    <option value="2">flex</option>
+                </select><br><br>
 
                 <div class="vorige_volgende" id="knoppen3">
                     <button type="button" class="vorige" id="vorige4" onclick="gaTerug(this)">Vorige</button>
-                    <button type="submit" class="volgende" id="volgende4" onclick="gaVerder(this)">Volgende</button>
+                    <button type="submit" class="volgende" id="volgende4" onclick="addVoeding(); gaVerder(this)">Volgende</button>
                 </div>
             </div>
             <div class="stap" id="stap4" style="display: none">
@@ -196,7 +200,7 @@
 
                 <div class="vorige_volgende" id="knoppen4">
                     <button type="button" class="vorige" id="vorige5" onclick="gaTerug(this)">Vorige</button>
-                    <button type="submit" class="volgende" id="volgende5" onclick="gaVerder(this)">Volgende</button>
+                    <button type="submit" class="volgende" id="volgende5" onclick="addTijdbesteding(); gaVerder(this)">Volgende</button>
                 </div>
             </div>
             <div class="stap" id="stap5" style="display: none">
@@ -251,7 +255,7 @@
 
                 <div class="vorige_volgende" id="knoppen5">
                     <button type="button" class="vorige" id="vorige6" onclick="gaTerug(this)">Vorige</button>
-                    <button type="submit" class="volgende" id="volgende6" onclick="gaVerder(this)">Volgende</button>
+                    <button type="submit" class="volgende" id="volgende6" onclick="addSE(); gaVerder(this)">Volgende</button>
                 </div>
             </div>
             <div class="stap" id="stap6" style="display: none">
@@ -274,7 +278,7 @@
 
                 <div class="vorige_volgende" id="knoppen6">
                     <button type="button" class="vorige" id="vorige7" onclick="gaTerug(this)">Vorige</button>
-                    <button type="submit" class="volgende" id="versturen" onclick="verstuurData()">Versturen</button>
+                    <button type="submit" class="volgende" id="versturen" onclick="addCardiovasculair(); verstuurData()">Versturen</button>
                 </div>
             </div>
         </form>

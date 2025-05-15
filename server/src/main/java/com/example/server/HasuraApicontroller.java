@@ -605,7 +605,7 @@ public class HasuraApicontroller extends Apicontroller {
     // vraagt een enkele rij op in de cardiovasculair tabel
     @GetMapping("/cardiovasculair/get")
     public ResponseEntity<String> getCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week){
-        return GetDelDataBase(CARDIOVASCULAIR_MAPPING, "Get", car_id, week);
+        return GetDelDataBase(CARDIOVASCULAIR_MAPPING, "GET", car_id, week);
     }
 
     // verwijdert een rij in de cardiovasculair tabel
