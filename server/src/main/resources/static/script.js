@@ -173,9 +173,8 @@ function editAlgemeen(Algemeen){
 function checkBeweging(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
-    $.getJSON("/beweging/get", {bew_id:id, week:week}, function (data){
+    $.getJSON("/beweging/get",{bew_id:id, week:week},function (data){
         Beweging = data.beweging_by_pk
-
         if (Beweging === null){
             localStorage.setItem("Bewegingbool", "0")
         }
@@ -296,9 +295,8 @@ function editMiddelengebruik(Middelengebruik){
 function checkSE(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
-    $.getJSON("subjectieve_ervaringen/get", {se_id:id, week:week}, function (data){
+    $.getJSON("subjectieve_ervaringen/get",{se_id:id, week:week},function (data){
         SE = data.subjectieve_ervaringen_by_pk
-
         if (SE === null){
             localStorage.setItem("SEbool", "0")
         }

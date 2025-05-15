@@ -261,7 +261,7 @@ public class HasuraApicontroller extends Apicontroller {
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
-            return UpdatePOSTDataBase(BEWEGING_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
+            return UpdatePOSTDataBase(BEWEGING_MAPPING,jsonInputString,GEEN_ID,GEEN_WEEK);
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -470,7 +470,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // maakt een nieuwe rij in tijdbesteding tabel aan
     @GetMapping("/tijdbesteding/new")
-    public ResponseEntity<String> addTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "slaap_gem_uur") Integer slaap_gem_uur, @RequestParam(value = "sociaal_gem-uur") Integer sociaal_gem_uur, @RequestParam(value = "hobby_gem_uur") Integer hobby_gem_uur, @RequestParam(value = "studie_gem_uur") Integer studie_gem_uur, @RequestParam(value = "werk_gem_uur") Integer werk_gem_uur){
+    public ResponseEntity<String> addTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "slaap_gem_uur") Integer slaap_gem_uur, @RequestParam(value = "sociaal_gem_uur") Integer sociaal_gem_uur, @RequestParam(value = "hobby_gem_uur") Integer hobby_gem_uur, @RequestParam(value = "studie_gem_uur") Integer studie_gem_uur, @RequestParam(value = "werk_gem_uur") Integer werk_gem_uur){
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
@@ -496,7 +496,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // wijzigt een rij in de tijdbesteding tabel
     @GetMapping("/tijdbesteding/update")
-    public ResponseEntity<String> updateTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "slaap_gem_uur") Integer slaap_gem_uur, @RequestParam(value = "sociaal_gem-uur") Integer sociaal_gem_uur, @RequestParam(value = "hobby_gem_uur") Integer hobby_gem_uur, @RequestParam(value = "studie_gem_uur") Integer studie_gem_uur, @RequestParam(value = "werk_gem_uur") Integer werk_gem_uur){
+    public ResponseEntity<String> updateTijdbesteding(@RequestParam(value = "tbd_id") Integer tbd_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "slaap_gem_uur") Integer slaap_gem_uur, @RequestParam(value = "sociaal_gem_uur") Integer sociaal_gem_uur, @RequestParam(value = "hobby_gem_uur") Integer hobby_gem_uur, @RequestParam(value = "studie_gem_uur") Integer studie_gem_uur, @RequestParam(value = "werk_gem_uur") Integer werk_gem_uur){
         try {
             JSONObject object = new JSONObject();
             if (slaap_gem_uur != null) object.put("slaap_gem_uur", slaap_gem_uur);
@@ -556,7 +556,7 @@ public class HasuraApicontroller extends Apicontroller {
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
-            return UpdatePOSTDataBase(VOEDING_MAPPING, jsonInputString, GEEN_ID, GEEN_WEEK);
+            return UpdatePOSTDataBase(VOEDING_MAPPING,jsonInputString,GEEN_ID,GEEN_WEEK);
 
         }catch (JSONException e){
             e.printStackTrace();
