@@ -25,6 +25,7 @@ function checklogin() {
     })
 }
 
+// vraagt de week op waarin de data is gemeten
 function getweek(){
     event.preventDefault();
     localStorage.setItem("week",document.getElementById("weeknummer").value)
@@ -65,7 +66,7 @@ function showAlgemeen() {
 }
 
 // voegt de data uit het forum toe aan de database of wijzigt deze
-function addAlgemeen(){
+function addupdAlgemeen(){
     event.preventDefault();
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -90,6 +91,8 @@ function addAlgemeen(){
     }
 }
 
+// aanroepen en versturen van beweging data
+//checkt of er al data van de gekozen week in de beweging tabel is
 function checkBeweging(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -107,6 +110,7 @@ function checkBeweging(){
     })
 }
 
+// laat de data van de beweging tabel, als deze bestaat zien in het forum
 function showBeweging() {
     event.preventDefault();
     id = localStorage.getItem("id")
@@ -122,7 +126,8 @@ function showBeweging() {
     })
 }
 
-function addBeweging() {
+// voegt de data uit het forum toe aan de beweging tabel of wijzigt deze
+function addupdBeweging() {
     event.preventDefault();
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -147,6 +152,8 @@ function addBeweging() {
     }
 }
 
+// aanroepen en versturen van middelengebruik data
+// checkt of er al data van de gekozen week in de middelengebruik tabel is
 function checkMiddelengebruik(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -164,6 +171,7 @@ function checkMiddelengebruik(){
     })
 }
 
+//laat de data van de middelengebruik tabel, als deze bestaat zien in het forum
 function showMiddelengebruik(){
     event.preventDefault()
     id = localStorage.getItem("id")
@@ -178,7 +186,8 @@ function showMiddelengebruik(){
     })
 }
 
-function addMiddelengebruik(){
+// voegt de data uit het forum toe aan de middelengebruik tabel of wijzigt deze
+function addupdMiddelengebruik(){
     event.preventDefault()
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -202,6 +211,8 @@ function addMiddelengebruik(){
     }
 }
 
+// aanroepen en versturen van subjectieve ervaringen data
+// checkt of er al data van de gekozen week in de subjectieve ervaringen tabel is
 function checkSE(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -219,6 +230,7 @@ function checkSE(){
     })
 }
 
+//laat de data van de subjectieve ervaringen tabel, als deze bestaat zien in het forum
 function showSE(){
     event.preventDefault()
     id = localStorage.getItem("id")
@@ -239,7 +251,8 @@ function showSE(){
     })
 }
 
-function addSE() {
+// voegt de data uit het forum toe aan de subjectieve ervaringen tabel of wijzigt deze
+function addupdSE() {
     event.preventDefault()
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -269,6 +282,8 @@ function addSE() {
     }
 }
 
+// aanroepen en versturen van tijdbesteding data
+// checkt of er al data van de gekozen week in de tijdbesteding tabel is
 function checkTijdbesteding(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -286,6 +301,7 @@ function checkTijdbesteding(){
     })
 }
 
+//laat de data van de tijdbesteding tabel, als deze bestaat zien in het forum
 function showTijdbesteding(){
     event.preventDefault()
     id = localStorage.getItem("id")
@@ -301,7 +317,8 @@ function showTijdbesteding(){
     })
 }
 
-function addTijdbesteding() {
+// voegt de data uit het forum toe aan de tijdbesteding tabel of wijzigt deze
+function addupdTijdbesteding() {
     event.preventDefault()
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -326,6 +343,8 @@ function addTijdbesteding() {
     }
 }
 
+// aanroepen en versturen van voeding data
+// checkt of er al data van de gekozen week in de voeding tabel is
 function checkVoeding(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -343,6 +362,7 @@ function checkVoeding(){
     })
 }
 
+//laat de data van de voeding tabel, als deze bestaat zien in het forum
 function showVoeding(){
     event.preventDefault()
     id = localStorage.getItem("id")
@@ -361,7 +381,8 @@ function showVoeding(){
     })
 }
 
-function addVoeding(){
+// voegt de data uit het forum toe aan de voeding tabel of wijzigt deze
+function addupdVoeding(){
     event.preventDefault()
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -389,6 +410,8 @@ function addVoeding(){
     }
 }
 
+// aanroepen en versturen van cardiovasculair data
+// checkt of er al data van de gekozen week in de cardiovasculair tabel is
 function checkCardiovasculair(){
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
@@ -406,6 +429,7 @@ function checkCardiovasculair(){
     })
 }
 
+//laat de data van de cardiovasculair tabel, als deze bestaat zien in het forum
 function showCardiovasculair(){
     event.preventDefault()
     id = localStorage.getItem("id")
@@ -420,7 +444,8 @@ function showCardiovasculair(){
     })
 }
 
-function addCardiovasculair(){
+// voegt de data uit het forum toe aan de cardiovasculair tabel of wijzigt deze
+function addupdCardiovasculair(){
     event.preventDefault()
     id = localStorage.getItem("id")
     week = localStorage.getItem("week")
