@@ -33,61 +33,6 @@ public class HasuraApicontroller extends Apicontroller {
     @Value("${hasura.secret}")
     private String SECRET;
 
-    // geeft de waarde van de gevraagde tabel of rij of verwijdert de gevraagde rij
-    public ResponseEntity<String> GetDelDataBase(String mapping, String type, Integer id, Integer week) {
-        try {
-            String completeURL;
-            if (id == 0 && week == 0) {
-                completeURL = BASE_URL + mapping;
-            } else if (week == 0) {
-                completeURL = BASE_URL + mapping + "/" + id;
-            } else {
-                completeURL = BASE_URL + mapping + "/" + id + "/" + week;
-            }
-
-            URL url = new URI(completeURL).toURL();
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod(type);
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("x-hasura-admin-secret", SECRET);
-            con.setDoOutput(true);
-            return getApiCallResponse(con);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
-        }
-    }
-
-    // update een rij uit de gevraagde tabel of voegt een nieuwe rij toe
-    public ResponseEntity<String> UpdatePOSTDataBase(String mapping, String jsonInputString, Integer id, Integer week) {
-        try {
-            String completeURL;
-            if (id == 0 && week == 0) {
-                completeURL = BASE_URL + mapping;
-            } else if (week == 0) {
-                completeURL = BASE_URL + mapping + "/" + id;
-            } else {
-                completeURL = BASE_URL + mapping + "/" + id + "/" + week;
-            }
-            URL url = new URI(completeURL).toURL();
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("x-hasura-admin-secret", SECRET);
-            con.setDoOutput(true);
-
-            try (OutputStream os = con.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
-            return getApiCallResponse(con);
-        } catch (URISyntaxException | IOException | RuntimeException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
-        }
-    }
-
     //----------------
     // tabel student
     //----------------
@@ -167,7 +112,7 @@ public class HasuraApicontroller extends Apicontroller {
     }
 
     // verwijdert een rij in de algemeen tabel
-    @GetMapping("/algemeen/delete")
+    @GetMapping ("/algemeen/delete")
     public ResponseEntity<String> deleteAlgemeen(@RequestParam(value = "alg_id") Integer alg_id) {
         return GetDelDataBase(ALGEMEEN_MAPPING, "DELETE", alg_id, GEEN_WEEK);
     }
@@ -253,7 +198,7 @@ public class HasuraApicontroller extends Apicontroller {
 
             object.put("bew_id", bew_id);
             object.put("week", week);
-            object.put("mating_min", matig_min);
+            object.put("matig_min", matig_min);
             object.put("intens_min", intens_min);
             object.put("strek_min", strek_min);
             object.put("zit_uur", zit_uur);
@@ -417,7 +362,7 @@ public class HasuraApicontroller extends Apicontroller {
     }
 
     // wijzigt een rij uit de subjectieve ervaringen tabel
-    @GetMapping("/subjectiev_ervaringen/update")
+    @GetMapping("/subjectieve_ervaringen/update")
     public ResponseEntity<String> updateSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch) {
         try {
             JSONObject object = new JSONObject();
@@ -549,7 +494,7 @@ public class HasuraApicontroller extends Apicontroller {
             object.put("fruit_por", fruit_por);
             object.put("fris_sap_gls", fris_sap_gls);
             object.put("ong_snack", ong_snack);
-            object.put("kan_klaar", kant_klaar);
+            object.put("kant_klaar", kant_klaar);
             object.put("vlees_vogel", vlees_vogel);
             object.put("vis", vis);
             object.put("spec_voeding", spec_voeding);

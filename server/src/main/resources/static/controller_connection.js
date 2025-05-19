@@ -30,79 +30,6 @@ function getweek(){
     localStorage.setItem("week",document.getElementById("weeknummer").value)
 }
 
-/*
-let huidigeStap = 0
-const onderdelen = document.querySelectorAll('.onderdeel');
-const stappen = document.querySelectorAll('.stap');
-onderdelen.forEach((onderdeel, index) => {
-    onderdeel.addEventListener('click', () => {
-        toonStap(index);
-    });
-});
-function toonStap(index) {
-    stappen.forEach((stap, i) => {
-        stap.style.display = i === index ? 'block' : 'none';
-        onderdelen[i].classList.toggle('active', i === index);
-    });
-    huidigeStap = index;
-}
-document.querySelector('.volgende').addEventListener('click', () => {
-    if (huidigeStap < stappen.length - 1) toonStap(huidigeStap+1);
-});
-document.querySelector('.vorige').addEventListener('click', () => {
-    if (huidigeStap > 0) toonStap(huidigeStap-1);
-});*/
-
-function startVragenlijst() { // start de vragenlijst wanneer er op 'starten' is gedrukt en een week is geselecteerd
-    const weeknummer = document.getElementById("weeknummer");
-    if (weeknummer.value === "") {
-        alert("Kies een weeknummer");
-    } else {
-        document.getElementById('invoeren').style.display = 'none';
-        //document.getElementById('progress_bar').style.display = 'block';
-        if (localStorage.getItem("Algemeenbool") === "0") {
-            document.getElementById("start_tekst").style.display = 'none';
-            document.getElementById("stap0").style.display = 'block';
-        }
-        else {
-            document.getElementById("start_tekst").style.display = 'none';
-            document.getElementById("stap1").style.display = 'block';
-        }
-    }
-    // TODO: van het geselecteerde weeknummer checken of de data hiervoor al is ingevuld (via db)
-}
-
-
-function gaTerug(button) { // gaat terug naar de vorige pagina wanneer er op 'vorige' is geklikt
-    const div_id = button.closest("div").id; // haalt de id van de div van de stap op (bijv. "stap1")
-    const huidige = Number(div_id.match(/\d+/)[0]); // haalt mbv regex het getal uit de id (bijv. 1)
-    document.getElementById(`stap${huidige}`).style.display = 'none';
-    const weeknummer = document.getElementById("weeknummer");
-    if (huidige === 0) {
-        document.getElementById("start_tekst").style.display = 'block';
-        document.getElementById('invoeren').style.display = 'block';
-        //document.getElementById('progress_bar').style.display = 'none';
-    } else if (huidige === 1) {
-        if (weeknummer.value !== "1") { // als data van week 2 t/m 6 wordt ingevoerd, gaat het van stap 1 terug naar start
-            document.getElementById("start_tekst").style.display = 'block';
-            document.getElementById('invoeren').style.display = 'block';
-            //document.getElementById('progress_bar').style.display = 'none';
-        } else { // als data van week 1 wordt ingevoerd, gaat het van stap 1 terug naar stap 0 (algemene vragenlijst)
-            document.getElementById(`stap${huidige - 1}`).style.display = 'block';
-        }
-    } else {
-        document.getElementById(`stap${huidige - 1}`).style.display = 'block';
-    }
-}
-
-function gaVerder(button) { // gaat verder naar de volgende pagina wanneer er op 'volgende' is geklikt
-    const div_id = button.closest("div").id; // haalt de id van de div van de stap op (bijv. "stap1")
-    const huidige = Number(div_id.match(/\d+/)[0]); // haalt mbv regex het getal uit de id (bijv. 1)
-    document.getElementById(`stap${huidige}`).style.display = 'none';
-    document.getElementById(`stap${huidige + 1}`).style.display = 'block';
-    // TODO: zorgen dat er niet verder gegaan kan worden wanneer niet alle verplichte velden zijn ingevuld
-}
-
 // aanroepen en versturen data algemeen
 // checkt of er al data is van de student in de algemeen tabel van deze week
 function checkAlgemeen(){
@@ -137,7 +64,7 @@ function showAlgemeen() {
     })
 }
 
-// voegt de data uit het forum toe aan de database
+// voegt de data uit het forum toe aan de database of wijzigt deze
 function addAlgemeen(){
     event.preventDefault();
     id = localStorage.getItem("id")
@@ -152,22 +79,15 @@ function addAlgemeen(){
         "reistijd_min": document.getElementById("reistijd").value
     }
     if (localStorage.getItem("Algemeenbool") === "1"){
-        editAlgemeen(Algemeen)
+        $.getJSON("/algemeen/update", Algemeen, function (data){
+            console.log(data)
+        })
     }else {
         $.getJSON("/algemeen/new", Algemeen, function (data){
             console.log(data)
             localStorage.setItem("Algemeenbool", "1")
         })
     }
-}
-
-// wijzigt de data uit de database vanaf het forum
-function editAlgemeen(Algemeen){
-    event.preventDefault();
-    $.getJSON("/algemeen/update", Algemeen, function (data){
-        console.log(data)
-    })
-
 }
 
 function checkBeweging(){
@@ -216,20 +136,15 @@ function addBeweging() {
         "stappen_gem": document.getElementById("stappen").value
     }
     if (localStorage.getItem("Bewegingbool") === "1"){
-        editBeweging(Beweging)
+        $.getJSON("beweging/update", Beweging, function (data){
+            console.log(data);
+        })
     } else {
         $.getJSON("beweging/new", Beweging, function (data){
             console.log(data)
             localStorage.setItem("Bewegingbool", "1")
         })
     }
-}
-
-function editBeweging(Beweging){
-    event.preventDefault();
-    $.getJSON("beweging/update", Beweging, function (data){
-        console.log(data);
-    })
 }
 
 function checkMiddelengebruik(){
@@ -276,20 +191,15 @@ function addMiddelengebruik(){
         "harddrugs_gem": document.getElementById("harddrugs").value
     }
     if (localStorage.getItem("Middelengebruikbool") === "1"){
-        editMiddelengebruik(Middelengebruik)
+        $.getJSON("middelengebruik/update", Middelengebruik, function (data){
+            console.log(data)
+        })
     } else {
         $.getJSON("middelengebruik/new", Middelengebruik, function (data){
             console.log(data)
             localStorage.setItem("Middelengebruikbool", "1")
         })
     }
-}
-
-function editMiddelengebruik(Middelengebruik){
-    event.preventDefault()
-    $.getJSON("middelengebruik/update", Middelengebruik, function (data){
-        console.log(data)
-    })
 }
 
 function checkSE(){
@@ -348,20 +258,15 @@ function addSE() {
         "tevr_hobb_sch": document.getElementById("hobbys_tevreden").value
     }
     if (localStorage.getItem("SEbool")==="1"){
-        editSE(SE)
+        $.getJSON("subjectieve_ervaringen/update", SE, function (data){
+            console.log(data)
+        })
     } else {
         $.getJSON("subjectieve_ervaringen/new", SE, function (data){
             console.log(data)
             localStorage.setItem("SEbool", "1")
         })
     }
-}
-
-function editSE(SE){
-    event.preventDefault()
-    $.getJSON("subjectiev_ervaringen/update", SE, function (data){
-        console.log(data)
-    })
 }
 
 function checkTijdbesteding(){
@@ -410,20 +315,15 @@ function addTijdbesteding() {
         "werk_gem_uur": document.getElementById("werk").value
     }
     if (localStorage.getItem("Tijdbestedingbool") === "1"){
-        editTijdbesteding(Tijdbesteding)
+        $.getJSON("tijdbesteding/update", Tijdbesteding, function (data){
+            console.log(data)
+        })
     }else {
         $.getJSON("tijdbesteding/new", Tijdbesteding, function (data){
             console.log(data)
             localStorage.setItem("Tijdbestedingbool", "1")
         })
     }
-}
-
-function editTijdbesteding(Tijdbesteding) {
-    event.preventDefault()
-    $.getJSON("tijdbesteding/update", Tijdbesteding, function (data){
-        console.log(data)
-    })
 }
 
 function checkVoeding(){
@@ -478,20 +378,15 @@ function addVoeding(){
         "spec_voeding": document.getElementById("specifieke_voeding").value
     }
     if (localStorage.getItem("Voedingbool") === "1"){
-        editVoeding(Voeding)
+        $.getJSON("voeding/update", Voeding, function (data){
+            console.log(data)
+        })
     } else {
         $.getJSON("voeding/new", Voeding, function (data){
             console.log(data)
             localStorage.setItem("Voedingbool", "1")
         })
     }
-}
-
-function editVoeding(Voeding){
-    event.preventDefault()
-    $.getJSON("voeding/update", Voeding, function (data){
-        console.log(data)
-    })
 }
 
 function checkCardiovasculair(){
@@ -538,17 +433,13 @@ function addCardiovasculair(){
         "hartfrequentie": document.getElementById("hartslag").value
     }
     if (localStorage.getItem("Cardiovasculairbool")==="1"){
-        editCardiovasculair(Cardiovasculair)
+        $.getJSON("cardiovasculair/update", Cardiovasculair, function (data){
+            console.log(data)
+        })
     } else {
         $.getJSON("cardiovasculair/new", Cardiovasculair, function (data){
             console.log(data)
             localStorage.setItem("Cardiovasculairbool", "0")
         })
     }
-}
-
-function editCardiovasculair(Cardiovasculair){
-    $.getJSON("cardiovasculair/update", Cardiovasculair, function (data){
-        console.log(data)
-    })
 }
