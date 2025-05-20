@@ -1,3 +1,15 @@
+/*
+########################################################################################
+## project: citizen-science project (gen + mi = 3)                                    ##
+## doel: deze javascript file zorgt ervoor dat de data uit de html file               ##
+## getransformeerd wordt in json objecten zodat deze kunnen worden doorverstuurd naar ##
+## de database en vice versa                                                          ##
+## makers: Elvi Zegeling 14156733, Pleun Emmelot 15169979,                            ##
+## Thijmen Masereeuw 15019659, Anna Drenth 14960583                                   ##
+## laatste update: 19-04-2025                                                         ##
+########################################################################################
+*/
+
 // checkt de toegangscode voor de login
 function checklogin() {
     event.preventDefault();

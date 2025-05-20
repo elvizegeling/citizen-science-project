@@ -1,3 +1,13 @@
+/*
+########################################################################################
+## project: citizen-science project (gen + mi = 3)                                    ##
+## doel: deze java script file zorgt voor de visuele elementen in de html file        ##
+## makers: Elvi Zegeling 14156733, Pleun Emmelot 15169979,                            ##
+## Thijmen Masereeuw 15019659, Anna Drenth 14960583                                   ##
+## laatste update: 19-04-2025                                                         ##
+########################################################################################
+*/
+
 
 /*
 let huidigeStap = 0

@@ -1,3 +1,13 @@
+/*
+########################################################################################
+## project: citizen-science project (gen + mi = 3)                                    ##
+## doel: deze class is bedoeld om de GET, DELETE en POST te maken en te vullen met    ##
+## juiste informatie zodat deze in de database gevuld wordt.                          ##
+## makers: Elvi Zegeling 14156733, Pleun Emmelot 15169979,                            ##
+## Thijmen Masereeuw 15019659, Anna Drenth 14960583                                   ##
+## laatste update: 19-04-2025                                                         ##
+########################################################################################
+*/
 package com.example.server;
 
 import org.json.JSONException;
@@ -27,11 +37,6 @@ public class HasuraApicontroller extends Apicontroller {
     public static final String CARDIOVASCULAIR_MAPPING = "cardiovasculair";
     public static final Integer GEEN_ID = 0;
     public static final Integer GEEN_WEEK = 0;
-
-    @Value("${hasura.baseURL}")
-    private String BASE_URL;
-    @Value("${hasura.secret}")
-    private String SECRET;
 
     //----------------
     // tabel student

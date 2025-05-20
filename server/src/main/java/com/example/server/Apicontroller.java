@@ -1,3 +1,13 @@
+/*
+########################################################################################
+## project: citizen-science project (gen + mi = 3)                                    ##
+## doel: deze class is bedoeld om de url connectie te maken met de database           ##
+## makers: Elvi Zegeling 14156733, Pleun Emmelot 15169979,                            ##
+## Thijmen Masereeuw 15019659, Anna Drenth 14960583                                   ##
+## laatste update: 19-04-2025                                                         ##
+########################################################################################
+*/
+
 package com.example.server;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,11 +28,13 @@ import java.nio.charset.StandardCharsets;
 @RestController
 abstract class Apicontroller {
 
+    // waardes die nodig zijn om de database url en connectie te maken
     @Value("${hasura.baseURL}")
     private String BASE_URL;
     @Value("${hasura.secret}")
     private String SECRET;
 
+    // maakt de connectie met de database
     protected ResponseEntity<String> getApiCallResponse(HttpURLConnection con) {
         int code = 501;
 
