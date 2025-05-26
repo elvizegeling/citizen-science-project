@@ -6,7 +6,7 @@
 ## de database en vice versa                                                          ##
 ## makers: Elvi Zegeling 14156733, Pleun Emmelot 15169979,                            ##
 ## Thijmen Masereeuw 15019659, Anna Drenth 14960583                                   ##
-## laatste update: 19-04-2025                                                         ##
+## laatste update: 26-05-2025                                                         ##
 ########################################################################################
 */
 
@@ -69,11 +69,8 @@ function showAlgemeen() {
     id = localStorage.getItem("id")
     $.getJSON("/algemeen/get", {alg_id:id}, function (data){
         Algemeen = data.algemeen_by_pk
-        document.getElementById("leeftijd").value = Algemeen.leeftijd
-        document.getElementById("geslacht").value = Algemeen.geslacht
         document.getElementById("lichaamslengte").value = Algemeen.lengte_cm
-        document.getElementById("thuis").value = Algemeen.thuis
-        document.getElementById("reistijd").value = Algemeen.reistijd_min
+        // TODO: variabelen leeftijd, geslacht, thuiswonend en reistijd verwijderen uit db, heb ze hier al verwijderd
     })
 }
 
@@ -85,11 +82,7 @@ function addupdAlgemeen(){
     Algemeen = {
         "alg_id": id,
         "week": week,
-        "leeftijd": document.getElementById("leeftijd").value,
-        "geslacht": document.getElementById("geslacht").value,
-        "lengte_cm": document.getElementById("lichaamslengte").value,
-        "thuis": document.getElementById("thuis").value,
-        "reistijd_min": document.getElementById("reistijd").value
+        "lengte_cm": document.getElementById("lichaamslengte").value
     }
     if (localStorage.getItem("Algemeenbool") === "1"){
         $.getJSON("/algemeen/update", Algemeen, function (data){
@@ -193,8 +186,9 @@ function showMiddelengebruik(){
 
         document.getElementById("alcohol").value = Middelengebruik.consum_gem
         document.getElementById("roken").value = Middelengebruik.roken_gem
-        document.getElementById("softdrugs").value = Middelengebruik.softdrugs_gem
-        document.getElementById("harddrugs").value = Middelengebruik.harddrugs_gem
+        document.getElementById("drugs").value = Middelengebruik.x
+        // TODO: soft en harddrugs zijn samengevoegd, moet nog in de db aangepast worden. in html is de id van de variabele "drugs"
+        // TODO: naam in de db moet nog veranderd, die heb ik hier nu even 'x' genoemd
     })
 }
 
@@ -208,8 +202,9 @@ function addupdMiddelengebruik(){
         "week": week,
         "consum_gem": document.getElementById("alcohol").value,
         "roken_gem": document.getElementById("roken").value,
-        "softdrugs_gem": document.getElementById("softdrugs").value,
-        "harddrugs_gem": document.getElementById("harddrugs").value
+        "x": document.getElementById("drugs").value
+        // TODO: soft en harddrugs zijn samengevoegd, moet nog in de db aangepast worden. in html is de id van de variabele "drugs"
+        // TODO: naam in de db moet nog veranderd, die heb ik hier nu even 'x' genoemd
     }
     if (localStorage.getItem("Middelengebruikbool") === "1"){
         $.getJSON("middelengebruik/update", Middelengebruik, function (data){
@@ -255,9 +250,13 @@ function showSE(){
         document.getElementById("vitaal").value = SE.vitaal_sch
         document.getElementById("studie_tevreden").value = SE.tevr_stud_sch
         document.getElementById("studiedruk").value = SE.druk_stud_sch
+        // TODO: studiedruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("leefstijl_tevreden").value = SE.tevr_leef_sch
         document.getElementById("sociaal_tevreden").value = SE.tevr_soci_sch
+        // TODO: werk_tevreden mist hier
+        // TODO: werk_tevreden kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("werkdruk").value = SE.druk_werk_sch
+        // TODO: werkdruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("nachtrust_tevreden").value = SE.tevr_rust_sch
         document.getElementById("hobbys_tevreden").value = SE.tevr_hobb_sch
     })
@@ -278,7 +277,10 @@ function addupdSE() {
         "druk_stud_sch": document.getElementById("studiedruk").value,
         "tevr_leef_sch": document.getElementById("leefstijl_tevreden").value,
         "tevr_soci_sch": document.getElementById("sociaal_tevreden").value,
+        // TODO: werk_tevreden mist hier
+        // TODO: werk_tevreden kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         "druk_werk_sch": document.getElementById("werkdruk").value,
+        // TODO: werkdruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         "tevr_rust_sch": document.getElementById("nachtrust_tevreden").value,
         "tevr_hobb_sch": document.getElementById("hobbys_tevreden").value
     }
@@ -325,7 +327,9 @@ function showTijdbesteding(){
         document.getElementById("sociaal").value = Tijdbesteding.sociaal_gem_uur
         document.getElementById("hobbys").value = Tijdbesteding.hobby_gem_uur
         document.getElementById("studie").value = Tijdbesteding.studie_gem_uur
+        // TODO: studie kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("werk").value = Tijdbesteding.werk_gem_uur
+        // TODO: werk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
     })
 }
 
@@ -341,7 +345,9 @@ function addupdTijdbesteding() {
         "sociaal_gem_uur": document.getElementById("sociaal").value,
         "hobby_gem_uur": document.getElementById("hobbys").value,
         "studie_gem_uur": document.getElementById("studie").value,
+        // TODO: studie kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         "werk_gem_uur": document.getElementById("werk").value
+        // TODO: werk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
     }
     if (localStorage.getItem("Tijdbestedingbool") === "1"){
         $.getJSON("tijdbesteding/update", Tijdbesteding, function (data){
@@ -389,7 +395,8 @@ function showVoeding(){
         document.getElementById("kant_en_klaar").value = Voeding.kant_klaar
         document.getElementById("vlees_gevogelte").value = Voeding.vlees_vogel
         document.getElementById("vis").value = Voeding.vis
-        document.getElementById("specifieke_voeding").value = Voeding.spec_voeding
+        // TODO: specifieke_voeding is weggehaald, moet nog verwijderd worden uit de db
+        // TODO: nieuwe variabele met id "gezond_eten" toevoegen hier en in de db. variabele is op schaal van 1-10
     })
 }
 
@@ -407,8 +414,8 @@ function addupdVoeding(){
         "ong_snack": document.getElementById("snacks").value,
         "kant_klaar": document.getElementById("kant_en_klaar").value,
         "vlees_vogel": document.getElementById("vlees_gevogelte").value,
-        "vis": document.getElementById("vis").value,
-        "spec_voeding": document.getElementById("specifieke_voeding").value
+        "vis": document.getElementById("vis").value
+        // TODO: nieuwe variabele met id "gezond_eten" toevoegen hier en in de db. variabele is op schaal van 1-10
     }
     if (localStorage.getItem("Voedingbool") === "1"){
         $.getJSON("voeding/update", Voeding, function (data){
@@ -450,9 +457,14 @@ function showCardiovasculair(){
         Cardiovasculair = data.cardiovasculair_by_pk
 
         document.getElementById("gewicht").value = Cardiovasculair.gewicht
+        // TODO: gewicht kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("bovendruk").value = Cardiovasculair.bovengrens
+        // TODO: bovendruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("onderdruk").value = Cardiovasculair.ondergrens
+        // TODO: onderdruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         document.getElementById("hartslag").value = Cardiovasculair.hartfrequentie
+        // TODO: nieuwe variabele met id "apparaat_bloeddruk" hier en in de db. variabele is vrije tekst
+        // TODO: nieuwe variabele met id "apparaat_hartslag" hier en in de db. variabele is vrije tekst
     })
 }
 
@@ -465,9 +477,14 @@ function addupdCardiovasculair(){
         "car_id": id,
         "week": week,
         "gewicht": document.getElementById("gewicht").value,
+        // TODO: gewicht kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         "bovengrens": document.getElementById("bovendruk").value,
+        // TODO: bovendruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         "ondergrens": document.getElementById("onderdruk").value,
+        // TODO: onderdruk kan nu leeg zijn (value = ''), weet niet of dat goed gaat in de db
         "hartfrequentie": document.getElementById("hartslag").value
+        // TODO: nieuwe variabele met id "apparaat_bloeddruk" hier en in de db. variabele is vrije tekst
+        // TODO: nieuwe variabele met id "apparaat_hartslag" hier en in de db. variabele is vrije tekst
     }
     if (localStorage.getItem("Cardiovasculairbool")==="1"){
         $.getJSON("cardiovasculair/update", Cardiovasculair, function (data){

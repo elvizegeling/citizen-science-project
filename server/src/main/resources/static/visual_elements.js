@@ -4,7 +4,7 @@
 ## doel: deze java script file zorgt voor de visuele elementen in de html file        ##
 ## makers: Elvi Zegeling 14156733, Pleun Emmelot 15169979,                            ##
 ## Thijmen Masereeuw 15019659, Anna Drenth 14960583                                   ##
-## laatste update: 19-04-2025                                                         ##
+## laatste update: 26-05-2025                                                         ##
 ########################################################################################
 */
 
@@ -32,7 +32,92 @@ document.querySelector('.vorige').addEventListener('click', () => {
     if (huidigeStap > 0) toonStap(huidigeStap-1);
 });*/
 
-function startVragenlijst() { // start de vragenlijst wanneer er op 'starten' is gedrukt en een week is geselecteerd
+const studieInput = document.getElementById('studie');
+const geenStudieCheckbox = document.getElementById('geen_studie');
+geenStudieCheckbox.addEventListener('change', () => {
+    if (geenStudieCheckbox.checked) {
+        studieInput.disabled = true;
+        studieInput.value = '';
+    } else {
+        studieInput.disabled = false;
+    }
+});
+
+const werkInput = document.getElementById('werk');
+const geenWerkCheckbox = document.getElementById('geen_werk');
+geenWerkCheckbox.addEventListener('change', () => {
+    if (geenWerkCheckbox.checked) {
+        werkInput.disabled = true;
+        werkInput.value = '';
+    } else {
+        werkInput.disabled = false;
+    }
+});
+
+const studiedrukInput = document.getElementById('studiedruk');
+const geenStudie2Checkbox = document.getElementById('geen_studie2');
+geenStudie2Checkbox.addEventListener('change', () => {
+    if (geenStudie2Checkbox.checked) {
+        studiedrukInput.disabled = true;
+        studiedrukInput.value = '';
+    } else {
+        studiedrukInput.disabled = false;
+    }
+});
+
+const werkTevredenInput = document.getElementById('werk_tevreden');
+const geenWerk2Checkbox = document.getElementById('geen_werk2');
+geenWerk2Checkbox.addEventListener('change', () => {
+    if (geenWerk2Checkbox.checked) {
+        werkTevredenInput.disabled = true;
+        werkTevredenInput.value = '';
+    } else {
+        werkTevredenInput.disabled = false;
+    }
+});
+
+const werkDrukInput = document.getElementById('werkdruk');
+const geenWerk3Checkbox = document.getElementById('geen_werk3');
+geenWerk3Checkbox.addEventListener('change', () => {
+    if (geenWerk3Checkbox.checked) {
+        werkDrukInput.disabled = true;
+        werkDrukInput.value = '';
+    } else {
+        werkDrukInput.disabled = false;
+    }
+});
+
+const gewichtInput = document.getElementById('gewicht');
+const geenWeegschaalCheckbox = document.getElementById('geen_weegschaal');
+geenWeegschaalCheckbox.addEventListener('change', () => {
+    if (geenWeegschaalCheckbox.checked) {
+        gewichtInput.disabled = true;
+        gewichtInput.value = '';
+    } else {
+        gewichtInput.disabled = false;
+    }
+});
+
+const bovendrukInput = document.getElementById('bovendruk');
+const onderdrukInput = document.getElementById('onderdruk');
+const apparaatInput = document.getElementById('apparaat_bloeddruk');
+const geenMeterCheckbox = document.getElementById('geen_meter');
+geenMeterCheckbox.addEventListener('change', () => {
+    if (geenMeterCheckbox.checked) {
+        bovendrukInput.disabled = true;
+        bovendrukInput.value = '';
+        onderdrukInput.disabled = true;
+        onderdrukInput.value = '';
+        apparaatInput.disabled = true;
+        apparaatInput.value = '';
+    } else {
+        bovendrukInput.disabled = false;
+        onderdrukInput.disabled = false;
+        apparaatInput.disabled = false;
+    }
+})
+
+function startVragenlijst() {
     const weeknummer = document.getElementById("weeknummer");
     if (weeknummer.value === "") {
         alert("Kies een weeknummer");
@@ -48,13 +133,11 @@ function startVragenlijst() { // start de vragenlijst wanneer er op 'starten' is
             document.getElementById("stap1").style.display = 'block';
         }
     }
-    // TODO: van het geselecteerde weeknummer checken of de data hiervoor al is ingevuld (via db)
 }
 
-
-function gaTerug(button) { // gaat terug naar de vorige pagina wanneer er op 'vorige' is geklikt
-    const div_id = button.closest("div").id; // haalt de id van de div van de stap op (bijv. "stap1")
-    const huidige = Number(div_id.match(/\d+/)[0]); // haalt mbv regex het getal uit de id (bijv. 1)
+function gaTerug(button) {
+    const div_id = button.closest("div").id;
+    const huidige = Number(div_id.match(/\d+/)[0]);
     document.getElementById(`stap${huidige}`).style.display = 'none';
     const weeknummer = document.getElementById("weeknummer");
     if (huidige === 0) {
@@ -62,11 +145,11 @@ function gaTerug(button) { // gaat terug naar de vorige pagina wanneer er op 'vo
         document.getElementById('invoeren').style.display = 'block';
         //document.getElementById('progress_bar').style.display = 'none';
     } else if (huidige === 1) {
-        if (weeknummer.value !== "1") { // als data van week 2 t/m 6 wordt ingevoerd, gaat het van stap 1 terug naar start
+        if (weeknummer.value !== "1") {
             document.getElementById("start_tekst").style.display = 'block';
             document.getElementById('invoeren').style.display = 'block';
             //document.getElementById('progress_bar').style.display = 'none';
-        } else { // als data van week 1 wordt ingevoerd, gaat het van stap 1 terug naar stap 0 (algemene vragenlijst)
+        } else {
             document.getElementById(`stap${huidige - 1}`).style.display = 'block';
         }
     } else {
@@ -74,9 +157,9 @@ function gaTerug(button) { // gaat terug naar de vorige pagina wanneer er op 'vo
     }
 }
 
-function gaVerder(button) { // gaat verder naar de volgende pagina wanneer er op 'volgende' is geklikt
-    const div_id = button.closest("div").id; // haalt de id van de div van de stap op (bijv. "stap1")
-    const huidige = Number(div_id.match(/\d+/)[0]); // haalt mbv regex het getal uit de id (bijv. 1)
+function gaVerder(button) {
+    const div_id = button.closest("div").id;
+    const huidige = Number(div_id.match(/\d+/)[0]);
     document.getElementById(`stap${huidige}`).style.display = 'none';
     document.getElementById(`stap${huidige + 1}`).style.display = 'block';
     // TODO: zorgen dat er niet verder gegaan kan worden wanneer niet alle verplichte velden zijn ingevuld
