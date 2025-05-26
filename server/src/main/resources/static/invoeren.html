@@ -175,7 +175,12 @@
                 Nederland eten. Deze vraag dien je te beoordelen op een schaal tussen 0 (minimaal mijn best) en 10
                 (maximaal mijn best).</i></p>
                 <label for="gezond_eten">8. In welke mate deed je je best om gezond te eten de afgelopen week?</label><br>
-                <input type="range" id="gezond_eten" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="gezond_eten" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <div class="vorige_volgende" id="knoppen3">
                     <button type="button" class="vorige" id="vorige4" onclick="gaTerug(this)">Vorige</button>
@@ -211,40 +216,95 @@
                 <p><i>De volgende vragen dien je te beoordelen op een schaal tussen 0 (minimaal) en 10 (maximaal).</i></p>
                 <p><i>Deze vraag gaat over de mate het gevoel te hebben steeds gestrest te zijn.</i></p>
                 <label for="stress">1. In welke mate heeft u het gevoel steeds gestrest te zijn geweest de afgelopen week?</label><br>
-                <input type="range" id="stress" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="stress" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="vermoeidheid">2. Hoeveel vermoeidheid ervaarde je afgelopen week?</label><br>
-                <input type="range" id="vermoeidheid" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="vermoeidheid" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="vitaal">3. Hoe vitaal voelde je je afgelopen week?</label><br>
-                <input type="range" id="vitaal" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="vitaal" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="studie_tevreden">4. Hoeveel tevredenheid met je studievoortgang ervaarde je afgelopen week?</label><br>
-                <input type="range" id="studie_tevreden" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="studie_tevreden" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="studiedruk">5. Hoeveel studiedruk ervaarde je afgelopen week?</label><br>
-                <input type="range" id="studiedruk" min="0" max="10" list="tickmarks"><br>
-                <label><input type="checkbox" id="geen_studie2">N.V.T., ik studeer niet.</label><br><br>
+                <input type="range" id="studiedruk" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div>
+                <label><input type="checkbox" id="geen_studie2">N.V.T., ik studeer niet.</label><br><br><br>
 
                 <label for="leefstijl_tevreden">6. Hoe tevreden was je met je leefstijl afgelopen week?</label><br>
-                <input type="range" id="leefstijl_tevreden" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="leefstijl_tevreden" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="sociaal_tevreden">7. Hoe tevreden was je met je sociale leven afgelopen week?</label><br>
-                <input type="range" id="sociaal_tevreden" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="sociaal_tevreden" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="werk_tevreden">8. Hoe tevreden was je met je werk en/of vrijwilligerswerk afgelopen week?</label><br>
-                <input type="range" id="werk_tevreden" min="0" max="10" list="tickmarks"><br>
-                <label><input type="checkbox" id="geen_werk2">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
+                <input type="range" id="werk_tevreden" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div>
+                <label><input type="checkbox" id="geen_werk2">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
 
                 <label for="werkdruk">9. Hoeveel druk van werk en/of vrijwilligerswerk ervaarde je afgelopen week?</label><br>
-                <input type="range" id="werkdruk" min="0" max="10" list="tickmarks"><br>
-                <label><input type="checkbox" id="geen_werk3">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
+                <input type="range" id="werkdruk" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div>
+                <label><input type="checkbox" id="geen_werk3">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
 
                 <label for="nachtrust_tevreden">10. Hoe tevreden was je met je nachtrust afgelopen week?</label><br>
-                <input type="range" id="nachtrust_tevreden" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="nachtrust_tevreden" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <label for="hobbys_tevreden">11. Hoe tevreden was je met de tijd die je kon besteden aan je hobby's deze week?</label><br>
-                <input type="range" id="hobbys_tevreden" min="0" max="10" list="tickmarks"><br><br>
+                <input type="range" id="hobbys_tevreden" min="0" max="10" list="tickmarks">
+                <div class="slider_labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                </div><br><br>
 
                 <div class="vorige_volgende" id="knoppen5">
                     <button type="button" class="vorige" id="vorige6" onclick="gaTerug(this)">Vorige</button>
