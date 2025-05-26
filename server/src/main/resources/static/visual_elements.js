@@ -32,99 +32,114 @@ document.querySelector('.vorige').addEventListener('click', () => {
     if (huidigeStap > 0) toonStap(huidigeStap-1);
 });*/
 
-const studieInput = document.getElementById('studie');
-const geenStudieCheckbox = document.getElementById('geen_studie');
-geenStudieCheckbox.addEventListener('change', () => {
-    if (geenStudieCheckbox.checked) {
-        studieInput.disabled = true;
-        studieInput.value = '';
-    } else {
-        studieInput.disabled = false;
-    }
-});
-
-const werkInput = document.getElementById('werk');
-const geenWerkCheckbox = document.getElementById('geen_werk');
-geenWerkCheckbox.addEventListener('change', () => {
-    if (geenWerkCheckbox.checked) {
-        werkInput.disabled = true;
-        werkInput.value = '';
-    } else {
-        werkInput.disabled = false;
-    }
-});
-
-const studiedrukInput = document.getElementById('studiedruk');
-const geenStudie2Checkbox = document.getElementById('geen_studie2');
-geenStudie2Checkbox.addEventListener('change', () => {
-    if (geenStudie2Checkbox.checked) {
-        studiedrukInput.disabled = true;
-        studiedrukInput.value = '';
-    } else {
-        studiedrukInput.disabled = false;
-    }
-});
-
-const werkTevredenInput = document.getElementById('werk_tevreden');
-const geenWerk2Checkbox = document.getElementById('geen_werk2');
-geenWerk2Checkbox.addEventListener('change', () => {
-    if (geenWerk2Checkbox.checked) {
-        werkTevredenInput.disabled = true;
-        werkTevredenInput.value = '';
-    } else {
-        werkTevredenInput.disabled = false;
-    }
-});
-
-const werkDrukInput = document.getElementById('werkdruk');
-const geenWerk3Checkbox = document.getElementById('geen_werk3');
-geenWerk3Checkbox.addEventListener('change', () => {
-    if (geenWerk3Checkbox.checked) {
-        werkDrukInput.disabled = true;
-        werkDrukInput.value = '';
-    } else {
-        werkDrukInput.disabled = false;
-    }
-});
-
-const gewichtInput = document.getElementById('gewicht');
-const geenWeegschaalCheckbox = document.getElementById('geen_weegschaal');
-geenWeegschaalCheckbox.addEventListener('change', () => {
-    if (geenWeegschaalCheckbox.checked) {
-        gewichtInput.disabled = true;
-        gewichtInput.value = '';
-    } else {
-        gewichtInput.disabled = false;
-    }
-});
-
-const bovendrukInput = document.getElementById('bovendruk');
-const onderdrukInput = document.getElementById('onderdruk');
-const apparaatInput = document.getElementById('apparaat_bloeddruk');
-const geenMeterCheckbox = document.getElementById('geen_meter');
-geenMeterCheckbox.addEventListener('change', () => {
-    if (geenMeterCheckbox.checked) {
-        bovendrukInput.disabled = true;
-        bovendrukInput.value = '';
-        onderdrukInput.disabled = true;
-        onderdrukInput.value = '';
-        apparaatInput.disabled = true;
-        apparaatInput.value = '';
-    } else {
-        bovendrukInput.disabled = false;
-        onderdrukInput.disabled = false;
-        apparaatInput.disabled = false;
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const studieInput = document.getElementById('studie');
+    const geenStudieCheckbox = document.getElementById('geen_studie');
+    geenStudieCheckbox.addEventListener('change', () => {
+        if (geenStudieCheckbox.checked) {
+            studieInput.disabled = true;
+            studieInput.value = '';
+        } else {
+            studieInput.disabled = false;
+        }
+    })
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+    const werkInput = document.getElementById('werk');
+    const geenWerkCheckbox = document.getElementById('geen_werk');
+    geenWerkCheckbox.addEventListener('change', () => {
+        if (geenWerkCheckbox.checked) {
+            werkInput.disabled = true;
+            werkInput.value = '';
+        } else {
+            werkInput.disabled = false;
+        }
+    })
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const studiedrukInput = document.getElementById('studiedruk');
+    const geenStudie2Checkbox = document.getElementById('geen_studie2');
+    geenStudie2Checkbox.addEventListener('change', () => {
+        if (geenStudie2Checkbox.checked) {
+            studiedrukInput.disabled = true;
+            studiedrukInput.value = '';
+        } else {
+            studiedrukInput.disabled = false;
+        }
+    })
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const werkTevredenInput = document.getElementById('werk_tevreden');
+    const geenWerk2Checkbox = document.getElementById('geen_werk2');
+    geenWerk2Checkbox.addEventListener('change', () => {
+        if (geenWerk2Checkbox.checked) {
+            werkTevredenInput.disabled = true;
+            werkTevredenInput.value = '';
+        } else {
+            werkTevredenInput.disabled = false;
+        }
+    })
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const werkDrukInput = document.getElementById('werkdruk');
+    const geenWerk3Checkbox = document.getElementById('geen_werk3');
+    geenWerk3Checkbox.addEventListener('change', () => {
+        if (geenWerk3Checkbox.checked) {
+            werkDrukInput.disabled = true;
+            werkDrukInput.value = '';
+        } else {
+            werkDrukInput.disabled = false;
+        }
+    })
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const gewichtInput = document.getElementById('gewicht');
+    const geenWeegschaalCheckbox = document.getElementById('geen_weegschaal');
+    geenWeegschaalCheckbox.addEventListener('change', () => {
+        if (geenWeegschaalCheckbox.checked) {
+            gewichtInput.disabled = true;
+            gewichtInput.value = '';
+        } else {
+            gewichtInput.disabled = false;
+        }
+    })
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const bovendrukInput = document.getElementById('bovendruk');
+    const onderdrukInput = document.getElementById('onderdruk');
+    const apparaatInput = document.getElementById('apparaat_bloeddruk');
+    const geenMeterCheckbox = document.getElementById('geen_meter');
+    geenMeterCheckbox.addEventListener('change', () => {
+        if (geenMeterCheckbox.checked) {
+            bovendrukInput.disabled = true;
+            bovendrukInput.value = '';
+            onderdrukInput.disabled = true;
+            onderdrukInput.value = '';
+            apparaatInput.disabled = true;
+            apparaatInput.value = '';
+        } else {
+            bovendrukInput.disabled = false;
+            onderdrukInput.disabled = false;
+            apparaatInput.disabled = false;
+        }
+    })
+});
 
 function startVragenlijst() {
     const weeknummer = document.getElementById("weeknummer");
+    console.log(weeknummer.value);
     if (weeknummer.value === "") {
         alert("Kies een weeknummer");
     } else {
         document.getElementById('invoeren').style.display = 'none';
         //document.getElementById('progress_bar').style.display = 'block';
-        if (localStorage.getItem("Algemeenbool") === "0") {
+        if (weeknummer.value === "1") {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap0").style.display = 'block';
         }
