@@ -225,3 +225,12 @@ nav.tabbladen {
 .tabblad-inactief:hover {
     background-color: #a8002a;
 }
+
+.citizen_science {
+    position: absolute;
+    top: 65px;
+    left: 20px;
+    color: white;
+    font-size: 28px;
+    z-index: 1001;
+}
