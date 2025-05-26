@@ -8,29 +8,45 @@
 ########################################################################################
 */
 
+let huidigeStap = 0;
+let onderdelen, stappen;
 
-/*
-let huidigeStap = 0
-const onderdelen = document.querySelectorAll('.onderdeel');
-const stappen = document.querySelectorAll('.stap');
-onderdelen.forEach((onderdeel, index) => {
-    onderdeel.addEventListener('click', () => {
-        toonStap(index);
+document.addEventListener("DOMContentLoaded", function () {
+    onderdelen = document.querySelectorAll('.onderdeel');
+    stappen = document.querySelectorAll('.stap');
+
+    onderdelen.forEach((onderdeel) => {
+        onderdeel.addEventListener('click', () => {
+            const stapIndex = parseInt(onderdeel.getAttribute('data-stap'), 10);
+            toonStap(stapIndex);
+        });
     });
+    document.querySelector('.volgende').addEventListener('click', () => {
+        if (huidigeStap < stappen.length - 1) {
+            toonStap(huidigeStap+1);
+        }
+    });
+    document.querySelector('.vorige').addEventListener('click', () => {
+        if (huidigeStap > 0) {
+            toonStap(huidigeStap-1);
+        }
+    })
 });
+
 function toonStap(index) {
     stappen.forEach((stap, i) => {
-        stap.style.display = i === index ? 'block' : 'none';
-        onderdelen[i].classList.toggle('active', i === index);
+        if (i === index) {
+            stap.style.display = 'block';
+        } else {
+            stap.style.display = 'none';
+        }
+    });
+    onderdelen.forEach((onderdeel) => {
+        const stapIndex = parseInt(onderdeel.getAttribute('data-stap'), 10);
+        onderdeel.classList.toggle('active', stapIndex === index);
     });
     huidigeStap = index;
 }
-document.querySelector('.volgende').addEventListener('click', () => {
-    if (huidigeStap < stappen.length - 1) toonStap(huidigeStap+1);
-});
-document.querySelector('.vorige').addEventListener('click', () => {
-    if (huidigeStap > 0) toonStap(huidigeStap-1);
-});*/
 
 document.addEventListener("DOMContentLoaded", function () {
     const studieInput = document.getElementById('studie');
@@ -43,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             studieInput.disabled = false;
         }
     })
-})
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     const werkInput = document.getElementById('werk');
@@ -138,14 +154,15 @@ function startVragenlijst() {
         alert("Kies een weeknummer");
     } else {
         document.getElementById('invoeren').style.display = 'none';
-        //document.getElementById('progress_bar').style.display = 'block';
         if (weeknummer.value === "1") {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap0").style.display = 'block';
+            document.getElementById("progress_versie1").style.display = 'block';
         }
         else {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap1").style.display = 'block';
+            document.getElementById("progress_versie2").style.display = 'block';
         }
     }
 }
@@ -157,13 +174,13 @@ function gaTerug(button) {
     const weeknummer = document.getElementById("weeknummer");
     if (huidige === 0) {
         document.getElementById("start_tekst").style.display = 'block';
-        document.getElementById('invoeren').style.display = 'block';
-        //document.getElementById('progress_bar').style.display = 'none';
+        document.getElementById("invoeren").style.display = 'block';
+        document.getElementById("progress_versie1").style.display = 'none';
     } else if (huidige === 1) {
         if (weeknummer.value !== "1") {
             document.getElementById("start_tekst").style.display = 'block';
-            document.getElementById('invoeren').style.display = 'block';
-            //document.getElementById('progress_bar').style.display = 'none';
+            document.getElementById("invoeren").style.display = 'block';
+            document.getElementById("progress_versie2").style.display = 'none';
         } else {
             document.getElementById(`stap${huidige - 1}`).style.display = 'block';
         }

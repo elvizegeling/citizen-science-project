@@ -118,8 +118,8 @@ input[type="range"]:hover {
     margin-right: 7px;
 }
 
-/* onderstaande in comments is voor de progress bar, maar is nog niet af
-#progress_bar {
+.progress_bar {
+    width: 800px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -134,8 +134,8 @@ input[type="range"]:hover {
 
 .onderdeel.active {
     font-weight: bold;
-    color: #000;
-    border-bottom: 3px solid #000
+    color: #1B1918;
+    border-bottom: 3px solid #1B1918;
 }
 
 .onderdeel:before {
@@ -143,9 +143,8 @@ input[type="range"]:hover {
     left: -15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ccc;
+    color: #ffffff;
 }
-*/
 
 #toegangscode {
     text-align: center;

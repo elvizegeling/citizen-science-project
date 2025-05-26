@@ -58,9 +58,8 @@
             </select><br><br>
             <button type="button" class="start" id="start" onclick="getweek(); checkCardiovasculair(); checkVoeding(); checkTijdbesteding(); checkSE(); checkMiddelengebruik(); checkBeweging(); startVragenlijst()" >Starten</button>
         </div>
-        <!-- is allemaal voor de progress bar, maar werkt nog niet
-        (zorgen dat algemeen er niet tussenstaat als het niet om week 1 gaat)
-        <div id="progress_bar" style="display: none">
+
+        <div class="progress_bar" id="progress_versie1" style="display: none">
             <span class="onderdeel" data-stap="0">Algemeen</span>
             <span class="onderdeel" data-stap="1">Beweging</span>
             <span class="onderdeel" data-stap="2">Middelengebruik</span>
@@ -69,7 +68,15 @@
             <span class="onderdeel" data-stap="5">Subjectieve ervaringen</span>
             <span class="onderdeel" data-stap="6">Biomarkers</span>
         </div>
-        -->
+        <div class="progress_bar" id="progress_versie2" style="display: none">
+            <span class="onderdeel" data-stap="1">Beweging</span>
+            <span class="onderdeel" data-stap="2">Middelengebruik</span>
+            <span class="onderdeel" data-stap="3">Voeding</span>
+            <span class="onderdeel" data-stap="4">Tijdsbesteding</span>
+            <span class="onderdeel" data-stap="5">Subjectieve ervaringen</span>
+            <span class="onderdeel" data-stap="6">Biomarkers</span>
+        </div>
+
         <form id="questionnaire">
             <div class="stap" id="stap0" style="display: none">
                 <h2>Algemeen</h2>
