@@ -9,11 +9,13 @@
 */
 
 let huidigeStap = 0;
-let onderdelen, stappen;
+let onderdelen, stappen, volgende, vorige;
 
 document.addEventListener("DOMContentLoaded", function () {
     onderdelen = document.querySelectorAll('.onderdeel');
     stappen = document.querySelectorAll('.stap');
+    volgende = document.querySelectorAll('.volgende');
+    vorige = document.querySelectorAll('.vorige');
 
     onderdelen.forEach((onderdeel) => {
         onderdeel.addEventListener('click', () => {
@@ -21,16 +23,28 @@ document.addEventListener("DOMContentLoaded", function () {
             toonStap(stapIndex);
         });
     });
-    document.querySelector('.volgende').addEventListener('click', () => {
-        if (huidigeStap < stappen.length - 1) {
-            toonStap(huidigeStap+1);
-        }
+    volgende.forEach((knop) => {
+        knop.addEventListener('click', () => {
+            if (huidigeStap < stappen.length - 1) {
+                toonStap(huidigeStap+1);
+            }
+        });
     });
-    document.querySelector('.vorige').addEventListener('click', () => {
-        if (huidigeStap > 0) {
-            toonStap(huidigeStap-1);
-        }
-    })
+    vorige.forEach((knop) => {
+        knop.addEventListener('click', () => {
+            const weeknummer = document.getElementById('weeknummer');
+            console.log(weeknummer.value);
+            if (weeknummer.value === "1") {
+                if (huidigeStap > 0) {
+                    toonStap(huidigeStap-1);
+                }
+            } else {
+                if (huidigeStap > 1) {
+                    toonStap(huidigeStap-1);
+                }
+            }
+        });
+    });
 });
 
 function toonStap(index) {
@@ -149,7 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function startVragenlijst() {
     const weeknummer = document.getElementById("weeknummer");
-    console.log(weeknummer.value);
     if (weeknummer.value === "") {
         alert("Kies een weeknummer");
     } else {
@@ -158,11 +171,13 @@ function startVragenlijst() {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap0").style.display = 'block';
             document.getElementById("progress_versie1").style.display = 'block';
+            toonStap(0);
         }
         else {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap1").style.display = 'block';
             document.getElementById("progress_versie2").style.display = 'block';
+            toonStap(1);
         }
     }
 }
@@ -176,11 +191,13 @@ function gaTerug(button) {
         document.getElementById("start_tekst").style.display = 'block';
         document.getElementById("invoeren").style.display = 'block';
         document.getElementById("progress_versie1").style.display = 'none';
+        huidigeStap = 0;
     } else if (huidige === 1) {
         if (weeknummer.value !== "1") {
             document.getElementById("start_tekst").style.display = 'block';
             document.getElementById("invoeren").style.display = 'block';
             document.getElementById("progress_versie2").style.display = 'none';
+            huidigeStap = 0;
         } else {
             document.getElementById(`stap${huidige - 1}`).style.display = 'block';
         }
