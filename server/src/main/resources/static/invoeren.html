@@ -38,7 +38,6 @@
             <option>9</option>
             <option>10</option>
         </datalist>
-        <!-- TODO: nog cijfers toevoegen onder de sliders? -->
         <div class="titel_container" id="invoeren">
             <h1>Invoeren</h1>
         </div><br>
@@ -80,7 +79,7 @@
         <form id="questionnaire">
             <div class="stap" id="stap0" style="display: none">
                 <h2>Algemeen</h2>
-                <label for="lichaamslengte">1. Wat is je lichaamslengte?</label>
+                <label for="lichaamslengte">1. Wat is je lichaamslengte?</label><br>
                 <input type="number" id="lichaamslengte" min="140" max="220" required> centimeter<br><br>
 
                 <div class="vorige_volgende" id="knoppen0">
@@ -93,13 +92,13 @@
                 <p><i>Deze vraag gaat over matig intensief bewegen. Hieronder vallen alledaagse activiteiten die wat
                 moeite kosten zoals wandelen, fietsen en huishoudelijke taken maar ook rustig tuinieren en sportactiviteiten.
                 Zolang praten maar mogelijk blijft.</i></p>
-                <label for="matig_intensief">1. Hoeveel minuten besteedde je afgelopen week aan matig intensieve lichaamsbeweging?</label>
+                <label for="matig_intensief">1. Hoeveel minuten besteedde je afgelopen week aan matig intensieve lichaamsbeweging?</label><br>
                 <input type="number" id="matig_intensief" min="0" max="2520" required> minuten<br><br>
 
                 <p><i>Deze vraag gaat over intensief bewegen. Hieronder vallen activiteiten die meer moeite kosten dan
                 matig intensief, praten is veelal niet meer mogelijk. Bijvoorbeeld teamsporten, balsporten, duursporten,
                 vechtsporten, stevig fietsen en wielrennen, zwemmen. Maar denk ook aan zwaar fysiek werk.</i></p>
-                <label for="intensief">2. Hoeveel minuten besteedde je afgelopen week aan intensieve lichaamsbeweging?</label>
+                <label for="intensief">2. Hoeveel minuten besteedde je afgelopen week aan intensieve lichaamsbeweging?</label><br>
                 <input type="number" id="intensief" min="0" max="1680" required> minuten<br><br>
 
                 <p><i>Deze vraag gaat over bot- en spierversterkende oefeningen. Dit zijn oefeningen gericht op verbeteren
@@ -107,15 +106,15 @@
                 en met eigen lichaamsgewicht. Als de uitgevoerde sport bij vraag 2 ook bot- en spierversterkende oefeningen
                 in zich heeft, probeer dan een inschatting te maken van de tijd besteed aan bot- en spierversterkende oefeningen
                 en neem die ook mee bij deze vraag.</i></p>
-                <label for="bot_spier">3. Hoeveel minuten besteedde je afgelopen week aan bot- en spierversterkende oefeningen?</label>
+                <label for="bot_spier">3. Hoeveel minuten besteedde je afgelopen week aan bot- en spierversterkende oefeningen?</label><br>
                 <input type="number" id="bot_spier" min="0" max="1680" required> minuten<br><br><br>
 
-                <label for="zitten">4. Hoeveel uur zat je afgelopen week?</label>
+                <label for="zitten">4. Hoeveel uur zat je afgelopen week?</label><br>
                 <input type="number" id="zitten" min="0" max="98" required> uur<br><br>
 
                 <p><i>Als je een smartwatch of telefoon hebt die stappen kan tellen wil je dan ook deze vraag beantwoorden.
                 Anders kan je de vraag overslaan.</i></p>
-                <label for="stappen">5. Hoeveel stappen liep je afgelopen week?</label>
+                <label for="stappen">5. Hoeveel stappen liep je afgelopen week?</label><br>
                 <input type="number" id="stappen" min="0" max="280000"> stappen<br><br>
 
                 <div class="vorige_volgende" id="knoppen1">
@@ -125,14 +124,14 @@
             </div>
             <div class="stap" id="stap2" style="display: none">
                 <h2>Middelengebruik</h2>
-                <label for="alcohol">1. Hoeveel alcoholische consumpties nuttigde je afgelopen week?</label>
+                <label for="alcohol">1. Hoeveel alcoholische consumpties nuttigde je afgelopen week?</label><br>
                 <input type="number" id="alcohol" min="0" max="100" required> consumpties<br><br>
 
                 <p><i>Deze vraag gaat over roken zoals bijvoorbeeld het roken van sigaretten, sigaren, vapen, etc.</i></p>
-                <label for="roken">2. Hoeveel rookte je afgelopen week?</label>
+                <label for="roken">2. Hoeveel rookte je afgelopen week?</label><br>
                 <input type="number" id="roken" min="0" max="200" required> stuks of momenten (bij vapen)<br><br><br>
 
-                <label for="drugs">3. Hoe vaak gebruikte je afgelopen week drugs?</label>
+                <label for="drugs">3. Hoe vaak gebruikte je afgelopen week drugs?</label><br>
                 <input type="number" id="drugs" min="0" max="42" required> keer<br><br>
 
                 <div class="vorige_volgende" id="knoppen2">
@@ -144,36 +143,36 @@
                 <h2>Voeding</h2>
                 <p><i>Deze vragen gaan over de hoeveelheid van een bepaald voedingsmiddel. We houden per portie of stuk
                 aan dat het gemiddeld overeenkomt met 100 gram. Voor een glas houden we 200 ml aan.</i></p>
-                <label for="groente">1. Hoeveel opscheplepels groente at je afgelopen week?</label>
+                <label for="groente">1. Hoeveel opscheplepels groente at je afgelopen week?</label><br>
                 <input type="number" id="groente" min="0" max="70" required> opscheplepels<br><br>
 
                 <p><i>Deze vraag gaat over het eten van fruit. Als je gemengd en/of klein fruit eet maak dan een inschatting
                 over hoeveel stuks fruit het gaat. Een 'stuk' komt gemiddeld overeen met 100 gram.</i></p>
-                <label for="fruit">2. Hoeveel stuks fruit at je afgelopen week?</label>
+                <label for="fruit">2. Hoeveel stuks fruit at je afgelopen week?</label><br>
                 <input type="number" id="fruit" min="0" max="49" required> stuks<br><br>
 
                 <p><i>Deze vraag gaat over het drinken van frisdrank en/of sap. Hou ongeveer 200 ml voor een glas aan.</i></p>
-                <label for="frisdrank">3. Hoeveel glazen frisdrank of sap dronk je afgelopen week?</label>
+                <label for="frisdrank">3. Hoeveel glazen frisdrank of sap dronk je afgelopen week?</label><br>
                 <input type="number" id="frisdrank" min="0" max="98" required> glazen<br><br>
 
                 <p><i>Deze vraag gaat over 'ongezonde' snacks zoals koek, deegwaar, candybars, snoep, chips of zoutjes etc.
                 We bedoelen hier geen snacks als vers fruit of snoepgroente. Een 'stuk' komt gemiddeld overeen met 100 gram.</i></p>
-                <label for="snacks">4. Hoeveel 'ongezonde' snacks at je afgelopen week?</label>
+                <label for="snacks">4. Hoeveel 'ongezonde' snacks at je afgelopen week?</label><br>
                 <input type="number" id="snacks" min="0" max="49" required> stuks<br><br>
 
                 <p><i>Deze vraag gaat over het eten van kant en klaar maaltijden, bij (fastfood)restaurants, van
                 voorverpakte broodjes etc. voor ontbijt, lunch en/of avondeten.</i></p>
-                <label for="kant_en_klaar">5. Hoeveel kant en klaar maaltijden at je afgelopen week?</label>
+                <label for="kant_en_klaar">5. Hoeveel kant en klaar maaltijden at je afgelopen week?</label><br>
                 <input type="number" id="kant_en_klaar" min="0" max="28" required> maaltijden<br><br>
 
                 <p><i>Deze vraag gaat over het eten van vlees en/of gevogelte. Een 'portie' komt gemiddeld overeen met
                 100 gram.</i></p>
-                <label for="vlees_gevogelte">6. Hoeveel vlees en/of gevogelte at je afgelopen week?</label>
+                <label for="vlees_gevogelte">6. Hoeveel vlees en/of gevogelte at je afgelopen week?</label><br>
                 <input type="number" id="vlees_gevogelte" min="0" max="28" required> porties<br><br>
 
                 <p><i>Deze vraag gaat over het eten van vis en/of schaaldieren. Een 'portie' komt gemiddeld overeen met
                 100 gram.</i></p>
-                <label for="vis">7. Hoeveel vis en/of schaaldieren at je afgelopen week?</label>
+                <label for="vis">7. Hoeveel vis en/of schaaldieren at je afgelopen week?</label><br>
                 <input type="number" id="vis" min="0" max="28" required> porties<br><br>
 
                 <p><i>Deze vraag gaat over in welke mate je je best doet om gezond te eten. De norm in Nederland voor
@@ -196,20 +195,20 @@
             </div>
             <div class="stap" id="stap4" style="display: none">
                 <h2>Tijdsbesteding</h2>
-                <label for="slaap">1. Hoeveel uren sliep je totaal de afgelopen week in de nacht?</label>
+                <label for="slaap">1. Hoeveel uren sliep je totaal de afgelopen week in de nacht?</label><br>
                 <input type="number" id="slaap" min="7" max="112" required> uur<br><br>
 
-                <label for="sociaal">2. Hoeveel tijd besteedde je afgelopen week aan sociale contacten?</label>
+                <label for="sociaal">2. Hoeveel tijd besteedde je afgelopen week aan sociale contacten?</label><br>
                 <input type="number" id="sociaal" min="0" max="42" required> uur<br><br>
 
-                <label for="hobbys">3. Hoeveel tijd besteedde je afgelopen week aan hobby's?</label>
+                <label for="hobbys">3. Hoeveel tijd besteedde je afgelopen week aan hobby's?</label><br>
                 <input type="number" id="hobbys" min="0" max="42" required> uur<br><br>
 
-                <label for="studie">4. Hoeveel tijd besteedde je afgelopen week aan studie(s)?</label>
+                <label for="studie">4. Hoeveel tijd besteedde je afgelopen week aan studie(s)?</label><br>
                 <input  name="studie" type="number" id="studie" min="0" max="147"> uur<br>
                 <label><input name="studie" type="checkbox" id="geen_studie" value="0">N.V.T., ik studeer niet.</label><br><br>
 
-                <label for="werk">5. Hoeveel tijd besteedde je afgelopen week aan werk en/of vrijwilligerswerk?</label>
+                <label for="werk">5. Hoeveel tijd besteedde je afgelopen week aan werk en/of vrijwilligerswerk?</label><br>
                 <input name="werk" type="number" id="werk" min="0" max="49" required> uur<br>
                 <label><input name="werk" type="checkbox" id="geen_werk" value="0">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
 
@@ -228,7 +227,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="vermoeidheid">2. Hoeveel vermoeidheid ervaarde je afgelopen week?</label><br>
                 <input type="range" id="vermoeidheid" min="0" max="10" list="tickmarks">
@@ -236,7 +235,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="vitaal">3. Hoe vitaal voelde je je afgelopen week?</label><br>
                 <input type="range" id="vitaal" min="0" max="10" list="tickmarks">
@@ -244,7 +243,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="studie_tevreden">4. Hoeveel tevredenheid met je studievoortgang ervaarde je afgelopen week?</label><br>
                 <input type="range" id="studie_tevreden" min="0" max="10" list="tickmarks">
@@ -252,7 +251,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="studiedruk">5. Hoeveel studiedruk ervaarde je afgelopen week?</label><br>
                 <input type="range" id="studiedruk" min="0" max="10" list="tickmarks">
@@ -261,7 +260,7 @@
                     <span>5</span>
                     <span>10</span>
                 </div>
-                <label><input type="checkbox" id="geen_studie2" value="">N.V.T., ik studeer niet.</label><br><br><br>
+                <label><input type="checkbox" id="geen_studie2" value="">N.V.T., ik studeer niet.</label><br><br>
 
                 <label for="leefstijl_tevreden">6. Hoe tevreden was je met je leefstijl afgelopen week?</label><br>
                 <input type="range" id="leefstijl_tevreden" min="0" max="10" list="tickmarks">
@@ -269,7 +268,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="sociaal_tevreden">7. Hoe tevreden was je met je sociale leven afgelopen week?</label><br>
                 <input type="range" id="sociaal_tevreden" min="0" max="10" list="tickmarks">
@@ -277,7 +276,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="werk_tevreden">8. Hoe tevreden was je met je werk en/of vrijwilligerswerk afgelopen week?</label><br>
                 <input type="range" id="werk_tevreden" min="0" max="10" list="tickmarks">
@@ -286,7 +285,7 @@
                     <span>5</span>
                     <span>10</span>
                 </div>
-                <label><input type="checkbox" id="geen_werk2" value="">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
+                <label><input type="checkbox" id="geen_werk2" value="">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
 
                 <label for="werkdruk">9. Hoeveel druk van werk en/of vrijwilligerswerk ervaarde je afgelopen week?</label><br>
                 <input type="range" id="werkdruk" min="0" max="10" list="tickmarks">
@@ -295,7 +294,7 @@
                     <span>5</span>
                     <span>10</span>
                 </div>
-                <label><input type="checkbox" id="geen_werk3" value="">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
+                <label><input type="checkbox" id="geen_werk3" value="">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
 
                 <label for="nachtrust_tevreden">10. Hoe tevreden was je met je nachtrust afgelopen week?</label><br>
                 <input type="range" id="nachtrust_tevreden" min="0" max="10" list="tickmarks">
@@ -303,7 +302,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <label for="hobbys_tevreden">11. Hoe tevreden was je met de tijd die je kon besteden aan je hobby's deze week?</label><br>
                 <input type="range" id="hobbys_tevreden" min="0" max="10" list="tickmarks">
@@ -311,7 +310,7 @@
                     <span>0</span>
                     <span>5</span>
                     <span>10</span>
-                </div><br><br>
+                </div><br>
 
                 <div class="vorige_volgende" id="knoppen5">
                     <button type="button" class="vorige" id="vorige6" onclick="gaTerug(this)">Vorige</button>
@@ -324,8 +323,8 @@
                 vragenlijst invult.</i></p>
                 <p><i>Gebruik voor het beantwoorden van deze vraag steeds dezelfde weegschaal en hetzelfde moment van de
                 dag. Het beste moment van de dag is in de ochtend, na het toilet en voor het ontbijt.</i></p>
-                <label for="gewicht">1. Wat is je lichaamsgewicht deze dag?</label>
-                <input type="number" id="gewicht" min="35" max="200" required> kilogrammen (met 1 cijfer achter de komma)<br>
+                <label for="gewicht">1. Wat is je lichaamsgewicht deze dag?</label><br>
+                <input type="number" id="gewicht" min="35" max="200" step="0.1" required> kilogrammen (met 1 cijfer achter de komma)<br>
                 <label><input type="checkbox" id="geen_weegschaal" value="">Ik heb geen weegschaal tot mijn beschikking.</label><br><br>
 
                 <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. Meet elke week op dezelfde manier
@@ -335,18 +334,18 @@
                 <input type="number" id="bovendruk" min="60" max="120" required> mmHg<br>
                 <label for="onderdruk">Onderdruk: </label>
                 <input type="number" id="onderdruk" min="90" max="180" required> mmHg<br>
-                <label for="apparaat_bloeddruk">2b. Met welk apparaat heb je je bloeddruk gemeten?</label>
-                <input type="text" id="apparaat_bloeddruk"><br>
+                <label for="apparaat_bloeddruk">2b. Met welk apparaat heb je je bloeddruk gemeten?</label><br>
+                <input type="text" id="apparaat_bloeddruk" placeholder="..."><br>
                 <label><input type="checkbox" id="geen_meter" value="">Ik heb geen bloeddrukmeter tot mijn beschikking.</label><br><br>
 
                 <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. De vraag is samen met vraag 2
                 tegelijk te beantwoorden met een bloeddrukmeter. Of tel het aantal hartslagen in 15 seconden aan de voorkant
                 van de pols (duimzijde), met een vingerkootje. Vermenigvuldig het getelde aantal met 4. Meet elke week op
                 dezelfde manier.</i></p>
-                <label for="hartslag">3a. Wat is je hartfrequentie in rust deze dag?</label>
+                <label for="hartslag">3a. Wat is je hartfrequentie in rust deze dag?</label><br>
                 <input type="number" id="hartslag" min="30" max="200" required> slagen per minuut<br>
-                <label for="apparaat_hartslag">3b. Met welk apparaat of op welke manier heb je je hartslag gemeten?</label>
-                <input type="text" id="apparaat_hartslag"><br><br>
+                <label for="apparaat_hartslag">3b. Met welk apparaat of op welke manier heb je je hartslag gemeten?</label><br>
+                <input type="text" id="apparaat_hartslag" placeholder="..." ><br><br>
 
                 <div class="vorige_volgende" id="knoppen6">
                     <button type="button" class="vorige" id="vorige7" onclick="gaTerug(this)">Vorige</button>

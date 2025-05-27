@@ -1,25 +1,3 @@
-/* uva kleuren */
-.rood_100 {
-    color: #bc0031;
-}
-.rood_110 {
-    color: #840022;
-}
-.zwart {
-    color: #1B1918;
-}
-.wit {
-    color: #ffffff;
-}
-.grijs {
-    color: #A8A29F;
-}
-.donkergroen {
-    color: #257835;
-    /* kleur van faculteit der geneeskunde */
-}
-/* einde uva kleuren */
-
 body {
     display: flex;
     justify-content: center;
@@ -50,9 +28,30 @@ body {
     padding: 50px;
 }
 
+h2 {
+    margin-block-start: 0;
+}
+
 select, button, input {
     font-family: "Times New Roman", sans-serif;
     font-size: 18px;
+}
+
+input[type="number"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 4px;
+    width: 100px;
+}
+
+input[type="checkbox"] {
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 25px;
 }
 
 button:hover {
@@ -113,9 +112,7 @@ input[type="range"]:hover {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin-left: 7px;
-    margin-top: 0;
-    margin-right: 7px;
+    margin: 0 7px 10px;
 }
 
 .progress_bar {
@@ -130,6 +127,10 @@ input[type="range"]:hover {
     padding: 10px;
     cursor: pointer;
     position: relative;
+}
+
+.onderdeel:hover {
+    background-color: #ededed;
 }
 
 .onderdeel.active {
