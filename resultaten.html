@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Citizen Science | Resultaten</title>
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -21,5 +22,37 @@
             <img alt="UvA logo" src="images/uva.png" id="uva_logo">
         </div>
     </header>
+
+    <div style="width: 70%; margin: auto;">
+        <canvas id="mijnEnkeleGrafiek"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('mijnEnkeleGrafiek').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                    datasets: [{
+                        label: 'Stappen per week',
+                        data: [60000, 80000, 55000, 100000, 60000, 75000],
+                        backgroundColor: 'rgba(188, 0, 49, 0.6)',
+                        borderColor: 'rgba(132, 0, 34, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
