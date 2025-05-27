@@ -199,6 +199,5 @@ function gaVerder(button) {
     const huidige = Number(div_id.match(/\d+/)[0]);
     document.getElementById(`stap${huidige}`).style.display = 'none';
     document.getElementById(`stap${huidige + 1}`).style.display = 'block';
-    // TODO: zorgen dat er niet verder gegaan kan worden wanneer niet alle verplichte velden zijn ingevuld
 }
 
