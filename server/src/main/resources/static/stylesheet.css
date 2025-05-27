@@ -16,7 +16,7 @@ body {
     background-color: #FFFFFF;
 }
 
-#start_tekst {
+#start_tekst, #profiel_tekst {
     background-color: #ededed;
     width: 700px;
     padding: 50px;
@@ -115,6 +115,39 @@ input[type="range"]:hover {
     margin: 0 7px 10px;
 }
 
+th {
+    border: 1px #1B1918;
+    font-weight: normal;
+}
+
+table {
+    width: 700px;
+    height: 50px;
+    color: #FFFFFF;
+}
+
+#week1, #week2 {
+    background-color: #257835;
+}
+
+#week3, #week4, #week5, #week6 {
+    background-color: #a8002a;
+}
+
+#toegangscode {
+    text-align: center;
+    height: 30px;
+}
+
+#login_button {
+    width: 225px;
+    background-color: #ededed;
+    border-style: solid;
+    border-color: #dadada;
+    border-radius: 3px;
+}
+
+/* Vanaf hier opmaak voor de navigatie binnen de vragenlijst */
 .progress_bar {
     width: 800px;
     display: flex;
@@ -145,19 +178,6 @@ input[type="range"]:hover {
     top: 50%;
     transform: translateY(-50%);
     color: #ffffff;
-}
-
-#toegangscode {
-    text-align: center;
-    height: 30px;
-}
-
-#login_button {
-    width: 225px;
-    background-color: #ededed;
-    border-style: solid;
-    border-color: #dadada;
-    border-radius: 3px;
 }
 
 /* Vanaf hier opmaak voor alles in de header */
