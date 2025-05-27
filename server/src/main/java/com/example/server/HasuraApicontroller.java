@@ -31,7 +31,7 @@ public class HasuraApicontroller extends Apicontroller {
     public static final String STUDENT_MAPPING = "student";
     public static final String BEWEGING_MAPPING = "beweging";
     public static final String MIDDELENGEBRUIK_MAPPING = "middelengebruik";
-    public static final String SE_MAPPING = "Subjectieve_ervaringen";
+    public static final String SE_MAPPING = "subjectieve_ervaringen";
     public static final String TIJDBESTEDING_MAPPING = "tijdbesteding";
     public static final String VOEDING_MAPPING = "voeding";
     public static final String CARDIOVASCULAIR_MAPPING = "cardiovasculair";
@@ -124,18 +124,15 @@ public class HasuraApicontroller extends Apicontroller {
 
     // voegt een nieuwe rij toe aan de algemeen tabel
     @GetMapping("algemeen/new")
-    public ResponseEntity<String> addAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min) {
+    public ResponseEntity<String> addAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "lengte_cm") Integer lengte_cm) {
         try {
             JSONObject object = new JSONObject();
             JSONObject superObject = new JSONObject();
 
             object.put("alg_id", alg_id);
             object.put("week", week);
-            object.put("leeftijd", leeftijd);
-            object.put("geslacht", geslacht);
             object.put("lengte_cm", lengte_cm);
-            object.put("thuis", thuis);
-            object.put("reistijd_min", reistijd_min);
+
 
             superObject.put("object", object);
             String jsonInputString = superObject.toString();
@@ -149,15 +146,11 @@ public class HasuraApicontroller extends Apicontroller {
 
     // aanpassen van rij in algemeen tabel
     @GetMapping("/algemeen/update")
-    public ResponseEntity<String> UpdateAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "leeftijd") Integer leeftijd, @RequestParam(value = "geslacht") Integer geslacht, @RequestParam(value = "lengte_cm") Integer lengte_cm, @RequestParam(value = "thuis") Boolean thuis, @RequestParam(value = "reistijd_min") Integer reistijd_min) {
+    public ResponseEntity<String> UpdateAlgemeen(@RequestParam(value = "alg_id") Integer alg_id, @RequestParam(value = "week") Integer week,@RequestParam(value = "lengte_cm") Integer lengte_cm) {
         try {
             JSONObject object = new JSONObject();
             if (week != null) object.put("week", week);
-            if (leeftijd != null) object.put("leeftijd", leeftijd);
-            if (geslacht != null) object.put("geslacht", geslacht);
             if (lengte_cm != null) object.put("lengte_cm", lengte_cm);
-            if (thuis != null) object.put("thuis", thuis);
-            if (reistijd_min != null) object.put("reistijd_min", reistijd_min);
 
             JSONObject superobject = new JSONObject();
             superobject.put("alg_id", alg_id);
@@ -268,7 +261,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // voegt een nieuwe rij toe aan de middelengebruik tabel
     @GetMapping("/middelengebruik/new")
-    public ResponseEntity<String> addMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "consum_gem") Integer consum_gem, @RequestParam(value = "roken_gem") Integer roken_gem, @RequestParam(value = "softdrugs_gem") Integer softdrugs_gem, @RequestParam(value = "harddrugs_gem") Integer harddrugs_gem){
+    public ResponseEntity<String> addMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "consum_gem") Integer consum_gem, @RequestParam(value = "roken_gem") Integer roken_gem, @RequestParam(value = "drugs_gem") Integer drugs_gem){
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
@@ -277,8 +270,8 @@ public class HasuraApicontroller extends Apicontroller {
             object.put("week", week);
             object.put("consum_gem", consum_gem);
             object.put("roken_gem", roken_gem);
-            object.put("softdrugs_gem", softdrugs_gem);
-            object.put("harddrugs_gem", harddrugs_gem);
+            object.put("drugs_gem", drugs_gem);
+
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
@@ -292,13 +285,12 @@ public class HasuraApicontroller extends Apicontroller {
 
     // Update een rij in de middelengebruik tabel
     @GetMapping("/middelengebruik/update")
-    public ResponseEntity<String> updateMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "consum_gem") Integer consum_gem, @RequestParam(value = "roken_gem") Integer roken_gem, @RequestParam(value = "softdrugs_gem") Integer softdrugs_gem, @RequestParam(value = "harddrugs_gem") Integer harddrugs_gem){
+    public ResponseEntity<String> updateMiddelengebruik(@RequestParam(value = "geb_id") Integer geb_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "consum_gem") Integer consum_gem, @RequestParam(value = "roken_gem") Integer roken_gem, @RequestParam(value = "drugs_gem") Integer drugs_gem){
         try {
             JSONObject object = new JSONObject();
             if (consum_gem != null) object.put("consum_gem", consum_gem);
             if (roken_gem != null) object.put("roken_gem", roken_gem);
-            if (softdrugs_gem != null) object.put("softdrugs_gem", softdrugs_gem);
-            if (harddrugs_gem != null) object.put("harddrugs_gem", harddrugs_gem);
+            if (drugs_gem != null) object.put("drugs_gem", drugs_gem);
 
             JSONObject superobject = new JSONObject();
             superobject.put("geb_id", geb_id);
@@ -338,7 +330,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // voegt een nieuwe rij toe aan de subjectieve ervaringen tabel
     @GetMapping("/subjectieve_ervaringen/new")
-    public ResponseEntity<String> addSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch){
+    public ResponseEntity<String> addSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch,@RequestParam(value = "tevr_werk_sch") Integer tevr_werk_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch){
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
@@ -352,7 +344,9 @@ public class HasuraApicontroller extends Apicontroller {
             object.put("druk_stud_sch", druk_stud_sch);
             object.put("tevr_leef_sch", tevr_leef_sch);
             object.put("tevr_soci_sch", tevr_soci_sch);
+            object.put("tevr_werk_sch", tevr_werk_sch);
             object.put("druk_werk_sch", druk_werk_sch);
+
             object.put("tevr_rust_sch", tevr_rust_sch);
             object.put("tevr_hobb_sch", tevr_hobb_sch);
 
@@ -368,17 +362,19 @@ public class HasuraApicontroller extends Apicontroller {
 
     // wijzigt een rij uit de subjectieve ervaringen tabel
     @GetMapping("/subjectieve_ervaringen/update")
-    public ResponseEntity<String> updateSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch) {
+    public ResponseEntity<String> updateSE(@RequestParam(value = "se_id") Integer se_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "stress_sch") Integer stress_sch, @RequestParam(value = "vermoeid_sch") Integer vermoeid_sch, @RequestParam(value = "vitaal_sch") Integer vitaal_sch, @RequestParam(value = "tevr_stud_sch") Integer tevr_stud_sch, @RequestParam(value = "druk_stud_sch") Integer druk_stud_sch, @RequestParam(value = "tevr_leef_sch") Integer tevr_leef_sch, @RequestParam(value = "tevr_soci_sch") Integer tevr_soci_sch,@RequestParam(value = "tevr_werk_sch") Integer tevr_werk_sch, @RequestParam(value = "druk_werk_sch") Integer druk_werk_sch, @RequestParam(value = "tevr_rust_sch") Integer tevr_rust_sch, @RequestParam(value = "tevr_hobb_sch") Integer tevr_hobb_sch) {
         try {
             JSONObject object = new JSONObject();
             if (stress_sch != null) object.put("stress_sch", stress_sch);
             if (vermoeid_sch != null) object.put("vermoeid_sch", vermoeid_sch);
             if (vitaal_sch != null) object.put("vitaal_sch", vitaal_sch);
             if (tevr_stud_sch != null) object.put("tevr_stud_sch", tevr_stud_sch);
-            if (druk_stud_sch != null) object.put("druk_stud_sch", druk_stud_sch);
+            object.put("druk_stud_sch", druk_stud_sch);
             if (tevr_leef_sch != null) object.put("tevr_leef_sch", tevr_leef_sch);
             if (tevr_soci_sch != null) object.put("tevr_soci_sch", tevr_soci_sch);
-            if (druk_werk_sch != null) object.put("druk_werk_sch", druk_werk_sch);
+            object.put("tevr_werk_sch", tevr_werk_sch);
+            object.put("druk_werk_sch", druk_werk_sch);
+
             if (tevr_rust_sch != null) object.put("tevr_rust_sch", tevr_rust_sch);
             if (tevr_hobb_sch != null) object.put("tevr_hobb_sch", tevr_hobb_sch);
 
@@ -452,8 +448,9 @@ public class HasuraApicontroller extends Apicontroller {
             if (slaap_gem_uur != null) object.put("slaap_gem_uur", slaap_gem_uur);
             if (sociaal_gem_uur != null) object.put("sociaal_gem_uur", sociaal_gem_uur);
             if (hobby_gem_uur != null) object.put("hobby_gem_uur", hobby_gem_uur);
-            if (studie_gem_uur != null) object.put("studie_gem_uur", studie_gem_uur);
-            if (werk_gem_uur != null) object.put("werk_gem_uur", werk_gem_uur);
+            object.put("studie_gem_uur", studie_gem_uur);
+            object.put("werk_gem_uur", werk_gem_uur);
+
 
             JSONObject superobject = new JSONObject();
             superobject.put("tbd_id", tbd_id);
@@ -488,7 +485,7 @@ public class HasuraApicontroller extends Apicontroller {
     }
 
     @GetMapping("/voeding/new")
-    public ResponseEntity<String> addVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "groente_gem") Integer groente_gem, @RequestParam(value = "fruit_por") Integer fruit_por, @RequestParam(value = "fris_sap_gls") Integer fris_sap_gls, @RequestParam(value = "ong_snack") Integer ong_snack, @RequestParam(value = "kant_klaar") Integer kant_klaar, @RequestParam(value = "vlees_vogel") Integer vlees_vogel, @RequestParam(value = "vis") Integer vis, @RequestParam(value = "spec_voeding") Integer spec_voeding){
+    public ResponseEntity<String> addVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "groente_gem") Integer groente_gem, @RequestParam(value = "fruit_por") Integer fruit_por, @RequestParam(value = "fris_sap_gls") Integer fris_sap_gls, @RequestParam(value = "ong_snack") Integer ong_snack, @RequestParam(value = "kant_klaar") Integer kant_klaar, @RequestParam(value = "vlees_vogel") Integer vlees_vogel, @RequestParam(value = "vis") Integer vis, @RequestParam(value = "gezond_sch") Integer gezond_sch){
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
@@ -502,7 +499,7 @@ public class HasuraApicontroller extends Apicontroller {
             object.put("kant_klaar", kant_klaar);
             object.put("vlees_vogel", vlees_vogel);
             object.put("vis", vis);
-            object.put("spec_voeding", spec_voeding);
+            object.put("gezond_sch", gezond_sch);
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
@@ -516,7 +513,7 @@ public class HasuraApicontroller extends Apicontroller {
     }
 
     @GetMapping("/voeding/update")
-    public ResponseEntity<String> updateVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "groente_gem") Integer groente_gem, @RequestParam(value = "fruit_por") Integer fruit_por, @RequestParam(value = "fris_sap_gls") Integer fris_sap_gls, @RequestParam(value = "ong_snack") Integer ong_snack, @RequestParam(value = "kant_klaar") Integer kant_klaar, @RequestParam(value = "vlees_vogel") Integer vlees_vogel, @RequestParam(value = "vis") Integer vis, @RequestParam(value = "spec_voeding") Integer spec_voeding){
+    public ResponseEntity<String> updateVoeding(@RequestParam(value = "voed_id") Integer voed_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "groente_gem") Integer groente_gem, @RequestParam(value = "fruit_por") Integer fruit_por, @RequestParam(value = "fris_sap_gls") Integer fris_sap_gls, @RequestParam(value = "ong_snack") Integer ong_snack, @RequestParam(value = "kant_klaar") Integer kant_klaar, @RequestParam(value = "vlees_vogel") Integer vlees_vogel, @RequestParam(value = "vis") Integer vis, @RequestParam(value = "gezond_sch") Integer gezond_sch){
         try {
             JSONObject object = new JSONObject();
             if (groente_gem != null) object.put("groente_gem", groente_gem);
@@ -526,7 +523,7 @@ public class HasuraApicontroller extends Apicontroller {
             if (kant_klaar != null) object.put("kant_klaar", kant_klaar);
             if (vlees_vogel != null) object.put("vlees_vogel", vlees_vogel);
             if (vis != null) object.put("vis", vis);
-            if (spec_voeding != null) object.put("spec_voeding", spec_voeding);
+            if (gezond_sch != null) object.put("gezond_sch", gezond_sch);
 
             JSONObject superobject = new JSONObject();
             superobject.put("voed_id", voed_id);
@@ -566,7 +563,7 @@ public class HasuraApicontroller extends Apicontroller {
 
     // voegt een nieuwe rij toe in de cardiovasculair tabel
     @GetMapping("/cardiovasculair/new")
-    public ResponseEntity<String> addCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "gewicht") Integer gewicht, @RequestParam(value = "bovengrens") Integer bovengrens, @RequestParam(value = "ondergrens") Integer ondergrens, @RequestParam(value = "hartfrequentie") Integer hartfrequentie){
+    public ResponseEntity<String> addCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "gewicht") Integer gewicht, @RequestParam(value = "bovengrens") Integer bovengrens, @RequestParam(value = "ondergrens") Integer ondergrens, @RequestParam(value = "hartfrequentie") Integer hartfrequentie, @RequestParam(value = "apparaat_bloed") String apparaat_bloed, @RequestParam(value = "apparaat_hart") String apparaat_hart){
         try {
             JSONObject object = new JSONObject();
             JSONObject superobject = new JSONObject();
@@ -577,6 +574,8 @@ public class HasuraApicontroller extends Apicontroller {
             object.put("bovengrens", bovengrens);
             object.put("ondergrens", ondergrens);
             object.put("hartfrequentie", hartfrequentie);
+            object.put("apparaat_bloed", apparaat_bloed);
+            object.put("apparaat_hart", apparaat_hart);
 
             superobject.put("object", object);
             String jsonInputString = superobject.toString();
@@ -590,13 +589,15 @@ public class HasuraApicontroller extends Apicontroller {
 
     // wijzigt een rij in de cardiovasculair tabel
     @GetMapping("/cardiovasculair/update")
-    public ResponseEntity<String> updateCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "gewicht") Integer gewicht, @RequestParam(value = "bovengrens") Integer bovengrens, @RequestParam(value = "ondergrens") Integer ondergrens, @RequestParam(value = "hartfrequentie") Integer hartfrequentie){
+    public ResponseEntity<String> updateCardiovasculair(@RequestParam(value = "car_id") Integer car_id, @RequestParam(value = "week") Integer week, @RequestParam(value = "gewicht") Integer gewicht, @RequestParam(value = "bovengrens") Integer bovengrens, @RequestParam(value = "ondergrens") Integer ondergrens, @RequestParam(value = "hartfrequentie") Integer hartfrequentie, @RequestParam(value = "apparaat_bloed") String apparaat_bloed, @RequestParam(value = "apparaat_hart") String apparaat_hart){
         try {
             JSONObject object = new JSONObject();
-            if (gewicht != null) object.put("gewicht", gewicht);
-            if (bovengrens != null) object.put("bovengrens", bovengrens);
-            if (ondergrens != null) object.put("ondergrens", ondergrens);
+            object.put("gewicht", gewicht);
+            object.put("bovengrens", bovengrens);
+            object.put("ondergrens", ondergrens);
             if (hartfrequentie != null) object.put("hartfrequentie", hartfrequentie);
+            object.put("apparaat_bloed", apparaat_bloed);
+            object.put("apparaat_hart", apparaat_hart);
 
             JSONObject superobject = new JSONObject();
             superobject.put("car_id", car_id);

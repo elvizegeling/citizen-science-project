@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     geenStudieCheckbox.addEventListener('change', () => {
         if (geenStudieCheckbox.checked) {
             studieInput.disabled = true;
-            studieInput.value = '';
+            studieInput.value = null
         } else {
             studieInput.disabled = false;
         }
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     geenWerkCheckbox.addEventListener('change', () => {
         if (geenWerkCheckbox.checked) {
             werkInput.disabled = true;
-            werkInput.value = '';
+            werkInput.value = null;
         } else {
             werkInput.disabled = false;
         }
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     geenStudie2Checkbox.addEventListener('change', () => {
         if (geenStudie2Checkbox.checked) {
             studiedrukInput.disabled = true;
-            studiedrukInput.value = '';
+            studiedrukInput.value = null;
         } else {
             studiedrukInput.disabled = false;
         }
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     geenWerk2Checkbox.addEventListener('change', () => {
         if (geenWerk2Checkbox.checked) {
             werkTevredenInput.disabled = true;
-            werkTevredenInput.value = '';
+            werkTevredenInput.value = null;
         } else {
             werkTevredenInput.disabled = false;
         }
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
     geenWerk3Checkbox.addEventListener('change', () => {
         if (geenWerk3Checkbox.checked) {
             werkDrukInput.disabled = true;
-            werkDrukInput.value = '';
+            werkDrukInput.value = null;
         } else {
             werkDrukInput.disabled = false;
         }
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     geenWeegschaalCheckbox.addEventListener('change', () => {
         if (geenWeegschaalCheckbox.checked) {
             gewichtInput.disabled = true;
-            gewichtInput.value = '';
+            gewichtInput.value = null;
         } else {
             gewichtInput.disabled = false;
         }
@@ -134,11 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
     geenMeterCheckbox.addEventListener('change', () => {
         if (geenMeterCheckbox.checked) {
             bovendrukInput.disabled = true;
-            bovendrukInput.value = '';
+            bovendrukInput.value = null;
             onderdrukInput.disabled = true;
-            onderdrukInput.value = '';
+            onderdrukInput.value = null;
             apparaatInput.disabled = true;
-            apparaatInput.value = '';
+            apparaatInput.value = null;
         } else {
             bovendrukInput.disabled = false;
             onderdrukInput.disabled = false;
@@ -154,7 +154,7 @@ function startVragenlijst() {
         alert("Kies een weeknummer");
     } else {
         document.getElementById('invoeren').style.display = 'none';
-        if (weeknummer.value === "1") {
+        if (localStorage.getItem("Algemeenbool") === "0") {
             document.getElementById("start_tekst").style.display = 'none';
             document.getElementById("stap0").style.display = 'block';
             document.getElementById("progress_versie1").style.display = 'block';

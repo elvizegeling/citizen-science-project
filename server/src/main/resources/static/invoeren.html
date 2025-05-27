@@ -206,12 +206,12 @@
                 <input type="number" id="hobbys" min="0" max="42" required> uur<br><br>
 
                 <label for="studie">4. Hoeveel tijd besteedde je afgelopen week aan studie(s)?</label>
-                <input type="number" id="studie" min="0" max="147"> uur<br>
-                <label><input type="checkbox" id="geen_studie">N.V.T., ik studeer niet.</label><br><br>
+                <input  name="studie" type="number" id="studie" min="0" max="147"> uur<br>
+                <label><input name="studie" type="checkbox" id="geen_studie" value="0">N.V.T., ik studeer niet.</label><br><br>
 
                 <label for="werk">5. Hoeveel tijd besteedde je afgelopen week aan werk en/of vrijwilligerswerk?</label>
-                <input type="number" id="werk" min="0" max="49" required> uur<br>
-                <label><input type="checkbox" id="geen_werk">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
+                <input name="werk" type="number" id="werk" min="0" max="49" required> uur<br>
+                <label><input name="werk" type="checkbox" id="geen_werk" value="0">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br>
 
                 <div class="vorige_volgende" id="knoppen4">
                     <button type="button" class="vorige" id="vorige5" onclick="gaTerug(this)">Vorige</button>
@@ -261,7 +261,7 @@
                     <span>5</span>
                     <span>10</span>
                 </div>
-                <label><input type="checkbox" id="geen_studie2">N.V.T., ik studeer niet.</label><br><br><br>
+                <label><input type="checkbox" id="geen_studie2" value="">N.V.T., ik studeer niet.</label><br><br><br>
 
                 <label for="leefstijl_tevreden">6. Hoe tevreden was je met je leefstijl afgelopen week?</label><br>
                 <input type="range" id="leefstijl_tevreden" min="0" max="10" list="tickmarks">
@@ -286,7 +286,7 @@
                     <span>5</span>
                     <span>10</span>
                 </div>
-                <label><input type="checkbox" id="geen_werk2">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
+                <label><input type="checkbox" id="geen_werk2" value="">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
 
                 <label for="werkdruk">9. Hoeveel druk van werk en/of vrijwilligerswerk ervaarde je afgelopen week?</label><br>
                 <input type="range" id="werkdruk" min="0" max="10" list="tickmarks">
@@ -295,7 +295,7 @@
                     <span>5</span>
                     <span>10</span>
                 </div>
-                <label><input type="checkbox" id="geen_werk3">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
+                <label><input type="checkbox" id="geen_werk3" value="">N.V.T., ik heb geen werk of vrijwilligerswerk.</label><br><br><br>
 
                 <label for="nachtrust_tevreden">10. Hoe tevreden was je met je nachtrust afgelopen week?</label><br>
                 <input type="range" id="nachtrust_tevreden" min="0" max="10" list="tickmarks">
@@ -326,7 +326,7 @@
                 dag. Het beste moment van de dag is in de ochtend, na het toilet en voor het ontbijt.</i></p>
                 <label for="gewicht">1. Wat is je lichaamsgewicht deze dag?</label>
                 <input type="number" id="gewicht" min="35" max="200" required> kilogrammen (met 1 cijfer achter de komma)<br>
-                <label><input type="checkbox" id="geen_weegschaal">Ik heb geen weegschaal tot mijn beschikking.</label><br><br>
+                <label><input type="checkbox" id="geen_weegschaal" value="">Ik heb geen weegschaal tot mijn beschikking.</label><br><br>
 
                 <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. Meet elke week op dezelfde manier
                 en met dezelfde bloeddrukmeter.</i></p>
@@ -337,7 +337,7 @@
                 <input type="number" id="onderdruk" min="90" max="180" required> mmHg<br>
                 <label for="apparaat_bloeddruk">2b. Met welk apparaat heb je je bloeddruk gemeten?</label>
                 <input type="text" id="apparaat_bloeddruk"><br>
-                <label><input type="checkbox" id="geen_meter">Ik heb geen bloeddrukmeter tot mijn beschikking.</label><br><br>
+                <label><input type="checkbox" id="geen_meter" value="">Ik heb geen bloeddrukmeter tot mijn beschikking.</label><br><br>
 
                 <p><i>Neem vooraf aan het beantwoorden van deze vraag 10 minuten rust. De vraag is samen met vraag 2
                 tegelijk te beantwoorden met een bloeddrukmeter. Of tel het aantal hartslagen in 15 seconden aan de voorkant
