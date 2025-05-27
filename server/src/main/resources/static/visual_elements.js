@@ -73,9 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             studieInput.disabled = false;
         }
     })
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const werkInput = document.getElementById('werk');
     const geenWerkCheckbox = document.getElementById('geen_werk');
     geenWerkCheckbox.addEventListener('change', () => {
@@ -86,9 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             werkInput.disabled = false;
         }
     })
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const studiedrukInput = document.getElementById('studiedruk');
     const geenStudie2Checkbox = document.getElementById('geen_studie2');
     geenStudie2Checkbox.addEventListener('change', () => {
@@ -99,9 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             studiedrukInput.disabled = false;
         }
     })
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const werkTevredenInput = document.getElementById('werk_tevreden');
     const geenWerk2Checkbox = document.getElementById('geen_werk2');
     geenWerk2Checkbox.addEventListener('change', () => {
@@ -112,9 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
             werkTevredenInput.disabled = false;
         }
     })
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const werkDrukInput = document.getElementById('werkdruk');
     const geenWerk3Checkbox = document.getElementById('geen_werk3');
     geenWerk3Checkbox.addEventListener('change', () => {
@@ -125,9 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
             werkDrukInput.disabled = false;
         }
     })
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const gewichtInput = document.getElementById('gewicht');
     const geenWeegschaalCheckbox = document.getElementById('geen_weegschaal');
     geenWeegschaalCheckbox.addEventListener('change', () => {
@@ -138,9 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
             gewichtInput.disabled = false;
         }
     })
-});
 
-document.addEventListener("DOMContentLoaded", function () {
     const bovendrukInput = document.getElementById('bovendruk');
     const onderdrukInput = document.getElementById('onderdruk');
     const apparaatInput = document.getElementById('apparaat_bloeddruk');
