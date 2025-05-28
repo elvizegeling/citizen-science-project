@@ -1,0 +1,827 @@
+{
+  "resource_version": 148,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "postgres",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "algemeen",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "beweging",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "cardiovasculair",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "middelengebruik",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "student",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "subjectieve_ervaringen",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "tijdbesteding",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "voeding",
+              "schema": "public"
+            }
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": "postgres://postgres:postgrespassword@postgres:5432/postgres",
+            "isolation_level": "read-committed",
+            "use_prepared_statements": false
+          }
+        }
+      }
+    ],
+    "query_collections": [
+      {
+        "name": "allowed-queries",
+        "definition": {
+          "queries": [
+            {
+              "name": "beweging_by_pk",
+              "query": "query beweging_by_pk($bew_id: Int!, $week: Int!) {\n  beweging_by_pk(bew_id: $bew_id, week: $week) {\n    bew_id\n    intens_min\n    matig_min\n    stappen_gem\n    strek_min\n    week\n    zit_uur\n  }\n}\n"
+            },
+            {
+              "name": "beweging",
+              "query": "query beweging {\n  beweging {\n    bew_id\n    intens_min\n    matig_min\n    stappen_gem\n    strek_min\n    week\n    zit_uur\n  }\n}\n"
+            },
+            {
+              "name": "insert_beweging_one",
+              "query": "mutation insert_beweging_one($object: beweging_insert_input!) {\n  insert_beweging_one(object: $object) {\n    bew_id\n    intens_min\n    matig_min\n    stappen_gem\n    strek_min\n    week\n    zit_uur\n  }\n}\n"
+            },
+            {
+              "name": "update_beweging_by_pk",
+              "query": "mutation update_beweging_by_pk($bew_id: Int!, $week: Int!, $object: beweging_set_input!) {\n  update_beweging_by_pk(pk_columns: {bew_id: $bew_id, week: $week}, _set: $object) {\n    bew_id\n    intens_min\n    matig_min\n    stappen_gem\n    strek_min\n    week\n    zit_uur\n  }\n}\n"
+            },
+            {
+              "name": "student_by_pk",
+              "query": "query student_by_pk($student_id: Int!) {\n  student_by_pk(student_id: $student_id) {\n    jaar\n    student_id\n  }\n}\n"
+            },
+            {
+              "name": "student",
+              "query": "query student {\n  student {\n    jaar\n    student_id\n  }\n}\n"
+            },
+            {
+              "name": "insert_student_one",
+              "query": "mutation insert_student_one($object: student_insert_input!) {\n  insert_student_one(object: $object) {\n    jaar\n    student_id\n  }\n}\n"
+            },
+            {
+              "name": "update_student_by_pk",
+              "query": "mutation update_student_by_pk($student_id: Int!, $object: student_set_input!) {\n  update_student_by_pk(pk_columns: {student_id: $student_id}, _set: $object) {\n    jaar\n    student_id\n  }\n}\n"
+            },
+            {
+              "name": "tijdbesteding_by_pk",
+              "query": "query tijdbesteding_by_pk($tbd_id: Int!, $week: Int!) {\n  tijdbesteding_by_pk(tbd_id: $tbd_id, week: $week) {\n    hobby_gem_uur\n    slaap_gem_uur\n    sociaal_gem_uur\n    studie_gem_uur\n    tbd_id\n    week\n    werk_gem_uur\n  }\n}\n"
+            },
+            {
+              "name": "tijdbesteding",
+              "query": "query tijdbesteding {\n  tijdbesteding {\n    hobby_gem_uur\n    slaap_gem_uur\n    sociaal_gem_uur\n    studie_gem_uur\n    tbd_id\n    week\n    werk_gem_uur\n  }\n}\n"
+            },
+            {
+              "name": "insert_tijdbesteding_one",
+              "query": "mutation insert_tijdbesteding_one($object: tijdbesteding_insert_input!) {\n  insert_tijdbesteding_one(object: $object) {\n    hobby_gem_uur\n    slaap_gem_uur\n    sociaal_gem_uur\n    studie_gem_uur\n    tbd_id\n    week\n    werk_gem_uur\n  }\n}\n"
+            },
+            {
+              "name": "update_tijdbesteding_by_pk",
+              "query": "mutation update_tijdbesteding_by_pk($tbd_id: Int!, $week: Int!, $object: tijdbesteding_set_input!) {\n  update_tijdbesteding_by_pk(\n    pk_columns: {tbd_id: $tbd_id, week: $week}\n    _set: $object\n  ) {\n    hobby_gem_uur\n    slaap_gem_uur\n    sociaal_gem_uur\n    studie_gem_uur\n    tbd_id\n    week\n    werk_gem_uur\n  }\n}\n"
+            },
+            {
+              "name": "delete_beweging_by_pk",
+              "query": "mutation delete_beweging_by_pk($bew_id: Int!, $week: Int!) {\n  delete_beweging_by_pk(bew_id: $bew_id, week: $week) {\n    bew_id\n    intens_min\n    matig_min\n    stappen_gem\n    strek_min\n    week\n    zit_uur\n  }\n}\n"
+            },
+            {
+              "name": "delete_student_by_pk",
+              "query": "mutation delete_student_by_pk($student_id: Int!) {\n  delete_student_by_pk(student_id: $student_id) {\n    jaar\n    student_id\n  }\n}\n"
+            },
+            {
+              "name": "delete_tijdbesteding_by_pk",
+              "query": "mutation delete_tijdbesteding_by_pk($tbd_id: Int!, $week: Int!) {\n  delete_tijdbesteding_by_pk(tbd_id: $tbd_id, week: $week) {\n    hobby_gem_uur\n    slaap_gem_uur\n    sociaal_gem_uur\n    studie_gem_uur\n    tbd_id\n    week\n    werk_gem_uur\n  }\n}\n"
+            },
+            {
+              "name": "algemeen_by_pk",
+              "query": "query algemeen_by_pk($alg_id: Int!) {\n  algemeen_by_pk(alg_id: $alg_id) {\n    alg_id\n    lengte_cm\n    week\n  }\n}\n"
+            },
+            {
+              "name": "algemeen",
+              "query": "query algemeen {\n  algemeen {\n    alg_id\n    lengte_cm\n    week\n  }\n}\n"
+            },
+            {
+              "name": "insert_algemeen_one",
+              "query": "mutation insert_algemeen_one($object: algemeen_insert_input!) {\n  insert_algemeen_one(object: $object) {\n    alg_id\n    lengte_cm\n    week\n  }\n}\n"
+            },
+            {
+              "name": "update_algemeen_by_pk",
+              "query": "mutation update_algemeen_by_pk($alg_id: Int!, $object: algemeen_set_input!) {\n  update_algemeen_by_pk(pk_columns: {alg_id: $alg_id}, _set: $object) {\n    alg_id\n    lengte_cm\n    week\n  }\n}\n"
+            },
+            {
+              "name": "delete_algemeen_by_pk",
+              "query": "mutation delete_algemeen_by_pk($alg_id: Int!) {\n  delete_algemeen_by_pk(alg_id: $alg_id) {\n    alg_id\n    lengte_cm\n    week\n  }\n}\n"
+            },
+            {
+              "name": "middelengebruik_by_pk",
+              "query": "query middelengebruik_by_pk($geb_id: Int!, $week: Int!) {\n  middelengebruik_by_pk(geb_id: $geb_id, week: $week) {\n    consum_gem\n    drugs_gem\n    geb_id\n    roken_gem\n    week\n  }\n}\n"
+            },
+            {
+              "name": "middelengebruik",
+              "query": "query middelengebruik {\n  middelengebruik {\n    consum_gem\n    drugs_gem\n    geb_id\n    roken_gem\n    week\n  }\n}\n"
+            },
+            {
+              "name": "insert_middelengebruik_one",
+              "query": "mutation insert_middelengebruik_one($object: middelengebruik_insert_input!) {\n  insert_middelengebruik_one(object: $object) {\n    consum_gem\n    drugs_gem\n    geb_id\n    roken_gem\n    week\n  }\n}\n"
+            },
+            {
+              "name": "update_middelengebruik_by_pk",
+              "query": "mutation update_middelengebruik_by_pk($geb_id: Int!, $week: Int!, $object: middelengebruik_set_input!) {\n  update_middelengebruik_by_pk(\n    pk_columns: {geb_id: $geb_id, week: $week}\n    _set: $object\n  ) {\n    consum_gem\n    drugs_gem\n    geb_id\n    roken_gem\n    week\n  }\n}\n"
+            },
+            {
+              "name": "delete_middelengebruik_by_pk",
+              "query": "mutation delete_middelengebruik_by_pk($geb_id: Int!, $week: Int!) {\n  delete_middelengebruik_by_pk(geb_id: $geb_id, week: $week) {\n    consum_gem\n    drugs_gem\n    geb_id\n    roken_gem\n    week\n  }\n}\n"
+            },
+            {
+              "name": "subjectieve_ervaringen_by_pk",
+              "query": "query subjectieve_ervaringen_by_pk($se_id: Int!, $week: Int!) {\n  subjectieve_ervaringen_by_pk(se_id: $se_id, week: $week) {\n    druk_stud_sch\n    druk_werk_sch\n    se_id\n    stress_sch\n    tevr_hobb_sch\n    tevr_leef_sch\n    tevr_rust_sch\n    tevr_soci_sch\n    tevr_stud_sch\n    tevr_werk_sch\n    vermoeid_sch\n    vitaal_sch\n    week\n  }\n}\n"
+            },
+            {
+              "name": "subjectieve_ervaringen",
+              "query": "query subjectieve_ervaringen {\n  subjectieve_ervaringen {\n    druk_stud_sch\n    druk_werk_sch\n    se_id\n    stress_sch\n    tevr_hobb_sch\n    tevr_leef_sch\n    tevr_rust_sch\n    tevr_soci_sch\n    tevr_stud_sch\n    tevr_werk_sch\n    vermoeid_sch\n    vitaal_sch\n    week\n  }\n}\n"
+            },
+            {
+              "name": "insert_subjectieve_ervaringen_one",
+              "query": "mutation insert_subjectieve_ervaringen_one($object: subjectieve_ervaringen_insert_input!) {\n  insert_subjectieve_ervaringen_one(object: $object) {\n    druk_stud_sch\n    druk_werk_sch\n    se_id\n    stress_sch\n    tevr_hobb_sch\n    tevr_leef_sch\n    tevr_rust_sch\n    tevr_soci_sch\n    tevr_stud_sch\n    tevr_werk_sch\n    vermoeid_sch\n    vitaal_sch\n    week\n  }\n}\n"
+            },
+            {
+              "name": "update_subjectieve_ervaringen_by_pk",
+              "query": "mutation update_subjectieve_ervaringen_by_pk($se_id: Int!, $week: Int!, $object: subjectieve_ervaringen_set_input!) {\n  update_subjectieve_ervaringen_by_pk(\n    pk_columns: {se_id: $se_id, week: $week}\n    _set: $object\n  ) {\n    druk_stud_sch\n    druk_werk_sch\n    se_id\n    stress_sch\n    tevr_hobb_sch\n    tevr_leef_sch\n    tevr_rust_sch\n    tevr_soci_sch\n    tevr_stud_sch\n    tevr_werk_sch\n    vermoeid_sch\n    vitaal_sch\n    week\n  }\n}\n"
+            },
+            {
+              "name": "delete_subjectieve_ervaringen_by_pk",
+              "query": "mutation delete_subjectieve_ervaringen_by_pk($se_id: Int!, $week: Int!) {\n  delete_subjectieve_ervaringen_by_pk(se_id: $se_id, week: $week) {\n    druk_stud_sch\n    druk_werk_sch\n    se_id\n    stress_sch\n    tevr_hobb_sch\n    tevr_leef_sch\n    tevr_rust_sch\n    tevr_soci_sch\n    tevr_stud_sch\n    tevr_werk_sch\n    vermoeid_sch\n    vitaal_sch\n    week\n  }\n}\n"
+            },
+            {
+              "name": "voeding_by_pk",
+              "query": "query voeding_by_pk($voed_id: Int!, $week: Int!) {\n  voeding_by_pk(voed_id: $voed_id, week: $week) {\n    fris_sap_gls\n    fruit_por\n    gezond_sch\n    groente_gem\n    kant_klaar\n    ong_snack\n    vis\n    vlees_vogel\n    voed_id\n    week\n  }\n}\n"
+            },
+            {
+              "name": "voeding",
+              "query": "query voeding {\n  voeding {\n    fris_sap_gls\n    fruit_por\n    gezond_sch\n    groente_gem\n    kant_klaar\n    ong_snack\n    vis\n    vlees_vogel\n    voed_id\n    week\n  }\n}\n"
+            },
+            {
+              "name": "insert_voeding_one",
+              "query": "mutation insert_voeding_one($object: voeding_insert_input!) {\n  insert_voeding_one(object: $object) {\n    fris_sap_gls\n    fruit_por\n    gezond_sch\n    groente_gem\n    kant_klaar\n    ong_snack\n    vis\n    vlees_vogel\n    voed_id\n    week\n  }\n}\n"
+            },
+            {
+              "name": "update_voeding_by_pk",
+              "query": "mutation update_voeding_by_pk($voed_id: Int!, $week: Int!, $object: voeding_set_input!) {\n  update_voeding_by_pk(\n    pk_columns: {voed_id: $voed_id, week: $week}\n    _set: $object\n  ) {\n    fris_sap_gls\n    fruit_por\n    gezond_sch\n    groente_gem\n    kant_klaar\n    ong_snack\n    vis\n    vlees_vogel\n    voed_id\n    week\n  }\n}\n"
+            },
+            {
+              "name": "delete_voeding_by_pk",
+              "query": "mutation delete_voeding_by_pk($voed_id: Int!, $week: Int!) {\n  delete_voeding_by_pk(voed_id: $voed_id, week: $week) {\n    fris_sap_gls\n    fruit_por\n    gezond_sch\n    groente_gem\n    kant_klaar\n    ong_snack\n    vis\n    vlees_vogel\n    voed_id\n    week\n  }\n}\n"
+            },
+            {
+              "name": "cardiovasculair_by_pk",
+              "query": "query cardiovasculair_by_pk($car_id: Int!, $week: Int!) {\n  cardiovasculair_by_pk(car_id: $car_id, week: $week) {\n    apparaat_bloed\n    apparaat_hart\n    bovengrens\n    car_id\n    gewicht\n    hartfrequentie\n    ondergrens\n    week\n  }\n}\n"
+            },
+            {
+              "name": "cardiovasculair",
+              "query": "query cardiovasculair {\n  cardiovasculair {\n    apparaat_bloed\n    apparaat_hart\n    bovengrens\n    car_id\n    gewicht\n    hartfrequentie\n    ondergrens\n    week\n  }\n}\n"
+            },
+            {
+              "name": "insert_cardiovasculair_one",
+              "query": "mutation insert_cardiovasculair_one($object: cardiovasculair_insert_input!) {\n  insert_cardiovasculair_one(object: $object) {\n    apparaat_bloed\n    apparaat_hart\n    bovengrens\n    car_id\n    gewicht\n    hartfrequentie\n    ondergrens\n    week\n  }\n}\n"
+            },
+            {
+              "name": "update_cardiovasculair_by_pk",
+              "query": "mutation update_cardiovasculair_by_pk($car_id: Int!, $week: Int!, $object: cardiovasculair_set_input!) {\n  update_cardiovasculair_by_pk(\n    pk_columns: {car_id: $car_id, week: $week}\n    _set: $object\n  ) {\n    apparaat_bloed\n    apparaat_hart\n    bovengrens\n    car_id\n    gewicht\n    hartfrequentie\n    ondergrens\n    week\n  }\n}\n"
+            },
+            {
+              "name": "delete_cardiovasculair_by_pk",
+              "query": "mutation delete_cardiovasculair_by_pk($car_id: Int!, $week: Int!) {\n  delete_cardiovasculair_by_pk(car_id: $car_id, week: $week) {\n    apparaat_bloed\n    apparaat_hart\n    bovengrens\n    car_id\n    gewicht\n    hartfrequentie\n    ondergrens\n    week\n  }\n}\n"
+            }
+          ]
+        }
+      }
+    ],
+    "allowlist": [
+      {
+        "collection": "allowed-queries",
+        "scope": {
+          "global": true
+        }
+      }
+    ],
+    "rest_endpoints": [
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "algemeen"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "algemeen",
+        "url": "algemeen"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_algemeen_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_algemeen_one",
+        "url": "algemeen"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "algemeen_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "algemeen_by_pk",
+        "url": "algemeen/:alg_id"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_algemeen_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_algemeen_by_pk",
+        "url": "algemeen/:alg_id"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_algemeen_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_algemeen_by_pk",
+        "url": "algemeen/:alg_id"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "beweging"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "beweging",
+        "url": "beweging"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_beweging_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_beweging_one",
+        "url": "beweging"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "beweging_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "beweging_by_pk",
+        "url": "beweging/:bew_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_beweging_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_beweging_by_pk",
+        "url": "beweging/:bew_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_beweging_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_beweging_by_pk",
+        "url": "beweging/:bew_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "cardiovasculair"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "cardiovasculair",
+        "url": "cardiovasculair"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_cardiovasculair_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_cardiovasculair_one",
+        "url": "cardiovasculair"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "cardiovasculair_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "cardiovasculair_by_pk",
+        "url": "cardiovasculair/:car_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_cardiovasculair_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_cardiovasculair_by_pk",
+        "url": "cardiovasculair/:car_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_cardiovasculair_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_cardiovasculair_by_pk",
+        "url": "cardiovasculair/:car_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "middelengebruik"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "middelengebruik",
+        "url": "middelengebruik"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_middelengebruik_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_middelengebruik_one",
+        "url": "middelengebruik"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "middelengebruik_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "middelengebruik_by_pk",
+        "url": "middelengebruik/:geb_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_middelengebruik_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_middelengebruik_by_pk",
+        "url": "middelengebruik/:geb_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_middelengebruik_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_middelengebruik_by_pk",
+        "url": "middelengebruik/:geb_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "student"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "student",
+        "url": "student"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_student_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_student_one",
+        "url": "student"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "student_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "student_by_pk",
+        "url": "student/:student_id"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_student_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_student_by_pk",
+        "url": "student/:student_id"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_student_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_student_by_pk",
+        "url": "student/:student_id"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "subjectieve_ervaringen"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "subjectieve_ervaringen",
+        "url": "subjectieve_ervaringen"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_subjectieve_ervaringen_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_subjectieve_ervaringen_one",
+        "url": "subjectieve_ervaringen"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "subjectieve_ervaringen_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "subjectieve_ervaringen_by_pk",
+        "url": "subjectieve_ervaringen/:se_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_subjectieve_ervaringen_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_subjectieve_ervaringen_by_pk",
+        "url": "subjectieve_ervaringen/:se_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_subjectieve_ervaringen_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_subjectieve_ervaringen_by_pk",
+        "url": "subjectieve_ervaringen/:se_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "tijdbesteding"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "tijdbesteding",
+        "url": "tijdbesteding"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_tijdbesteding_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_tijdbesteding_one",
+        "url": "tijdbesteding"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "tijdbesteding_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "tijdbesteding_by_pk",
+        "url": "tijdbesteding/:tbd_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_tijdbesteding_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_tijdbesteding_by_pk",
+        "url": "tijdbesteding/:tbd_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_tijdbesteding_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_tijdbesteding_by_pk",
+        "url": "tijdbesteding/:tbd_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "voeding"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "voeding",
+        "url": "voeding"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "insert_voeding_one"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "insert_voeding_one",
+        "url": "voeding"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "voeding_by_pk"
+          }
+        },
+        "methods": [
+          "GET"
+        ],
+        "name": "voeding_by_pk",
+        "url": "voeding/:voed_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "update_voeding_by_pk"
+          }
+        },
+        "methods": [
+          "POST"
+        ],
+        "name": "update_voeding_by_pk",
+        "url": "voeding/:voed_id/:week"
+      },
+      {
+        "comment": "",
+        "definition": {
+          "query": {
+            "collection_name": "allowed-queries",
+            "query_name": "delete_voeding_by_pk"
+          }
+        },
+        "methods": [
+          "DELETE"
+        ],
+        "name": "delete_voeding_by_pk",
+        "url": "voeding/:voed_id/:week"
+      }
+    ],
+    "backend_configs": {
+      "dataconnector": {
+        "athena": {
+          "uri": "http://data-connector-agent:8081/api/v1/athena"
+        },
+        "mariadb": {
+          "uri": "http://data-connector-agent:8081/api/v1/mariadb"
+        },
+        "mysql8": {
+          "uri": "http://data-connector-agent:8081/api/v1/mysql"
+        },
+        "oracle": {
+          "uri": "http://data-connector-agent:8081/api/v1/oracle"
+        },
+        "snowflake": {
+          "uri": "http://data-connector-agent:8081/api/v1/snowflake"
+        }
+      }
+    }
+  }
+}

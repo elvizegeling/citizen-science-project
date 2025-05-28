@@ -10,6 +10,8 @@
 */
 package com.example.server;
 
+import com.opencsv.CSVWriter;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,13 +19,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
+
 
 @RestController
 public class HasuraApicontroller extends Apicontroller {
@@ -611,6 +611,155 @@ public class HasuraApicontroller extends Apicontroller {
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Fail", HttpStatus.valueOf(500));
         }
+    }
+
+    //--------------------------------------------
+    // csv file maken
+    //--------------------------------------------
+    @GetMapping("tabellentocsv/post")
+    public String DatatoCSV(@RequestParam(value = "is_in") String is_in){
+        System.out.println(is_in);
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(new File("src/main/resources/static","CSstudentData.csv")));
+            JSONObject StudentID = new JSONObject((getAllStudent().getBody()));
+            JSONArray Studenten = StudentID.getJSONArray("student");
+
+            String[] header = {"ID", "jaar","week", "lengte_cm", "matig_min", "intens_min", "strek_min", "zit_uur", "stappen_gem", "consum_gem", "roken_gem", "drugs_gem", "groente_gem", "fruit_por", "fris_sap_gls", "ong_snack", "kant_klaar", "vlees_vogel", "vis", "gezond_sch", "slaap_gem_uur", "sociaal_gem_uur", "hobby_gem_uur", "studie_gem_uur", "werk_gem_uur", "stress_sch", "vermoeid_sch", "vitaal_sch", "tevr_stud_sch", "druk_stud_sch","tevr_leef_sch", "tevr_soci_sch", "druk_werk_sch", "tevr_werk_sch","tevr_rust_sch", "tevr_hobb_sch", "gewicht", "bovendruk", "onderdruk", "hartfrequentie", "apparaat_bloeddruk", "apparaat_hartslag"};
+            writer.writeNext(header);
+
+            for (int i = 0; i<=Studenten.length();i++){
+                for (int j = 1; j<=6;j++){
+                    JSONObject Student = new JSONObject(String.valueOf(Studenten.getJSONObject(i)));
+                    Integer id = Integer.valueOf(Student.getString("student_id"));
+                    String jaar = Student.getString("jaar");
+                    Integer week = j;
+
+                    JSONObject Algemeen = new JSONObject((getAlgemeen(id).getBody()));
+
+                    String lengte_cm = null;
+                    if (!Algemeen.isNull("algemeen_by_pk")){
+                        JSONObject algemeen = Algemeen.getJSONObject("algemeen_by_pk");
+                        lengte_cm = algemeen.getString("lengte_cm");
+                    }
+
+                    JSONObject Beweging = new JSONObject((getBeweging(id,week).getBody()));
+                    String matig_min = null;
+                    String intens_min = null;
+                    String strek_min = null;
+                    String zit_uur = null;
+                    String stappen_gem = null;
+                    if (!Beweging.isNull("beweging_by_pk")) {
+                        JSONObject beweging = Beweging.getJSONObject("beweging_by_pk");
+                        matig_min = beweging.getString("matig_min");
+                        intens_min = beweging.getString("intens_min");
+                        strek_min = beweging.getString("strek_min");
+                        zit_uur = beweging.getString("zit_uur");
+                        stappen_gem = beweging.getString("stappen_gem");
+                    }
+
+                    JSONObject Middelengebruik = new JSONObject((getMiddelengebruik(id,week).getBody()));
+                    String consum_gem = null;
+                    String roken_gem = null;
+                    String drugs_gem = null;
+                    if (!Middelengebruik.isNull("middelengebruik_by_pk")) {
+                        JSONObject middelengebruik = Middelengebruik.getJSONObject("middelengebruik_by_pk");
+                        consum_gem = middelengebruik.getString("consum_gem");
+                        roken_gem = middelengebruik.getString("roken_gem");
+                        drugs_gem = middelengebruik.getString("drugs_gem");
+                    }
+
+                    JSONObject Voeding = new JSONObject((getVoeding(id, week).getBody()));
+                    String groente_gem = null;
+                    String fruit_por = null;
+                    String fris_sap_gls = null;
+                    String ong_snack = null;
+                    String kant_klaar = null;
+                    String vlees_vogel = null;
+                    String vis = null;
+                    String gezond_sch = null;
+                    if (!Voeding.isNull("voeding_by_pk")) {
+                        JSONObject voeding = Voeding.getJSONObject("voeding_by_pk");
+                        groente_gem = voeding.getString("groente_gem");
+                        fruit_por = voeding.getString("fruit_por");
+                        fris_sap_gls = voeding.getString("fris_sap_gls");
+                        ong_snack = voeding.getString("ong_snack");
+                        kant_klaar = voeding.getString("kant_klaar");
+                        vlees_vogel = voeding.getString("vlees_vogel");
+                        vis = voeding.getString("vis");
+                        gezond_sch = voeding.getString("gezond_sch");
+                    }
+
+                    JSONObject Tijdbesteding = new JSONObject(getTijdbesteding(id,week).getBody());
+                    String slaap_gem_uur = null;
+                    String sociaal_gem_uur = null;
+                    String hobby_gem_uur = null;
+                    String studie_gem_uur = null;
+                    String werk_gem_uur = null;
+                    if (!Tijdbesteding.isNull("tijdbesteding_by_pk")){
+                        JSONObject tijdbesteding = Tijdbesteding.getJSONObject("tijdbesteding_by_pk");
+                        slaap_gem_uur = tijdbesteding.getString("slaap_gem_uur");
+                        sociaal_gem_uur = tijdbesteding.getString("sociaal_gem_uur");
+                        hobby_gem_uur = tijdbesteding.getString("hobby_gem_uur");
+                        studie_gem_uur = tijdbesteding.getString("studie_gem_uur");
+                        werk_gem_uur = tijdbesteding.getString("werk_gem_uur");
+                    }
+
+
+                    JSONObject SE = new JSONObject(getSE(id,week).getBody());
+                    String stress_sch = null;
+                    String vermoeid_sch = null;
+                    String vitaal_sch = null;
+                    String tevr_stud_sch = null;
+                    String druk_stud_sch = null;
+                    String tevr_leef_sch = null;
+                    String tevr_soci_sch = null;
+                    String druk_werk_sch = null;
+                    String tevr_werk_sch = null;
+                    String tevr_rust_sch = null;
+                    String tevr_hobb_sch = null;
+                    if (!SE.isNull("subjectieve_ervaringen_by_pk")) {
+                        JSONObject se = SE.getJSONObject("subjectieve_ervaringen_by_pk");
+                        stress_sch = se.getString("stress_sch");
+                        vermoeid_sch = se.getString("vermoeid_sch");
+                        vitaal_sch = se.getString("vitaal_sch");
+                        tevr_stud_sch = se.getString("tevr_stud_sch");
+                        druk_stud_sch = se.getString("druk_stud_sch");
+                        tevr_leef_sch = se.getString("tevr_leef_sch");
+                        tevr_soci_sch = se.getString("tevr_soci_sch");
+                        druk_werk_sch = se.getString("druk_werk_sch");
+                        tevr_werk_sch = se.getString("tevr_werk_sch");
+                        tevr_rust_sch = se.getString("tevr_rust_sch");
+                        tevr_hobb_sch = se.getString("tevr_hobb_sch");
+                    }
+
+                    JSONObject Cardiovasculair = new JSONObject(getCardiovasculair(id,week).getBody());
+                    String gewicht = null;
+                    String bovengrens = null;
+                    String ondergrens = null;
+                    String hartfrequentie = null;
+                    String apparaat_bloed = null;
+                    String apparaat_hart = null;
+                    if (!Cardiovasculair.isNull("cardiovasculair_by_pk")) {
+                        JSONObject cardiovasculair = Cardiovasculair.getJSONObject("cardiovasculair_by_pk");
+                        gewicht = cardiovasculair.getString("gewicht");
+                        bovengrens = cardiovasculair.getString("bovengrens");
+                        ondergrens = cardiovasculair.getString("ondergrens");
+                        hartfrequentie = cardiovasculair.getString("hartfrequentie");
+                        apparaat_bloed = cardiovasculair.getString("apparaat_bloed");
+                        apparaat_hart = cardiovasculair.getString("apparaat_hart");
+                    }
+
+                    String[] Studentdata = {String.valueOf(id), jaar, String.valueOf(week), lengte_cm, matig_min, intens_min, strek_min, zit_uur, stappen_gem, consum_gem, roken_gem, drugs_gem, groente_gem, fruit_por, fris_sap_gls, ong_snack, kant_klaar, vlees_vogel, vis, gezond_sch, slaap_gem_uur, sociaal_gem_uur, hobby_gem_uur, studie_gem_uur, werk_gem_uur,stress_sch, vermoeid_sch, vitaal_sch, tevr_stud_sch, druk_stud_sch, tevr_leef_sch, tevr_soci_sch, druk_werk_sch, tevr_werk_sch, tevr_rust_sch, tevr_hobb_sch, gewicht, bovengrens, ondergrens, hartfrequentie, apparaat_bloed, apparaat_hart };
+                    writer.writeNext(Studentdata);
+                }
+            }
+
+            writer.close();
+        }catch (IOException | JSONException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return "test";
     }
 
 }

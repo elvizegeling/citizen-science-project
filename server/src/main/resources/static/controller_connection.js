@@ -25,6 +25,7 @@ function checklogin() {
 
         if (parseInt(student.student_id) === parseInt(student_id) ) {
             localStorage.setItem("id", student_id)
+            localStorage.setItem("jaar", student.jaar)
             window.location.href = "invoeren.html"
         } else {
             alert("ingevoerde toegangscode is onjuist")
@@ -488,4 +489,12 @@ function addupdCardiovasculair(){
             localStorage.setItem("Cardiovasculairbool", "0")
         })
     }
+}
+
+function ForumtoCSV(){
+    is_in = "is_in"
+$.getJSON("tabellentocsv/post",{is_in:is_in}, function (data){
+    console.log(data)
+    window.location.href="resultaten.html"
+})
 }
