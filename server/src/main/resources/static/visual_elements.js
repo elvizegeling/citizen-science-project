@@ -32,9 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     vorige.forEach((knop) => {
         knop.addEventListener('click', () => {
-            const weeknummer = document.getElementById('weeknummer');
-            console.log(weeknummer.value);
-            if (weeknummer.value === "1") {
+            if (localStorage.getItem("Algemeenbool") === "0") {
                 if (huidigeStap > 0) {
                     toonStap(huidigeStap-1);
                 }
@@ -174,14 +172,13 @@ function gaTerug(button) {
     const div_id = button.closest("div").id;
     const huidige = Number(div_id.match(/\d+/)[0]);
     document.getElementById(`stap${huidige}`).style.display = 'none';
-    const weeknummer = document.getElementById("weeknummer");
     if (huidige === 0) {
         document.getElementById("start_tekst").style.display = 'block';
         document.getElementById("invoeren").style.display = 'block';
         document.getElementById("progress_versie1").style.display = 'none';
         huidigeStap = 0;
     } else if (huidige === 1) {
-        if (weeknummer.value !== "1") {
+        if (localStorage.getItem("Algemeenbool") === "1") {
             document.getElementById("start_tekst").style.display = 'block';
             document.getElementById("invoeren").style.display = 'block';
             document.getElementById("progress_versie2").style.display = 'none';
