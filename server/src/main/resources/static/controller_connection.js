@@ -491,6 +491,7 @@ function addupdCardiovasculair(){
     }
 }
 
+// deze functie zorgt ervoor dat de csv bestand wordt aangepast met de nieuwe data
 function ForumtoCSV(){
     is_in = "is_in"
 $.getJSON("tabellentocsv/post",{is_in:is_in}, function (data){

@@ -616,6 +616,7 @@ public class HasuraApicontroller extends Apicontroller {
     //--------------------------------------------
     // csv file maken
     //--------------------------------------------
+    // deze class zorgt ervoor dat de tabellen in de database worden omgezet naar een csv bestand voor verdere verwerking.
     @GetMapping("tabellentocsv/post")
     public String DatatoCSV(@RequestParam(value = "is_in") String is_in){
         System.out.println(is_in);
